@@ -1,0 +1,92 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: url("../achtergrond.jpg") no-repeat ;
+    background-size: 2200px;
+    text-align: center;
+}
+
+
+
+#menuhoofd {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #282a2d;
+}
+
+li {
+    float: right;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 60px;
+}
+li a:hover {
+    text-decoration: none;
+    color: lightgrey;
+
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+}
+
+
+#welkomtitel {
+    margin-top: 100px;
+    font-weight: bold;
+    color: lightcoral;
+    animation-name: welkomanimatie;
+    animation-duration: 2s;
+
+}
+
+#fotovanmij {
+    height: 250px;
+    width: 250px;
+    margin: 50px;
+    border-radius: 100%;
+}
+
+#persoonlijketext {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#persoonlijktitel {
+    font-weight: bold;
+}
+
+
+@keyframes welkomanimatie {
+    from {
+        font-size: 60%;
+        color: white;
+    }
+    to {
+        font-size: 255%;
+        color: lightcoral;
+    }
+}
+
+@-webkit-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+.textcontainer2 {
+    border: solid blanchedalmond;
+    margin-top: 600px;
+}
