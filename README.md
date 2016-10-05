@@ -1,2 +1,2 @@
-# https://jildertvenema.github.com
+# http://jildertvenema.github.com
 Mijn portfolio-website
