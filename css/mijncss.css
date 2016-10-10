@@ -8,7 +8,10 @@ body {
     text-align: center;
 }
 
-
+p {
+    font-size: 22px;
+    color: black;
+}
 
 #menuhoofd {
     list-style-type: none;
@@ -28,7 +31,6 @@ body {
 li a:hover {
     text-decoration: none;
     color: lightgrey;
-
 }
 
 li a:active {
@@ -41,6 +43,8 @@ li a {
     color: white;
     padding: 16px;
     text-decoration: none;
+    font-size: 18px;
+
 }
 
 
@@ -70,6 +74,7 @@ li a {
     font-weight: bold;
     margin-bottom: 50px;
     padding-top: 70px;
+    color: black;
 }
 
 
@@ -157,7 +162,16 @@ li a {
         padding-top: 40px;
         padding-bottom: 100px;
     }
+
     body {
-     background-size: cover;    
+        background: url("../mobielachtergrond.png") no-repeat fixed;
+        background-size: 100%;
     }
+    p {
+        color: white;
+    }
+    .subtitels {
+        color: white;
+    }
+
 }
