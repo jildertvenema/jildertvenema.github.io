@@ -3,7 +3,7 @@
 }
 
 body {
-    background: url("https://raw.githubusercontent.com/jildertvenema/jildertvenema.github.io/master/achtergrond.jpg") no-repeat ;
+    background: url("../achtergrond.jpg") no-repeat fixed;
     background-size: 2200px;
     text-align: center;
 }
@@ -18,7 +18,15 @@ body {
     background-color: #282a2d;
 }
 
-li {
+#menuhoofd ul li {
+    float: none;
+}
+
+#menuhoofd ul {
+    display: none;
+}
+
+#menuhoofd li {
     float: right;
     text-align: center;
     margin-left: 30px;
@@ -28,6 +36,11 @@ li a:hover {
     text-decoration: none;
     color: lightgrey;
 
+}
+
+li a:active {
+    text-decoration: none;
+    color: lightsteelblue;
 }
 
 li a {
@@ -44,6 +57,7 @@ li a {
     color: lightcoral;
     animation-name: welkomanimatie;
     animation-duration: 2s;
+    padding-top: 50px;
 
 }
 
@@ -59,8 +73,10 @@ li a {
     font-size: 18px;
 }
 
-#persoonlijktitel {
+.subtitels {
     font-weight: bold;
+    margin-bottom: 50px;
+    padding-top: 70px;
 }
 
 
@@ -86,7 +102,54 @@ li a {
     }
 }
 
-.textcontainer2 {
-    border: solid blanchedalmond;
-    margin-top: 600px;
+@-moz-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+@-o-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+
+.textcontainer {
+    padding-bottom:200px;
+    display: block;
+    margin: auto;
+
+}
+
+.subtext {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+#voorpagina {
+    padding-bottom: 740px;
+}
+
+@media (max-width: 700px) {
+    #menuhoofd li a {
+        padding: 3px;
+    }
+     .subtext {
+         margin-left: 15px;
+         margin-right: 15px;
+     }
+    .subtitels {
+        padding-top: 100px;
+    }
 }
