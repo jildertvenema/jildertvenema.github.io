@@ -13,6 +13,11 @@ p {
     color: black;
 }
 
+#naam {
+    font-weight: bold;
+    font-size: 28px;
+}
+
 #menuhoofd {
     list-style-type: none;
     margin: 0;
@@ -52,8 +57,10 @@ li a {
     margin-top: 100px;
     font-weight: bold;
     color: lightcoral;
-    animation-name: welkomanimatie;
-    animation-duration: 2s;
+    animation: welkomanimatie 2s;
+    -webkit-animation: welkomanimatie 2s;
+    -moz-animation: welkomanimatie 2s;
+    -o-animation: welkomanimatie 2s;
     padding-top: 50px;
 
 }
@@ -65,17 +72,32 @@ li a {
     border-radius: 100%;
 }
 
-#persoonlijketext {
-    font-weight: bold;
-    font-size: 18px;
-}
-
 .subtitels {
     font-weight: bold;
     margin-bottom: 50px;
     padding-top: 70px;
     color: black;
 }
+
+.sublijst {
+    font-size: 20px;
+    font-weight: bold;
+    color: slategray;
+    list-style-type: none;
+}
+
+.textcontainer a {
+    text-decoration: none;
+    color: #282a2d;
+    font-size: 22px;
+}
+.textcontainer a:hover {
+    color: black;
+}
+
+
+
+
 
 
 @keyframes welkomanimatie {
@@ -123,6 +145,7 @@ li a {
 }
 
 
+
 .textcontainer {
     padding-bottom:200px;
     display: block;
@@ -136,7 +159,7 @@ li a {
 }
 
 #voorpagina {
-    padding-bottom: 760px;
+    padding-bottom: 400px;
     padding-top: 40px;
 }
 
@@ -174,5 +197,17 @@ li a {
     .subtitels {
         color: white;
     }
+    .textcontainer a {
+        color: white;
+    }
 
+}
+
+#backtotop {
+    margin-top: 50px;
+}
+
+#social img:first-child {
+    width: 1.8%;
+    margin-left: 20px;
 }
