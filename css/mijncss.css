@@ -200,6 +200,12 @@ li a {
     .textcontainer a {
         color: white;
     }
+    
+    #social img:first-child {
+    width: 30%;
+    margin-left: 20px;
+}
+
 
 }
 
