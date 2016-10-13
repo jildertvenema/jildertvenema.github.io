@@ -3,6 +3,7 @@
 }
 
 body {
+    background-color: #D45959;
     background: url("../achtergrond.jpg") no-repeat fixed;
     background-size: cover;
     text-align: center;
@@ -19,19 +20,13 @@ p {
 }
 
 #menuhoofd {
-    list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #282a2d;
-}
-#menuhoofd li {
-    float: right;
-    text-align: center;
-    margin-left: 30px;
-    margin-right: 60px;
 }
 
+#menuhoofd li{
+    float: left;
+}
 
 li a:hover {
     text-decoration: none;
@@ -95,7 +90,9 @@ li a {
     color: black;
 }
 
-
+#dropdown button {
+    color: white;
+}
 
 
 
@@ -145,7 +142,6 @@ li a {
 }
 
 
-
 .textcontainer {
     padding-bottom:200px;
     display: block;
@@ -159,25 +155,38 @@ li a {
 }
 
 #voorpagina {
-    padding-bottom: 400px;
+    padding-bottom: 300px;
     padding-top: 40px;
 }
 
-@media (max-width: 760px) {
-    #menuhoofd li {
-        float: left;
-        margin: 2px;
-        padding-left: 40px;
-    }
-    #menuhoofd li a {
-        padding: 5px;
-        margin-bottom: 6px;
-    }
 
-     .subtext {
-         margin-left: 15px;
-         margin-right: 15px;
-     }
+#backtotop {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#social img:first-child {
+    height: 30px;
+    margin-left: 20px;
+}
+
+#dropdown {
+    display: none;
+}
+#dropdown-menu li {
+    float: none;
+}
+
+#social {
+    margin-bottom: 300px;
+}
+
+
+@media (max-width: 760px) {
+    .subtext {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
     .subtitels {
         padding-top: 100px;
     }
@@ -200,13 +209,10 @@ li a {
     .textcontainer a {
         color: white;
     }
-}
-
-#backtotop {
-    margin-top: 50px;
-}
-
-#social img:first-child {
-    height: 30px;
-    margin-left: 20px;
+    .menuhide {
+        display: none;
+    }
+    #dropdown {
+        display: inline;
+    }
 }
