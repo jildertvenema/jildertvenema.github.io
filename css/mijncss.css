@@ -196,18 +196,11 @@ li a {
     }
 
     body {
-        background: url("../mobielachtergrond.png") no-repeat fixed;
+        background: url("../achtergrond_fixed.jpg") no-repeat fixed;
         background-size: 100%;
     }
     p {
-        color: white;
         font-size: 16px;
-    }
-    .subtitels {
-        color: white;
-    }
-    .textcontainer a {
-        color: white;
     }
     .menuhide {
         display: none;
