@@ -22,6 +22,7 @@ p {
 #menuhoofd {
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 #menuhoofd li{
@@ -47,9 +48,8 @@ li a {
 
 }
 
-
 #welkomtitel {
-    margin-top: 100px;
+    margin-top: 50px;
     font-weight: bold;
     color: lightcoral;
     animation: welkomanimatie 2s;
@@ -94,7 +94,19 @@ li a {
     color: white;
 }
 
+#contact {
+    background-color: #282a2d;
+    background: url("../achtergrond.jpg") no-repeat;
+    background-size: cover;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+}
 
+#contact *{
+    font-size: 15px;
+    color: black;
+}
 
 
 @keyframes welkomanimatie {
@@ -181,6 +193,10 @@ li a {
     margin-bottom: 300px;
 }
 
+#social a:hover {
+  text-decoration: none;
+}
+
 
 @media (max-width: 760px) {
     .subtext {
@@ -207,5 +223,8 @@ li a {
     }
     #dropdown {
         display: inline;
+    }
+    #dropdown li {
+
     }
 }
