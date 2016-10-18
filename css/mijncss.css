@@ -212,7 +212,7 @@ li a {
     }
 
     body {
-        background: url("../achtergrond_fixed.jpg") no-repeat fixed;
+        background: url("../achtergrond_fixed.jpg");
         background-size: 100%;
     }
     p {
