@@ -5,6 +5,7 @@
 body {
     background-color: #D45959;
     background: url("../achtergrond.jpg") no-repeat fixed;
+    background-attachment: scroll;
     background-size: cover;
     text-align: center;
 }
