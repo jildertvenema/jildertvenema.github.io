@@ -225,11 +225,13 @@ li a {
     #voorpagina {
         background: url("../achtergrond_fixed.jpg") no-repeat 100%;
         margin-bottom: 0;
+        margin-right: 0;
     }
 
     .textcontainer {
         background: url("../achtergrond_fixed.jpg") no-repeat 100%;
         border-top: 3px solid;
+        margin-right: 0;
     }
     .menuhide {
         display: none;
