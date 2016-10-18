@@ -203,6 +203,9 @@ li a {
         margin-left: 15px;
         margin-right: 15px;
     }
+    #welkomtitel {
+        margin-top: 10px;
+    }
     .subtitels {
         padding-top: 100px;
     }
@@ -212,11 +215,20 @@ li a {
     }
 
     body {
-        background: url("../achtergrond_fixed.jpg");
-        background-size: 100%;
+        background: none;
+        background-color: blanchedalmond;
     }
     p {
-        font-size: 16px;
+        font-size: 19px;
+    }
+
+    #voorpagina {
+        background: url("../achtergrond_fixed.jpg") no-repeat 100%;
+    }
+
+    .textcontainer {
+        background: url("../achtergrond_fixed.jpg") no-repeat 100%;
+        border-top: 3px solid;
     }
     .menuhide {
         display: none;
@@ -226,5 +238,8 @@ li a {
     }
     #dropdown li {
 
+    }
+    #backtotopcontainer {
+        border-top: 3px solid;
     }
 }
