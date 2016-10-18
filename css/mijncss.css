@@ -224,6 +224,7 @@ li a {
 
     #voorpagina {
         background: url("../achtergrond_fixed.jpg") no-repeat 100%;
+        margin-bottom: 0;
     }
 
     .textcontainer {
