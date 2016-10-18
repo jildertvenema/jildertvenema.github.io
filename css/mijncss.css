@@ -249,7 +249,9 @@ li a {
         display: inline;
     }
     #backtotopcontainer {
-        border-top: 3px solid;
+        background: url("../achtergrond_fixed.jpg");
+        background-size: cover;
+        border-top: solid 3px;
     }
 }
 
