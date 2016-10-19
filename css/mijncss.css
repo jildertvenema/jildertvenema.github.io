@@ -4,7 +4,7 @@
 
 body {
     background-color: #D45959;
-    background: url("../achtergrond.jpg") no-repeat fixed;
+    background: url("../achtergronden/achtergrond.jpg") no-repeat fixed;
     background-size: cover;
     text-align: center;
 }
@@ -106,6 +106,7 @@ li a {
 #contact *{
     font-size: 15px;
     color: black;
+    margin: 1px;
 }
 
 .rodetext {
@@ -202,6 +203,27 @@ li a {
   text-decoration: none;
 }
 
+#gitaarpic {
+    margin-top: 20px;
+    background: no-repeat;
+    background-size: cover;
+    border-radius: 80%;
+    width: 290px;
+    border: solid #282a2d 1px;
+}
+
+#gitaarpic a:hover {
+    rgba(0, 0, 0, 0.2)
+}
+
+#soundcloud {
+    width: 80px;
+    margin-left: 20px;
+
+}
+
+
+
 
 @media (max-width: 760px) {
     .subtext {
@@ -228,7 +250,7 @@ li a {
     }
 
     #voorpagina {
-        background: url("../achtergrond_fixed.jpg") no-repeat;
+        background: url("../achtergronden/achtergrond_fixed.jpg") no-repeat;
         background-size: cover;
         margin-bottom: 0;
         margin-right: 0;
@@ -236,7 +258,7 @@ li a {
     }
 
     .textcontainer {
-        background: url("../achtergrond_fixed.jpg") no-repeat;
+        background: url("../achtergronden/achtergrond_fixed.jpg") no-repeat;
         background-size: cover;
         border-top: 3px solid;
         margin-right: 0;
@@ -249,9 +271,12 @@ li a {
         display: inline;
     }
     #backtotopcontainer {
-        background: url("../achtergrond_fixed.jpg");
+        background: url("../achtergronden/achtergrond_fixed.jpg");
         background-size: cover;
         border-top: solid 3px;
+    }
+    #gitaarpic {
+        width: 200px;
     }
 }
 
