@@ -1,0 +1,330 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #D45959;
+    background: url("../achtergronden/achtergrond.jpg") no-repeat fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+p {
+    font-size: 22px;
+    color: black;
+}
+
+#naam {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#menuhoofd {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#menuhoofd li{
+    float: left;
+}
+
+li a:hover {
+    text-decoration: none;
+    color: lightgrey;
+}
+
+li a:active {
+    text-decoration: none;
+    color: lightsteelblue;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    font-size: 18px;
+
+}
+
+#welkomtitel {
+    margin-top: 50px;
+    font-weight: bold;
+    color: lightcoral;
+    animation: welkomanimatie 2s;
+    -webkit-animation: welkomanimatie 2s;
+    -moz-animation: welkomanimatie 2s;
+    -o-animation: welkomanimatie 2s;
+    padding-top: 50px;
+
+}
+
+#fotovanmij {
+    height: 250px;
+    width: 250px;
+    margin: 50px;
+    border-radius: 100%;
+}
+
+.subtitels {
+    font-weight: bold;
+    margin-bottom: 50px;
+    padding-top: 70px;
+    color: black;
+}
+
+.sublijst {
+    font-size: 20px;
+    font-weight: bold;
+    color: darkred;
+    list-style-type: none;
+}
+
+.textcontainer a {
+    text-decoration: none;
+    color: #282a2d;
+    font-size: 22px;
+}
+.textcontainer a:hover {
+    color: black;
+}
+
+#dropdown button {
+    color: white;
+}
+
+#contact {
+    background-color: #282a2d;
+    background-size: cover;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#contact *{
+    font-size: 15px;
+    color: black;
+    margin: 1px;
+}
+
+.rodetext {
+    color: darkred;
+}
+
+@keyframes welkomanimatie {
+    from {
+        font-size: 60%;
+        color: white;
+    }
+    to {
+        font-size: 255%;
+        color: lightcoral;
+    }
+}
+
+@-webkit-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+@-moz-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+@-o-keyframes welkomanimatie {
+    from {
+        font-size: 20%;
+        color: white;
+    }
+    to {
+        font-size: 100%;
+        color: lightcoral;
+    }
+}
+
+
+.textcontainer {
+    padding-bottom:200px;
+    display: block;
+    margin: auto;
+    background-color: darkgrey;
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+.subtext {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+#voorpagina {
+    padding-bottom: 300px;
+    padding-top: 40px;
+}
+
+
+#backtotop {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#social img {
+    height: 30px;
+    margin-left: 20px;
+}
+
+#dropdown {
+    display: none;
+}
+#dropdown-menu li {
+    float: none;
+}
+
+#social {
+    margin-bottom: 300px;
+}
+
+#social a:hover {
+  text-decoration: none;
+}
+
+#gitaarpic {
+    margin-top: 20px;
+    background: no-repeat;
+    background-size: cover;
+    border-radius: 80%;
+    width: 290px;
+    border: solid #282a2d 1px;
+}
+
+#gitaarpic a:hover {
+    rgba(0, 0, 0, 0.2)
+}
+
+#soundcloud {
+    width: 80px;
+    margin-left: 20px;
+
+}
+
+
+
+#controls {
+    background-color: darkgrey;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    margin-bottom: 30px;
+
+}
+
+
+
+#nietbeschik {
+    display: none;
+}
+
+
+
+.red{
+    color: #761c19;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 760px) {
+    .subtext {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    #welkomtitel {
+        margin-top: 10px;
+    }
+    .subtitels {
+        padding-top: 100px;
+    }
+    #voorpagina {
+        padding-top: 40px;
+        padding-bottom: 100px;
+    }
+
+    body {
+        background: none;
+        background-color: blanchedalmond;
+    }
+    p {
+        font-size: 19px;
+    }
+
+    #voorpagina {
+        background: url("../achtergronden/achtergrond_fixed.jpg") no-repeat;
+        background-size: cover;
+        margin-bottom: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .textcontainer {
+        background: url("../achtergronden/achtergrond_fixed.jpg") no-repeat;
+        background-size: cover;
+        border-top: 3px solid;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .menuhide {
+        display: none;
+    }
+    #dropdown {
+        display: inline;
+    }
+    #backtotopcontainer {
+        background: url("../achtergronden/achtergrond_fixed.jpg");
+        background-size: cover;
+        border-top: solid 3px;
+    }
+    #gitaarpic {
+        width: 200px;
+    }
+    #nietbeschik {
+        display: inline;
+    }
+
+    iframe {
+        display: none;
+    }
+
+
+}
+
