@@ -222,6 +222,33 @@ li a {
 
 }
 
+#menuhoofd li a{
+    text-decoration: none;
+
+}
+
+#slide5 div p:first-child {
+    text-decoration: underline;
+}
+
+
+#racegamediv {
+    background-color: darkgrey;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 550px;
+    margin: 20px;
+}
+
+#racegamediv p {
+    margin: 30px;
+
+}
+
+#racegamepic {
+    border-radius: 10%;
+
+}
+
 
 
 
