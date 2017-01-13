@@ -229,26 +229,25 @@ li a {
 
 #slide5 div p:first-child {
     text-decoration: underline;
+    overflow: hidden;
 }
 
 
-#racegamediv {
-    background-color: darkgrey;
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 550px;
-    margin: 20px;
-}
+#slide5 div {
+     background-color: darkgrey;
+     background-color: rgba(0, 0, 0, 0.2);
+     width: 550px;
+     margin: 20px;
+    display: inline-block;
+ }
 
-#racegamediv p {
+#slide5 div p {
     margin: 30px;
-
 }
 
-#racegamepic {
-    border-radius: 10%;
+.img-rounded {
+    margin-bottom: 6px;
 }
-
-
 
 
 @media (max-width: 760px) {
@@ -304,5 +303,13 @@ li a {
     #gitaarpic {
         width: 200px;
     }
+
+    #slide5 div {
+        margin-left: 3px;
+        margin-right: 3px;
+        width: auto;
+        background: url("../achtergronden/achtergrond_fixed.jpg") no-repeat;
+    }
+
 }
 
