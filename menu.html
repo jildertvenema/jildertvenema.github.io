@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - shaders - ocean</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+		<style>
+
+			*{
+				font-family: 'VT323', monospace;
+			}
+			body {
+				color: #000;
+				font-size:13px;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#menu{
+				position: absolute;
+				top: 0px; width: 100%;
+				text-align:center;
+				padding: 5px;
+			}
+			h1{
+				font-size: 10em;
+				color: #12331f;
+			}
+			.button {
+				background-color: #12331f;
+				border: none;
+				color: white;
+				padding: 0.5em 1em;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 5em;
+				margin: 4px 2px;
+				cursor: pointer;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+			}
+
+			.button:hover {
+				background-color: #ff0a0a;
+				color: white;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="container"></div>
+
+
+		<div id="menu">
+
+			<h1>Aangespoeld</h1>
+
+			<div>
+
+		<button class="button" onclick="start()">Play</button>
+
+		<script src="shared/js/three/three.js"></script>
+
+		<script src="shared/js/frameworks/WaterShader.js"></script>
+
+				<!--loaders-->
+
+		<script type="text/javascript" src="shared/js/loaders/OBJLoader.js"></script>
+		<script type="text/javascript" src="shared/js/loaders/MTLLoader.js"></script>
+		<script type="text/javascript" src="shared/js/loaders/TDSLoader.js"></script>
+		<script type="text/javascript" src="shared/js/loaders/DDSLoader.js"></script>
+
+		<script>
+
+			var container, stats;
+			var camera, scene, renderer, clock, zoom;
+			var water;
+			var boat;
+
+			var importantSounds = new Audio('shared/documenten/sounds.mp3');
+			importantSounds.play();
+			importantSounds.loop = true;
+
+			var menuSong = new Audio('shared/documenten/island.mp3');
+			menuSong.play();
+			menuSong.loop = true;
+
+			clock = new THREE.Clock();
+			var parameters = {
+				width: 2000,
+				height: 2000,
+				widthSegments: 250,
+				heightSegments: 250,
+				depth: 1500,
+				param: 4,
+				filterparam: 1
+			};
+
+			var waterNormals;
+
+			init();
+			animate();
+
+
+
+			function start(){
+				window.location.href = 'webgl_shaders_ocean.html';
+			}
+
+			function init() {
+
+				container = document.getElementById( 'container' );
+
+				//
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				//
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0xaabbbb, 0.0001 );
+
+				//
+
+				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 3000000 );
+				camera.position.set( 2000, 750, 2000 );
+
+				//
+
+				scene.add( new THREE.AmbientLight( 0x444444 ) );
+
+				//
+
+				var light = new THREE.DirectionalLight( 0xffffbb, 1 );
+				light.position.set( - 1, 1, - 1 );
+				scene.add( light );
+
+				//
+
+				waterNormals = new THREE.TextureLoader().load( 'shared/models/textures/waternormals.jpg' );
+				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
+
+				water = new THREE.Water( renderer, camera, scene, {
+					textureWidth: 512,
+					textureHeight: 512,
+					waterNormals: waterNormals,
+					alpha: 	1.0,
+					sunDirection: light.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x001e0f,
+					distortionScale: 50.0,
+					fog: scene.fog != undefined
+				} );
+
+
+				var mirrorMesh = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water.material
+				);
+
+				mirrorMesh.add( water );
+				mirrorMesh.rotation.x = - Math.PI * 0.5;
+				scene.add( mirrorMesh );
+
+				// skybox
+
+				var cubeMap = new THREE.CubeTexture( [] );
+				cubeMap.format = THREE.RGBFormat;
+
+				var loader = new THREE.ImageLoader();
+				loader.load( 'shared/models/textures/skybox.png', function ( image ) {
+
+					var getSide = function ( x, y ) {
+
+						var size = 1024;
+
+						var canvas = document.createElement( 'canvas' );
+						canvas.width = size;
+						canvas.height = size;
+
+						var context = canvas.getContext( '2d' );
+						context.drawImage( image, - x * size, - y * size );
+
+						return canvas;
+
+					};
+
+					cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
+					cubeMap.images[ 1 ] = getSide( 0, 1 ); // nx
+					cubeMap.images[ 2 ] = getSide( 1, 0 ); // py
+					cubeMap.images[ 3 ] = getSide( 1, 2 ); // ny
+					cubeMap.images[ 4 ] = getSide( 1, 1 ); // pz
+					cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
+					cubeMap.needsUpdate = true;
+
+				} );
+
+				var cubeShader = THREE.ShaderLib[ 'cube' ];
+				cubeShader.uniforms[ 'tCube' ].value = cubeMap;
+
+				var skyBoxMaterial = new THREE.ShaderMaterial( {
+					fragmentShader: cubeShader.fragmentShader,
+					vertexShader: cubeShader.vertexShader,
+					uniforms: cubeShader.uniforms,
+					depthWrite: false,
+					side: THREE.BackSide
+				} );
+
+				var skyBox = new THREE.Mesh(
+					new THREE.BoxGeometry( 1000000, 1000000, 1000000 ),
+					skyBoxMaterial
+				);
+
+				scene.add( skyBox );
+
+				//
+
+				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
+
+				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
+
+					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+
+				}
+
+				var material = new THREE.MeshPhongMaterial( {
+					vertexColors: THREE.FaceColors,
+					shininess: 100,
+					envMap: cubeMap
+				} );
+
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+				var mtlLoader = new THREE.MTLLoader();
+				mtlLoader.setPath( 'shared/models/mtl/' );
+				mtlLoader.load( 'boat.mtl', function( materials ) {
+
+					materials.preload();
+
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+					objLoader.setPath( 'shared/models/obj/' );
+					objLoader.load( 'boat.obj', function ( object ) {
+
+								object.position.y = 170;
+								object.position.x = Math.floor(Math.random() * 2000) + 200
+								object.position.z = -12000;
+								//object.scale.set(4,4,4);
+								var geometry = new THREE.BoxGeometry( 500, 500, 1, 1, 1 );
+								var texture = new THREE.TextureLoader().load( "shared/models/textures/fishing-man.png" );
+								var material = new THREE.MeshBasicMaterial( {map: texture} );
+								var cube = new THREE.Mesh( geometry, material );
+								object.add( cube );
+
+								cube.position.y = 30;
+								cube.position.x = -30;
+
+								boat = object;
+								scene.add( object );
+
+							},
+							function ( xhr ) {
+								console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+							},
+
+							// Function called when download errors
+							function ( xhr ) {
+								console.error( 'Er ging iets fout.' );
+							}
+					);
+				});
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+			}
+
+			function render() {
+
+				var time = performance.now() * 0.001;
+				var delta = clock.getDelta();
+
+
+				water.material.uniforms.time.value += 1.0 / 60.0;
+				water.render();
+				renderer.render( scene, camera );
+
+				if (boat != undefined){
+					boat.position.x += delta * 10;
+				}
+
+			}
+
+		</script>
+	</body>
+</html>

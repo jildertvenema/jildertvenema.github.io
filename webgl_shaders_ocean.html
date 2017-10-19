@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - shaders - ocean</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="shared/css/bootstrap.min.css" rel="stylesheet">
+		<link href="shared/css/game.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<!-- hotbar -->
+
+		<div id="hotbar">
+			<table>
+				<tr>
+					<td id="slot1"></td>
+					<td id="slot2"></td>
+					<td id="slot3"></td>
+					<td id="slot4"></td>
+					<td id="slot5"></td>
+					<td id="slot6"></td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- Item popup -->
+
+		<div id="itemPopup"></div>
+
+		<!-- alert -->
+
+		<h1 id="warning" class="alert alert-danger">sdfsdf</h1>
+		<h1 id="success" class="alert alert-success">sdfsdf</h1>
+
+		<!-- crosshair -->
+
+		<span id="crosshair"></span>
+		<span id="position"></span>
+
+		<!-- menu -->
+
+		<div id="menu">
+			<nav>
+				<ul>
+
+					<li onclick="interfaceOpen(Inventory)">Inventory</li>
+					<li onclick="interfaceOpen(Crafting)">Crafting</li>
+
+				</ul>
+			</nav>
+
+			<div id="inventory">
+
+			</div>
+
+			<div id="crafting">
+				<table>
+					<tr><th id="craftAbleItemName"></th></tr>
+					<tr>
+						<td >
+
+							<ul id="requiredItems">
+								<!-- required craftables -->
+
+							</ul>
+
+						</td>
+						<td id="craftedItem">
+							<!-- craft result -->
+
+						</td>
+					</tr>
+				</table>
+				<ul id="craftAbleItems">
+					<!-- craftables -->
+
+				</ul>
+				<span id="craftingProgress"></span>
+
+			</div>
+
+		</div>
+
+
+		<!-- pointerlock -->
+
+		<div id="blocker">
+
+			<div>
+				<h1 id="header">Welcome to ..</h1>
+				<br>
+				<button id="start">Start</button>
+				<br>
+				<button>Options</button>
+				<br>
+				<button>Quit</button>
+				<br>
+			</div>
+
+		</div>
+
+		<!-- loadscreen -->
+
+		<div id="loadScreen">
+
+			<h1>Loading world..</h1>
+
+			<div id="loadStatus">
+
+				<div id="loadStatusBar"></div>
+
+			</div>
+
+		</div>
+
+
+        <!-- credits -->
+
+        <div id="credits">
+            <div class="movie">life of john doe</div>
+            <div class="job">directed by</div>
+            <div class="name">david schweizer</div>
+            <div class="job">produced by</div>
+			<div class="name">david schweizer</div>
+            <div class="job">screenplay by</div>
+			<div class="name">david schweizer</div>
+            <div class="job">director of photography</div>
+			<div class="name">david schweizer</div>
+            <div class="job">story</div>
+			<div class="name">david schweizer</div>
+            <div class="job">visual effects supervisor</div>
+			<div class="name">david schweizer</div>
+            <div class="job">cast supervisor</div>
+			<div class="name">david schweizer</div>
+            <div class="job">directed by</div>
+			<div class="name">david schweizer</div>
+            <div class="job">produced by</div>
+			<div class="name">david schweizer</div>
+            <div class="job">screenplay by</div>
+			<div class="name">david schweizer</div>
+            <div class="job">director of photography</div>
+			<div class="name">david schweizer</div>
+            <div class="job">story</div>
+			<div class="name">david schweizer</div>
+            <div class="job">visual effects supervisor</div>
+			<div class="name">david schweizer</div>
+            <div class="job">cast supervisor</div>
+			<div class="name">david schweizer</div>
+            <div class="end">THE END</div>
+        </div>
+
+		<!-- three.js -->
+
+		<script type="text/javascript" src="shared/js/three/three.js"></script>
+		<script type="text/javascript" src="shared/js/three/OrbitControls.js"></script>
+		<script type="text/javascript" src="shared/js/three/PointerLockControls.js"></script>
+		<script type="text/javascript" src="shared/js/three/THREE.Terrain.min.js"></script>
+		<script type="text/javascript" src="shared/js/three/Detector.js"></script>
+		<script type="text/javascript" src="shared/js/three/stats.min.js"></script>
+
+		<!-- frameworks -->
+
+
+		<script type="text/javascript" src="shared/js/frameworks/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/physi.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/WaterShader.js"></script>
+		<script type="text/javascript" src='shared/js/frameworks/threex.daynight.js'></script>
+		<script type="text/javascript" src="shared/js/frameworks/GPUParticleSystem.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/VolumetricFire.js"></script>
+
+		<!-- loaders -->
+
+		<script type="text/javascript" src="shared/js/loaders/OBJLoader.js"></script>
+		<script type="text/javascript" src="shared/js/loaders/MTLLoader.js"></script>
+        <script type="text/javascript" src="shared/js/loaders/TDSLoader.js"></script>
+        <script type="text/javascript" src="shared/js/loaders/DDSLoader.js"></script>
+
+		<!-- classes -->
+
+		<script type="text/javascript" src="shared/js/island.js"></script>
+		<script type="text/javascript" src="shared/js/object.js"></script>
+		<script type="text/javascript" src="shared/js/person.js"></script>
+		<script type="text/javascript" src="shared/js/anchorStore.js"></script>
+
+
+
+		<!-- end scenes -->
+
+		<script type="text/javascript" src="shared/js/deaths.js"></script>
+		<script type="text/javascript" src="shared/js/wins.js"></script>
+
+		<!-- items -->
+
+		<script type="text/javascript" src="shared/js/item.js"></script>
+		<script type="text/javascript" src="shared/js/items/craftingRecipes.js"></script>
+
+		<!-- interface -->
+
+		<script type="text/javascript" src="shared/js/menu/menu.js"></script>
+		<script type="text/javascript" src="shared/js/menu/inventory.js"></script>
+		<script type="text/javascript" src="shared/js/menu/crafting.js"></script>
+		<script type="text/javascript" src="shared/js/menu/credits.js"></script>
+		<script type="text/javascript" src="shared/js/menu/settings.js"></script>
+		<script type="text/javascript" src="shared/js/hectobar.js"></script>
+
+
+		<!-- game -->
+
+		<script type="text/javascript" src="shared/js/game.js"></script>
+
+	</body>
+</html>
