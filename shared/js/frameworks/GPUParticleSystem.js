@@ -21,7 +21,7 @@ THREE.GPUParticleSystem = function( options ) {
 
 	options = options || {};
 
-	// parse options and use defaults
+	// parse fireOptions and use defaults
 
 	this.PARTICLE_COUNT = options.maxParticles || 1000000;
 	this.PARTICLE_CONTAINERS = options.containerCount || 1;

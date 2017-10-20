@@ -1,14 +1,14 @@
 class Inventory {
     constructor(){ //aka de variabelen?
-        var inventory = document.getElementById('inventory');
-        var table = document.createElement('table');
-        var self = this;
+        let inventory = document.getElementById('inventory');
+        let table = document.createElement('table');
+        let self = this;
 
         //create inventory
 
         this.create = function (){
             for (let i = 0; i < 2; i++) {
-                var tr = document.createElement('TR');
+                let tr = document.createElement('TR');
                 tr.id = 'tr' + i;
                 for (let j = 0; j < 8; j++) {
 
@@ -30,15 +30,15 @@ class Inventory {
         //add craftables to inventory
 
         this.pushItem = function(item, returned = false) {
-            if(self.getLength(items) == 16){
+            if(self.getLength(items) === 16){
                 warn("inventory is full");
             }
             else {
                 for (let i = 0; i < 2; i++) {
                     for (let j = 0; j < 8; j++) {
 
-                        var id = (j + (i * 8)).toString() ;
-                        var current = document.getElementById( id);
+                        let id = (j + (i * 8)).toString() ;
+                        let current = document.getElementById( id);
 
                         if (current.innerHTML === '') {
                             if(!returned) popUpItem(item.picturePath);
@@ -63,9 +63,9 @@ class Inventory {
 
         this.itemClick = function(itemId) {
 
-            var current = document.getElementById(itemId);
+            let current = document.getElementById(itemId);
 
-            if(current.innerHTML != '' && hotbar.addToSlot(items[itemId])){
+            if(current.innerHTML !== '' && hotbar.addToSlot(items[itemId])){
 
                 items[itemId] = null;
                 current.innerHTML = '';
@@ -79,10 +79,10 @@ class Inventory {
         };
 
         this.getLength = function(array){
-            var count = 0;
+            let count = 0;
 
             for(let i = 0; i < array.length; i ++){
-                if(array[i] != null){
+                if(array[i] !== null){
                     count ++;
                 }
             }

@@ -11,8 +11,10 @@ class island{
             ['phone' , 0, 150, -200, 'shared/models/', 'mtl/phone.mtl', 'obj/phone.obj', 0.5, 3, 0, 10, 0, 0, 0, -30, true],
             ['pirate ship' , -12000, 170, 12000, 'shared/models/', 'mtl/Pirate Ship.mtl', 'obj/Pirate Ship.obj', 20, 0, 0, 0, 0, 0, 0, 0, false],
             ['shark', -100, 140, -100, 'shared/models/', 'mtl/shark.mtl', 'obj/shark.obj', 5, 0, 0, 0, 0, 0 , 0 , 0 , false],
-            ['help', -336, 47, -1000, 'shared/models/obj/', 'help.mtl', 'help.obj', 10, 0, 0, 0, 0, 0 , 0 , 0 , false],
-            ['spear', 200, 150, -1000, 'shared/models/', 'mtl/spear.mtl', 'obj/spear.obj', 2, 3, 2, 2, 2, 0 , -45 , 0 , true]
+            ['stick', -200, 50, -1200, 'shared/models/help/', 'stick.mtl', 'stick.obj', 0.4, 0, 0, 0, 0, 0 , 0 , -130 , true],
+            ['spear', 200, 150, -1000, 'shared/models/', 'mtl/spear.mtl', 'obj/spear.obj', 2, 3, 2, 2, 2, 0 , -45 , 0 , true],
+            ['axe', 200, 150, -900, 'shared/models/', 'mtl/Axe_OBJ.mtl', 'obj/Axe_OBJ.obj', 0.3, 2, 0, 1.5, 0, 0 , 0 , -30 , true],
+            ['fish' , -80, 200, 20, 'shared/models/', 'mtl/fishOBJ.mtl', 'obj/fishOBJ.obj', 0.5, 0, 0, 0, 0, 0, 0, -0, true]
         ];
 
         texturesPath = "shared/models/textures/";
@@ -169,7 +171,7 @@ class island{
                         if (collider) {
                             for (var i = 0; i < object.children.length; i++) {
                                 if (oneCollider) {
-                                    pObject = (MeshToPhy(object, mass, x_offset, y_offset, z_offset, x_object, y_object, z_object));;
+                                    pObject = (MeshToPhy(object, mass, x_offset, y_offset, z_offset, x_object, y_object, z_object));
                                     pObject.scale.set(scale, scale, scale);
                                     pObject.position.set(x, y, z);
                                     pObject.add(object);
@@ -179,7 +181,7 @@ class island{
                                     break;
                                 }
 
-                                pObject = (MeshToPhy(object.children[i], mass, x_offset, y_offset, z_offset, x_object, y_object, z_object));;
+                                pObject = (MeshToPhy(object.children[i], mass, x_offset, y_offset, z_offset, x_object, y_object, z_object));
                                 pObject.scale.set(scale, scale, scale);
 
                                 if (object.children[i] != undefined) pObject.add(object.children[i]);
@@ -204,6 +206,7 @@ class island{
 
                         if (_type == 'bucket'){
                             bucket = pObject;
+                            //water toevoegen
                             var geometry = new THREE.CircleBufferGeometry( 80, 32 );
                             var material = new THREE.MeshBasicMaterial( { color: 0x87CEEB } );
                             var circle = new THREE.Mesh( geometry, material );
@@ -211,17 +214,25 @@ class island{
                             circle.position.y += 15;
                             scene.add( circle );
                             bucket.add(circle);
-                            bucket.kokendWater = false;
-                            bucket.gekooktTijd = 0;
+                            scene.remove(bucket);
                         }
 
                         if (_type == 'campfire'){
                             campfire = pObject;
-                            campfire.isOnFire = false;
+                            scene.remove(campfire);
                         }
 
                         if (_type == 'phone'){
                             phone = pObject;
+                        }
+
+                        if (_type == 'spear'){
+                            spear = pObject;
+                            scene.remove(spear);
+                        }
+                        if (_type == 'axe'){
+                            axe = pObject;
+                            scene.remove(axe);
                         }
 
                         if (_type == 'pirate ship'){
@@ -229,11 +240,51 @@ class island{
                             pirateShip = object;
                         }
                         if (_type == 'shark'){
+                            var sunPos = new THREE.Vector3( Math.sin(sunAngle) * 3000, -20, Math.cos(sunAngle) * 3000);
+                            object.position.set(sunPos.x,-20, sunPos.z);
                             shark = object;
+                            sharkClass = Object.assign(new Shark(object));
+                        }
+                        if (_type == 'fish'){
+                            fish = pObject;
+                            scene.remove(fish);
                         }
 
-                        if (_type == 'help'){
-                            help = object;
+                        if(_type === 'stick'){
+                            var graden = [0.5, 1,   1,   0.5, 0.5, 0.5, 1,   0.5, 1,   0.5, 0.5, 1];
+                            var sizes =  [0.2, 0.4, 0.4, 0.2, 0.2, 0.2, 0.4, 0.2, 0.4, 0.2, 0.2, 0.2];
+                            pObject.rotateY(0.5 * Math.PI);
+                            helpsticks.push(pObject);
+                            var st = pObject.clone();
+                            for(var i = 0; i < 12; i++){
+                                var newst = st.clone();
+                                newst.rotateY(graden[i] * Math.PI);
+                                newst.mass = 0;
+                                newst._type = 'stick';
+                                newst.scale.set(sizes[i],sizes[i],sizes[i]);
+                                helpsticks.push(newst);
+                            }
+                            //LETTER H:
+                            var offsetx = -305;
+                            var offsetz = -1250;
+                            helpsticks[0].position.set(offsetx, 37, offsetz); scene.add(helpsticks[0]);
+                            helpsticks[1].position.set(offsetx, 37, offsetz + 25);
+                            helpsticks[2].position.set(offsetx, 37, offsetz + 50);
+                            //LETTER E:
+                            helpsticks[3].position.set(offsetx, 37, offsetz + 70);
+                            helpsticks[4].position.set(offsetx, 36, offsetz + 95);
+                            helpsticks[5].position.set(offsetx + 50, 36, offsetz + 95);
+                            helpsticks[6].position.set(offsetx -50, 34, offsetz + 95);
+                            //LETTER L:
+                            helpsticks[7].position.set(offsetx, 35, offsetz + 140);
+                            helpsticks[8].position.set(offsetx - 50, 33, offsetz + 165);
+                            //LETTER P:
+                            helpsticks[9].position.set(offsetx, 34, offsetz + 210);
+                            helpsticks[10].position.set(offsetx, 33, offsetz + 235);
+                            helpsticks[11].position.set(offsetx + 50, 32, offsetz + 235);
+                            helpsticks[12].position.set(offsetx + 25, 32, offsetz + 260);
+
+                            helpsticks.succes = false;
                         }
 
                         if(_type === 'tree1'){
@@ -254,7 +305,6 @@ class island{
                             trees[7].position.set(239, 77, 396); scene.add(trees[7]);
                             trees[8].position.set(-70, 70, -300); scene.add(trees[8]);
                             trees[9].position.set(-350, 106, -70); scene.add(trees[9]);
-                            //trees[10].position.set(-520, 125, 127); scene.add(trees[10]);
                         }
                     },
                     function ( xhr ) {

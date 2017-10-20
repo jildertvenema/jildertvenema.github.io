@@ -1888,7 +1888,7 @@
 	 */
 
 	/*
-	 In options, we can specify:
+	 In fireOptions, we can specify:
 	 * Texture parameters for an auto-generated target texture
 	 * depthBuffer/stencilBuffer: Booleans to indicate if we should generate these buffers
 	*/

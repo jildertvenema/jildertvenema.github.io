@@ -1,17 +1,17 @@
 class Menu{
     constructor() { //aka de variabelen?
-        var inventoryIsOpen = false;
-        var craftingIsOpen = false;
+        let inventoryIsOpen = false;
+        let craftingIsOpen = false;
 
-        new Inventory().create();
+        inv.create();
         new Crafting().createList();
 
-        var menu = document.getElementById('menu');
-        var inventory = document.getElementById('inventory');
-        var crafting = document.getElementById('crafting');
-        var blocker = document.getElementById('blocker');
+        let menu = document.getElementById('menu');
+        let inventory = document.getElementById('inventory');
+        let crafting = document.getElementById('crafting');
+        let blocker = document.getElementById('blocker');
 
-        var self = this;
+        let self = this;
 
         this.toggleCrafting = function(){
             if(craftingIsOpen) {

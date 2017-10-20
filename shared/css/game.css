@@ -337,6 +337,9 @@ ul::-webkit-scrollbar-thumb
     background-color: #393939;
 }
 
+/*
+* === Credits ===
+*/
 
 #credits {
     position: absolute;
@@ -370,3 +373,106 @@ ul::-webkit-scrollbar-thumb
     font-size: 50px;
 }
 
+/*
+* === Hotbar stats ===
+*/
+
+#oxigen{
+    position: absolute;
+    width: 150px;
+    height: 10px;
+    bottom: 70px;
+}
+
+#oxigenbar{
+    height: 100%;
+    width: 100%;
+    background-color: #4d8fff;
+}
+#hp{
+    position: absolute;
+    left: 64.5%;
+    width: 150px;
+    height: 10px;
+    bottom: 70px;
+}
+
+#hpbar{
+    float: right;
+    height: 100%;
+    width: 100%;
+    background-color: #c82333;
+}
+
+/*
+* === Options ===
+*/
+
+#options {
+    display: none;
+    width: 800px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    font-size: 20px;
+    color: white;
+}
+
+.label{
+    position: absolute;
+    width: 50%;
+    height: 50px;
+    pointer-events: none;
+}
+
+.label p {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    pointer-events: none;
+}
+
+#options input, #options button {
+    text-align: center;
+    height: 50px;
+    width: 50%;
+    background: url('../images/inventorybackground.png');
+    background-size: 50px 50px;
+    border: solid 2px black;
+}
+
+#options form{
+    height: 100%;
+    width: 100%;
+}
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 50px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: url('../images/rangebackground.png');
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background: url('../images/inventorybackground.png');
+    border: 2px solid black;
+    height: 100%;
+    width: 20px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}

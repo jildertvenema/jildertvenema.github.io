@@ -172,7 +172,7 @@ THREE.MTLLoader.prototype = {
 /**
  * Create a new THREE-MTLLoader.MaterialCreator
  * @param baseUrl - Url relative to which textures are loaded
- * @param options - Set of options on how to construct the materials
+ * @param options - Set of fireOptions on how to construct the materials
  *                  side: Which side to apply the material
  *                        THREE.FrontSide (default), THREE.BackSide, THREE.DoubleSide
  *                  wrap: What type of wrapping to apply for textures
@@ -233,7 +233,7 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 
 		for ( var mn in materialsInfo ) {
 
-			// Convert materials info into normalized form based on options
+			// Convert materials info into normalized form based on fireOptions
 
 			var mat = materialsInfo[ mn ];
 

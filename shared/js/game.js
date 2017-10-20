@@ -17,33 +17,40 @@ if ( ! Detector.webgl ) {
 
 }
 
+
+//objecten
+var allObjects = [];
+var bucket, campfire, axe;
+var buckets = [], campfires = [], spears = [], axes = [];
+
 // scene
 var camera, scene, renderer, firstRender = true, prevPos, underWater = false, mouse,
-    raycaster, stats, water, clock, fireSounds, mobilebereikSound, bucket, campfire, phone, help,
-
-	lastPlacePos = new THREE.Vector3(0,0,0), timeAirplaneSpawn = 0, terrain, savedPos, pirateShip, shark, death,win , playedTime = 0, playerVisable = false, deathOrWin = false, isBoat = false, hotbar, dorst = 100;
+    raycaster, stats, water, clock, mobilebereikSound, phone,
+	lastPlacePos = new THREE.Vector3(0,0,0), terrain, savedPos, pirateShip,
+    shark, sharkClass, death,win , playedTime = 0, playerVisable = false, deathOrWin = false, isBoat = false,
+    spear, fish, fishes = [], hotbar, dorst = 100, zuurstof = 100, hp = 100, options, timeRandomSpawn = 0;
 
 var _anchorStore = Object.assign(new anchorStore());
 savedPos = new THREE.Vector3(0,0,0);
 death = Object.assign(new deaths());
 win = Object.assign(new wins());
 hotbar = Object.assign(new Hotbar());
+options = Object.assign(new Options());
 
-var allObjects = [];
+//HELP
+var helpsticks = [],
+    stickscount = 1;
 
 //sky
 var skydom, starField, dayDuration, sunLight, sunSphere,
     sunAngle = 0.8;
 
 //player
-var moveForward, moveLeft, moveBackward, moveRight, sprint,
-    playerSpeed, canJump, godMode = false, down = false,
-    playerUp = false, controls, controlsEnabled,
-    player, velocity, plane, isPlane = false;
+var canJump, godMode = false, controls, controlsEnabled,
+    player, velocity, plane, isPlane = false, playerClass;
 
 //fire
-var particleSystem, options, spawnerOptions, tick = 0,
-    pointLight, fire;
+var particleSystem, fireOptions, spawnerOptions, tick = 0;
 
 //menu
 var menu, inv;
@@ -215,13 +222,13 @@ function init() {
     inv.pushItem(new Item('hout'));
     inv.pushItem(new Item('campfire'));
 
-
     //player
 
-    player = new person("bob", 2000).create();
+    playerClass = Object.assign(new person("bob", 2000));
+
+    player = playerClass.createPlayerObject();
 
     //sounds
-    fireSounds = new Audio('shared/sounds/fire.mp3');
     mobilebereikSound = new Audio('shared/sounds/Mobile Phone Vibrate.mp3');
 
     prevPos = new THREE.Vector3();
@@ -238,129 +245,6 @@ function init() {
 
     scene.add(particleSystem);
 
-    //movement
-
-    var onKeyDown = function ( event ) {
-        switch ( event.keyCode ) {
-            case 38: // up
-            case 87: // w
-                moveForward = true;
-                break;
-            case 37: // left
-            case 65: // a
-                moveLeft = true;
-                break;
-            case 40: // down
-            case 83: // s
-                moveBackward = true;
-                break;
-            case 39: // right
-            case 68: // d
-                moveRight = true;
-                break;
-            case 16: //lshift
-                sprint = true;
-                break;
-            case 73: // i
-                if(controlsEnabled) menu.toggleInventory();
-                hotbar.toggle(0);
-                break;
-            case 67: // c
-                if(controlsEnabled) menu.toggleCrafting();
-                hotbar.toggle(0);
-                break;
-            case 32: // space;
-                if (!godMode) {
-                    if (canJump === true)
-                    {
-                        if (!underWater)velocity.y += 600;
-                        else velocity.y += 200;
-                    }
-                    canJump = false;
-                }
-                else{
-                    playerUp = true;
-                }
-                break;
-            case 90: //z
-                down = true;
-                break;
-            case 70: //f
-                shootFlare();
-                break;
-            case 27: //esc
-                pauseGame();
-                break;
-            case 66: //B
-                fireStart();
-                break;
-            case 79: //O
-                fillBucket();
-                flyPlane();
-                break;
-            case 84: //T
-                _anchorStore.placeObject = bucket;
-                _anchorStore.isBeingPlaced = true;
-                break;
-            case 77: //M
-                checkBereik();
-                break;
-            case 75: //K
-                playerWin(' raping the shark in his arse');
-                break;
-            case 49: //1 (hotbar)
-            case 50: //2 (hotbar)
-            case 51: //3 (hotbar)
-            case 52: //4 (hotbar)
-            case 53: //5 (hotbar)
-            case 54: //6 (hotbar)
-                if(hotbar.toggle(event.keyCode) == "campfire"){
-                    console.log("placing campfire");
-                    //fireStop();
-                    _anchorStore.placeObject = campfire;
-                    _anchorStore.isBeingPlaced = true;
-                }
-                else{
-                    _anchorStore.isBeingPlaced = false;
-                }
-                break;
-        }
-    };
-
-    var onKeyUp = function ( event ) {
-        switch( event.keyCode ) {
-            case 38: // up
-            case 87: // w
-                moveForward = false;
-                break;
-            case 37: // left
-            case 65: // a
-                moveLeft = false;
-                break;
-            case 40: // down
-            case 83: // s
-                moveBackward = false;
-                break;
-            case 39: // right
-            case 68: // d
-                moveRight = false;
-                break;
-            case 16: //lshift
-                sprint = false;
-                break;
-            case 90: //Z
-                down = false;
-                break;
-            case 32: // space;
-                playerUp = false;
-                break;
-        }
-    };
-
-    //eventlisteners
-
-    document.addEventListener( 'keydown', onKeyDown, false );
-    document.addEventListener( 'keyup', onKeyUp, false );
     window.addEventListener( 'resize', onWindowResize, false );
     window.addEventListener( 'click', onClick, false );
     window.addEventListener( 'resize', onWindowResize, false );
@@ -386,61 +270,17 @@ function spawnBoat() {
     pirateShip.visible = true;
 }
 
-function fillBucket(){
-    bucket.children[3].visible = true;
-}
-
-function emptyBucket(){
-    bucket.gekooktTijd = 0;
-    bucket.kokendWater = false;
-    bucket.children[3].visible = false;
-}
-
-
-function fireStart(){
-    campfire.isOnFire = true;
-    fireSounds.play();
-    fireSounds.loop = true;
-
-    //fire
-
-    var fireWidth  = 20;
-    var fireHeight = 40;
-    var fireDepth  = 20;
-    var sliceSpacing = 0.5;
-
-
-    fire = new VolumetricFire(
-        fireWidth,
-        fireHeight,
-        fireDepth,
-        sliceSpacing,
-        camera
-    );
-
-    var pos = campfire.position;
-    pos.y += 10;
-
-    fire.mesh.position.set( pos.x, pos.y, pos.z );
-    scene.add( fire.mesh );
-
-    pointLight = new THREE.PointLight( 0xFFCF50, 2, 300 );
-    pointLight.position.set( pos.x, pos.y, pos.z);
-    scene.add( pointLight );
-
-    fire.mesh.visible = true;
-
-}
-
-function fireStop() {
-    if (fire)fire.mesh.visible = false;
-    if (pointLight)pointLight.intensity = 0;
-}
-
 function checkBereik(){
     if(player.position.x > -70 && player.position.x < 120 && player.position.z > 2060 && player.position.z < 2360){
-        console.log('m gedrukt')
+        console.log('m gedrukt');
         mobilebereikSound.play();
+    }
+}
+
+function addStick(){
+    if(stickscount < 13){
+        scene.add(helpsticks[stickscount]);
+        stickscount++;
     }
 }
 
@@ -483,9 +323,14 @@ function onClick(){
 
     if (_anchorStore.isBeingPlaced){
         _anchorStore.isBeingPlaced = false;
-        _anchorStore.placeObject.position.x = lastPlacePos.x;
-        _anchorStore.placeObject.position.y = lastPlacePos.y + 5;
-        _anchorStore.placeObject.position.z = lastPlacePos.z;
+        if (_anchorStore.placeObject._type == 'spear') {
+            lastPlacePos = player.position.clone();
+            lastPlacePos.add(player.getWorldDirection().multiplyScalar(10));
+        }
+
+        if (_anchorStore.placeObject._type === 'campfire')lastPlacePos.y -= 5;
+
+        _anchorStore.placeObject.position.set(lastPlacePos.x, lastPlacePos.y +5 , lastPlacePos.z);
         _anchorStore.placeObject.__dirtyPosition = true;
         _anchorStore.placeObject.__dirtyRotation = true;
         return;
@@ -501,37 +346,31 @@ function onClick(){
     for (let i = 0 ; i < intersects.length; i ++){
         if (intersects[i].distance < 200){
             //object click
-            if (intersects[i].object.type == 'Mesh'){
-                   // intersects[i].object.children[0].material.color = new THREE.Color(0xffffff * Math.random());
-
+            if (intersects[i].object.type === 'Mesh'){
+                let type = intersects[i].object._type;
+                if (type === 'campfire' || type === 'bucket' || type === 'phone' || type === 'spear' || type === 'axe') {
+                    _anchorStore.placeObject = intersects[i].object;
+                    _anchorStore.isBeingPlaced = true;
+                    break;
+                }
                 if (intersects[i].object._type === 'hout') {
                     inv.pushItem(new Item('hout'));
                     //scene.remove(intersects[i].object);
                 }
-
-                if (intersects[i].object._type === 'bucket') {
-                    _anchorStore.placeObject = intersects[i].object;
-                    _anchorStore.isBeingPlaced = true;
+                if (type === 'campfire') {
+                    for (var t =0 ; t < campfires.length; t ++) {
+                        if (campfires[t].object === intersects[i].object)campfires[t].fireStop();
+                    }
                 }
-                if (intersects[i].object._type === 'campfire') {
-                    fireStop();
-                    _anchorStore.placeObject = intersects[i].object;
-                    _anchorStore.isBeingPlaced = true;
-                }
-                if (intersects[i].object._type === 'phone') {
-                    _anchorStore.placeObject = intersects[i].object;
-                    _anchorStore.isBeingPlaced = true;
+                if (intersects[i].object._type === 'stick') {
+                    if(hotbar.hectobarSticks()){
+                        addStick();
+                    }
                 }
                 console.log(intersects[i].object._type );
-                if (intersects[i].object._type === 'spear') {
-                    _anchorStore.placeObject = intersects[i].object;
-                    _anchorStore.isBeingPlaced = true;
-                }
             }
         }
-        break;
     }
-
 }
 
 //warn player
@@ -590,217 +429,24 @@ function animate() {
 }
 
 function render() {
-
-    if (!controls.enabled && !firstRender){
-
-        if (clock.running && !deathOrWin) {
-            playedTime += clock.getElapsedTime();
-            clock.stop();
-        }
-
-        return;
-    }
-    else{
-        if (!clock.running) clock.start();
-    }
-
-    firstRender = false;
-
-    if (!controls) return;
-
-
+    if (checkControls()) return;
 
     var delta = clock.getDelta();
-
     var elapsed = clock.getElapsedTime();
+    timeRandomSpawn += delta;
 
     if (deathOrWin) document.getElementById('credits').style.top = (100-elapsed * 3) + '%';
-
-    timeAirplaneSpawn += delta;
-
-    //fire
-    if (fire != undefined )
-    {
-        fire.update( elapsed);
-        if (fire.mesh.position.distanceTo(bucket.position) < 10 && bucket.children[3].visible && !bucket.kokendWater){
-            success('Succesvol water gekookt');
-            bucket.kokendWater = true;
-        }
-    }
-
-    //pirate ship
-    if (isBoat){
-        pirateShip.position.z += delta * 200;
-        if ( pirateShip.position.z > 30000){
-            isBoat = false;
-            pirateShip.visible = false;
-        }
-    }
-
-    //bucket
-    if (bucket != undefined && bucket.position.y < -6.4){
-        fillBucket();
-    }
-    if (bucket != undefined){
-        checkBucket();
-        if (bucket.kokendWater) bucket.gekooktTijd += delta;
-    }
-
-
-    //shark
-    if (shark != undefined){
-
-        if (player.position.distanceTo(shark.position) < 200 && !deathOrWin){
-            playerDeath('shark');
-        }
-
-        if (!playerVisable){
-            shark.position.x = Math.sin(sunAngle) * 3000;
-            shark.position.y = -20;
-            shark.position.z = Math.cos(sunAngle) * 3000;
-            shark.rotation.y = (sunAngle + 0.5 * Math.PI);
-        }
-        else{
-            //shark to player
-            var dir = player.position.clone().sub(shark.position).normalize();
-            shark.lookAt(player.position);
-            shark.position.add(dir.multiplyScalar(2));
-        }
-
-        if (underWater && player.position.distanceTo(shark.position) < 3000) {
-            playerVisable = true;
-        }
-        else{
-            playerVisable = false;
-        }
-
-    }
-
-    //plane
-    if (isPlane)
-    {
-        plane.position.z += delta * 500.0;
-        if ( plane.position.z > 10000){
-            isPlane = false;
-            plane.visible = false;
-        }
-    }
-    if (timeAirplaneSpawn > 10){
-        timeAirplaneSpawn =0;
-        var randomNum = Math.floor(Math.random() * 100) + 1;
-        if ( randomNum < 14){
-            console.log("airplane spawned");
-            if (!isPlane)flyPlane();
-        }
-        if (randomNum > 95){
-            console.log("boat spawned");
-            if (!isBoat)spawnBoat();
-        }
-    }
-
-
-    //player controls
-    if ( controls.enabled ) {
-
-        velocity.x -= velocity.x * 10.0 * delta;
-        velocity.z -= velocity.z * 10.0 * delta;
-
-
-        if (velocity.y > 300){
-            velocity.y = 300;
-        }
-
-        if (player.position.y > 20) velocity.y -= velocity.y * 10.0 * delta;
-        else
-        {
-            velocity.y -= velocity.y * 1.5 * delta;
-        }
-
-        if (sprint) {
-            if (!godMode)playerSpeed = 1500;
-            else playerSpeed = 3000;
-        }
-        else playerSpeed = 1000;
-
-        if (godMode && player.mass > 0){
-            player.mass = 0;
-            player.needsUpdate = true;
-        }
-
-        if (down && godMode){ velocity.y -= playerSpeed * delta;}
-        if (playerUp) velocity.y += playerSpeed * delta;
-
-        if (moveForward) velocity.z -= playerSpeed * delta;
-        if (moveBackward) velocity.z += playerSpeed * delta;
-        if (moveLeft) velocity.x -= playerSpeed * delta;
-        if (moveRight) velocity.x += playerSpeed  * delta;
-
-        if (player.position.y < -10){
-            if (!underWater) {
-                scene.fog.near = 0.003;
-                scene.fog.far = 1000;
-                sunLight.object3d.intensity = 0.1;
-                underWater = true;
-            }
-        }
-        else{
-            if (underWater) {
-                scene.fog.near = 0.1;
-                scene.fog.far = 0;
-                sunLight.object3d.intensity = 0.7;
-                underWater = false;
-            }
-        }
-
-        if ((velocity.y < 0.05 && !canJump) || underWater){
-            canJump = true;
-        }
-    }
-
-
-    if (player.position.y < -200){
-        player.position.y = 200;
-        playerDeath('drowned');
-    }
-
-
-
-    //place anchor object
-    if (_anchorStore.isBeingPlaced){
-        mouse.x = 0.017;
-        mouse.y = 0.017;
-
-        raycaster.setFromCamera( mouse, camera );
-
-        var intersects = raycaster.intersectObjects( scene.children);
-
-        for (var i = 0 ; i < intersects.length;  i++){
-            var intercectigns = ['terrain', 'campfire', 'hout', 'steen'];
-            if (intercectigns.indexOf(intersects[i].object._type) == -1 || intersects[i].object == _anchorStore.placeObject ) continue;
-
-            var dis = player.position.distanceTo(intersects[i].point);
-            if (dis > 150) {
-                _anchorStore.placeObject.position.set(lastPlacePos.x, lastPlacePos.y, lastPlacePos.z);
-                continue;
-            }
-
-            _anchorStore.placeObject.position.x = (intersects[i].point.x);
-            _anchorStore.placeObject.position.y = (intersects[i].point.y + 5);
-            _anchorStore.placeObject.position.z = (intersects[i].point.z);
-            lastPlacePos.x = intersects[i].point.x;
-            lastPlacePos.y = intersects[i].point.y;
-            lastPlacePos.z = intersects[i].point.z;
-            break;
-        }
-    }
-
-    player.rotation.y = controls.getY();
-    player.translateX(velocity.x * delta);
-    player.translateZ(velocity.z * delta);
-    player.translateY(velocity.y * delta);
-    player.__dirtyPosition = true;
+    checkHelpSticks();
+    updateBoat(delta);
+    updatePlane(delta);
+    checkRandomSpawner();
+    if (sharkClass)sharkClass.update(delta);
+    for (let i = 0; i < buckets.length; i ++) buckets[i].update(delta);
+    for (let i = 0; i < fishes.length; i ++) updateFish(fishes[i]);
+    for (let i = 0; i < campfires.length; i ++) campfires[i].update(elapsed, delta);
+    playerClass.update(delta);
+    _anchorStore.update(delta);
     water.material.uniforms.time.value += 1.0 / 60.0;
-
     water.render();
     scene.simulate(); // run physics
     renderer.render( scene, camera );
@@ -809,22 +455,104 @@ function render() {
     sunLight.update(sunAngle);
     skydom.update(sunAngle);
     starField.update(sunAngle);
-
-    if (options != undefined) updateParticles();
-
-    if (fireSounds.play && fire != undefined) {
-        var dis = pointLight.position.distanceTo(player.position);
-        dis *= 0.003;
-        if (dis > 1) dis = 1;
-        fireSounds.volume = 1 - dis;
-    }
+    if (fireOptions != undefined) updateParticles();
 
     document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
-
-    //requestAnimationFrame( render );
 }
 
 
+function checkHelpSticks() {
+    if(helpsticks[0] != undefined){
+        if(player.position.distanceTo(helpsticks[0].position) < 100 && helpsticks.succes == false){
+            success('Misschien kan je wat met deze tak maken.');
+            helpsticks.succes = true;
+        }
+        if(stickscount === 13 && isPlane) playerWin('Je help werd gezien door het vliegtuig! SICK!');
+    }
+}
+
+
+function updateBoat(delta) {
+    if (isBoat){
+        pirateShip.position.z += delta * 200;
+        if ( pirateShip.position.z > 30000){
+            isBoat = false;
+            pirateShip.visible = false;
+        }
+    }
+}
+function updatePlane(delta) {
+    if (isPlane) {
+        plane.position.z += delta * 500.0;
+        if ( plane.position.z > 10000){
+            isPlane = false;
+            plane.visible = false;
+        }
+    }
+}
+function checkRandomSpawner() {
+    if (timeRandomSpawn > 10){
+        timeRandomSpawn =0;
+        var randomNum = Math.floor(Math.random() * 10) + 1;
+
+        switch (randomNum) {
+            case 1:
+                if (!isPlane)flyPlane();
+                break;
+            case 2:
+                if (!isBoat)spawnBoat();
+                break;
+            case 3:
+                spawnFish();
+                break;
+        }
+    }
+}
+
+function checkControls(){
+    if (!controls.enabled && !firstRender){
+
+        if (clock.running && !deathOrWin) {
+            playedTime += clock.getElapsedTime();
+            clock.stop();
+        }
+        return true;
+    }
+    else{
+        if (!clock.running) clock.start();
+    }
+    firstRender = false;
+    return (!controls);
+}
+
+
+function spawnFish() {
+    if (fishes.length >= 5) return;
+    var newFish = fish.clone();
+    setRandomFishPosition(newFish);
+    fishes.push(newFish);
+    scene.add(newFish);
+    newFish.addEventListener( 'collision', function( other_object, relative_velocity, relative_rotation, contact_normal ) {
+       if(other_object._type === 'spear'){
+           scene.remove(newFish);
+           fishes.splice(fishes.indexOf(newFish));
+       }
+    });
+}
+
+function updateFish(fish) {
+    var newpos = new THREE.Vector3(0,0,0);
+    newpos.x = Math.sin(sunAngle * 100) * 100;
+    newpos.y = 0;
+    newpos.z = Math.cos(sunAngle * 100) * 100;
+    newpos = newpos.add(fish.pivot.clone());
+    fish.position.set(newpos.x, -50, newpos.z );
+    fish.rotation.y = (sunAngle * 100 + 0.5 * Math.PI);
+    fish.rotation.x = 0;
+    fish.rotation.z = 0;
+    fish.__dirtyRotation = true;
+    fish.__dirtyPosition = true;
+}
 
 function playerDeath(reason) {
     if (deathOrWin) return;
@@ -844,8 +572,28 @@ function playerWin(reason) {
     scene = win.winned(reason);
 }
 
+function  setRandomFishPosition(fish) {
+    var randomNum = Math.floor(Math.random() * 4) + 1;
+    switch (randomNum){
+        case 1:
+            fish.position.set(2524, -50, -707);
+            break;
+        case 2:
+            fish.position.set(1195, -50, -1911);
+            break;
+        case 3:
+            fish.position.set(-1026, -50, -2031);
+            break;
+        default:
+            fish.position.set(-3242, -50, 1039);
+            break;
+    }
+    console.log(fish);
+    fish.pivot = fish.position.clone();
+}
 
-function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0) {
+
+function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0, box = true) {
 
     //physics
     var physGeom = object.geometry;
@@ -854,11 +602,11 @@ function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0) {
     var physObject;
     var wiregeo;
 
-    try {
+    if (!box) {
         physObject = new Physijs.ConvexMesh(physGeom, physMaterial, mass);
         wiregeo = new THREE.EdgesGeometry( physObject.geometry ); // or WireframeGeometry( geometry )
     }
-    catch(e) {
+    else {
         var cube_bbox = new THREE.Box3();
         cube_bbox.setFromObject( object );
         var cube_height = cube_bbox.max.y - cube_bbox.min.y + h;
@@ -893,7 +641,7 @@ function shootFlare(){
     flareSound.play();
 
     tick = 0;
-    options = {
+    fireOptions = {
         position: player.position.clone(),
         positionRandomness: .3,
         velocity: new THREE.Vector3(),
@@ -905,7 +653,7 @@ function shootFlare(){
         size: 20,
         sizeRandomness: 1
     };
-    options.position.y += 10;
+    fireOptions.position.y += 10;
 
     spawnerOptions = {
         spawnRate: 15000,
@@ -922,11 +670,11 @@ function updateParticles() {
 
     if ( delta > 0 ) {
 
-        options.position.y += Math.sin( tick * -spawnerOptions.speed.y ) * 10;
-        options.position.x += Math.sin( tick * -spawnerOptions.speed.x ) * 10;
-        options.position.z += Math.sin( tick * -spawnerOptions.speed.z ) * 10;
+        fireOptions.position.y += Math.sin( tick * -spawnerOptions.speed.y ) * 10;
+        fireOptions.position.x += Math.sin( tick * -spawnerOptions.speed.x ) * 10;
+        fireOptions.position.z += Math.sin( tick * -spawnerOptions.speed.z ) * 10;
 
-        if (options.position.y > 300 ){
+        if (fireOptions.position.y > 300 ){
             if (isBoat)playerDeath('being raped by pirates');
             else if (isPlane)playerWin('being saved by a plane');
         }
@@ -938,7 +686,7 @@ function updateParticles() {
                 // Yep, that's really it.	Spawning particles is super cheap, and once you spawn them, the rest of
                 // their lifecycle is handled entirely on the GPU, driven by a time uniform updated below
                 //oke cool
-                particleSystem.spawnParticle(options);
+                particleSystem.spawnParticle(fireOptions);
 
             }
         }
@@ -946,13 +694,4 @@ function updateParticles() {
     }
 
     particleSystem.update( tick );
-}
-
-
-function checkBucket(){
-
-    var rot =  bucket.rotation;
-    var o = 0.5;
-    if (rot.z < Math.PI + o && rot.z > Math.PI - o)emptyBucket();
-    if (rot.x < Math.PI + o && rot.x > Math.PI - o)emptyBucket();
 }

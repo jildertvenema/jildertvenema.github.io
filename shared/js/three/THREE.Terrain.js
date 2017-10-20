@@ -206,7 +206,7 @@
  *     visual properties are applied. Takes two parameters, which are the same
  *     as those for {@link THREE.Terrain.DiamondSquare}: an array of
  *     `THREE.Vector3` objects representing the vertices of the terrain, and a
- *     map of options with the same available properties as the `options`
+ *     map of fireOptions with the same available properties as the `fireOptions`
  *     parameter for the `THREE.Terrain` function.
  *   - `easing`: A function that affects the distribution of slopes by
  *     interpolating the height of each vertex along a curve. Valid values
@@ -229,7 +229,7 @@
  *     specified in `generators.js` (or custom functions with the same
  *     signature). Ideally heightmap images have the same number of pixels as
  *     the terrain has vertices, as determined by the `xSegments` and
- *     `ySegments` options, but this is not required. If the heightmap is a
+ *     `ySegments` fireOptions, but this is not required. If the heightmap is a
  *     different size, vertex height values will be interpolated.) Defaults to
  *     `THREE.Terrain.DiamondSquare`.
  *   - `material`: a THREE.Material instance used to display the terrain.
@@ -260,13 +260,13 @@
  *     to 63.
  *   - `xSize`: The width of the terrain in Three.js units. Defaults to 1024.
  *     Rendering might be slightly faster if this is a multiple of
- *     `options.xSegments + 1`.
+ *     `fireOptions.xSegments + 1`.
  *   - `ySegments`: The number of segments (columns) to divide the terrain
  *     plane into. (This basically determines how detailed the terrain is.)
  *     Defaults to 63.
  *   - `ySize`: The length of the terrain in Three.js units. Defaults to 1024.
  *     Rendering might be slightly faster if this is a multiple of
- *     `options.ySegments + 1`.
+ *     `fireOptions.ySegments + 1`.
  */
 THREE.Terrain = function(options) {
     var defaultOptions = {
@@ -331,7 +331,7 @@ THREE.Terrain = function(options) {
         options.heightmap(mesh.geometry.vertices, options);
     }
     else {
-        console.warn('An invalid value was passed for `options.heightmap`: ' + options.heightmap);
+        console.warn('An invalid value was passed for `fireOptions.heightmap`: ' + options.heightmap);
     }
     THREE.Terrain.Normalize(mesh, options);
 
@@ -339,7 +339,7 @@ THREE.Terrain = function(options) {
         mesh.geometry = (new THREE.BufferGeometry()).fromGeometry(mesh.geometry);
     }
 
-    // lod.addLevel(mesh, options.unit * 10 * Math.pow(2, lodLevel));
+    // lod.addLevel(mesh, fireOptions.unit * 10 * Math.pow(2, lodLevel));
 
     scene.add(mesh);
     return scene;
@@ -356,7 +356,7 @@ THREE.Terrain = function(options) {
  *   The terrain mesh.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid options are the same as for {@link THREE.Terrain}().
+ *   displayed. Valid fireOptions are the same as for {@link THREE.Terrain}().
  */
 THREE.Terrain.Normalize = function(mesh, options) {
     var v = mesh.geometry.vertices;
@@ -539,7 +539,7 @@ THREE.Terrain.fromArray1D = function(vertices, src) {
  *   would be an acceptable value for the `heightmap` option for the
  *   {@link THREE.Terrain} function.
  * @param {Number} options
- *   The same as the options parameter for the {@link THREE.Terrain} function.
+ *   The same as the fireOptions parameter for the {@link THREE.Terrain} function.
  */
 THREE.Terrain.heightmapArray = function(method, options) {
     var arr = new Array((options.xSegments+1) * (options.ySegments+1)),
@@ -612,7 +612,7 @@ THREE.Terrain.EaseInStrong = function(x) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  */
 THREE.Terrain.fromHeightmap = function(g, options) {
@@ -638,7 +638,7 @@ THREE.Terrain.fromHeightmap = function(g, options) {
  * Convert a terrain plane into an image-based heightmap.
  *
  * Parameters are the same as for {@link THREE.Terrain.fromHeightmap} except
- * that if `options.heightmap` is a canvas element then the image will be
+ * that if `fireOptions.heightmap` is a canvas element then the image will be
  * painted onto that canvas; otherwise a new canvas will be created.
  *
  * NOTE: this method performs an operation on an array of vertices, which
@@ -693,7 +693,7 @@ THREE.Terrain.toHeightmap = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}() but only `maxHeight`, `minHeight`, and `easing`
  *   are used.
  */
@@ -732,7 +732,7 @@ THREE.Terrain.Clamp = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Boolean} direction
  *   `true` if the edges should be turned up; `false` if they should be turned
@@ -808,7 +808,7 @@ THREE.Terrain.Edges = function(g, options, direction, distance, easing, edges) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Boolean} direction
  *   `true` if the edges should be turned up; `false` if they should be turned
@@ -858,7 +858,7 @@ THREE.Terrain.RadialEdges = function(g, options, direction, distance, easing) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Number} [weight=0]
  *   How much to weight the original vertex height against the average of its
@@ -939,7 +939,7 @@ THREE.Terrain.SmoothMedian = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Number} [multiplier=1]
  *   By default, this filter clamps each point within the highest and lowest
@@ -1049,13 +1049,13 @@ THREE.Terrain.Turbulence = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} [options]
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Object[]} passes
  *   Determines which heightmap functions to compose to create a new one.
  *   Consists of an array of objects with the following properties:
  *   - `method`: Contains something that will be passed around as an
- *     `options.heightmap` (a heightmap-generating function or a heightmap image)
+ *     `fireOptions.heightmap` (a heightmap-generating function or a heightmap image)
  *   - `amplitude`: A multiplier for the heightmap of the pass. Applied before
  *     the result of the pass is added to the result of previous passes.
  *   - `frequency`: For terrain generation methods that support it (Perlin,
@@ -1090,7 +1090,7 @@ THREE.Terrain.MultiPass = function(g, options, passes) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Function} curve
  *   A function that takes an x- and y-coordinate and returns a z-coordinate.
@@ -1150,7 +1150,7 @@ THREE.Terrain.CosineLayers = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  */
 THREE.Terrain.DiamondSquare = function(g, options) {
@@ -1217,7 +1217,7 @@ THREE.Terrain.DiamondSquare = function(g, options) {
         }
     }
 
-    // THREE.Terrain.SmoothConservative(g, options);
+    // THREE.Terrain.SmoothConservative(g, fireOptions);
 };
 
 /**
@@ -1255,7 +1255,7 @@ THREE.Terrain.Fault = function(g, options) {
             }
         }
     }
-    // THREE.Terrain.Smooth(g, options);
+    // THREE.Terrain.Smooth(g, fireOptions);
 };
 
 /**
@@ -1270,7 +1270,7 @@ THREE.Terrain.Fault = function(g, options) {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Function} [feature=THREE.Terrain.Influences.Hill]
  *   A function describing the feature to raise at the randomly chosen points.
@@ -1331,9 +1331,9 @@ THREE.Terrain.Hill = function(g, options, feature, shape) {
  * @param {THREE.Vector3[]} g
  *   The vertex array for plane geometry to modify with heightmap data. This
  *   method sets the `z` property of each vertex.
- * @param {Object} options
+ * @param {Object} fireOptions
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Function} [feature=THREE.Terrain.Influences.Hill]
  *   A function describing the feature. The function should accept one
@@ -1400,7 +1400,7 @@ THREE.Terrain.HillIsland = (function() {
      * of that vertex. If the neighbor is lower, roll the particle to the
      * neighbor. When the particle stops, displace the vertex upwards.
      *
-     * The shape of the outcome is highly dependent on options.frequency
+     * The shape of the outcome is highly dependent on fireOptions.frequency
      * because that affects how many particles will be dropped. Values around
      * 0.25 generally result in archipelagos whereas the default of 2.5
      * generally results in one large mountainous island.
@@ -1427,7 +1427,7 @@ THREE.Terrain.HillIsland = (function() {
                 j = Math.floor(options.ySegments*(0.5+yDeviation) + Math.sin(d) * Math.random() * options.ySegments*(0.5-Math.abs(yDeviation)));
             }
         }
-        // THREE.Terrain.Smooth(g, options, 3);
+        // THREE.Terrain.Smooth(g, fireOptions, 3);
     };
 })();
 
@@ -1599,7 +1599,7 @@ THREE.Terrain.SimplexLayers = function(g, options) {
         }
 
         // White noise creates some weird artifacts; fix them.
-        // THREE.Terrain.Smooth(g, options, 1);
+        // THREE.Terrain.Smooth(g, fireOptions, 1);
         THREE.Terrain.Clamp(g, {
             maxHeight: options.maxHeight,
             minHeight: options.minHeight,
@@ -1873,7 +1873,7 @@ THREE.Terrain.generateBlendedMaterial = function(textures) {
  *     and rotation of the meshes will be wrong.
  *   - `sizeVariance`: The percent by which instances of the mesh can be scaled
  *     up or down when placed on the terrain.
- *   - `randomness`: If `options.spread` is a number, then this property is a
+ *   - `randomness`: If `fireOptions.spread` is a number, then this property is a
  *     function that determines where meshes are placed. Specifically, it
  *     returns an array of numbers, where each number is the probability that
  *     a mesh is NOT placed on the corresponding face. Valid values include
@@ -1890,13 +1890,13 @@ THREE.Terrain.generateBlendedMaterial = function(textures) {
  *
  * @return {THREE.Object3D}
  *   An Object3D containing the scattered meshes. This is the value of the
- *   `options.scene` parameter if passed. This is expected to be either a
+ *   `fireOptions.scene` parameter if passed. This is expected to be either a
  *   return value of a call to `THREE.Terrain()` or added to that return value;
  *   otherwise the position and rotation of the meshes will be wrong.
  */
 THREE.Terrain.ScatterMeshes = function(geometry, options) {
     if (!options.mesh) {
-        console.error('options.mesh is required for THREE.Terrain.ScatterMeshes but was not passed');
+        console.error('fireOptions.mesh is required for THREE.Terrain.ScatterMeshes but was not passed');
         return;
     }
     if (geometry instanceof THREE.BufferGeometry) {
@@ -1997,7 +1997,7 @@ THREE.Terrain.ScatterMeshes = function(geometry, options) {
             g.merge(m.geometry, m.matrix);
         }
         /*
-        if (!(options.mesh.material instanceof THREE.MeshFaceMaterial)) {
+        if (!(fireOptions.mesh.material instanceof THREE.MeshFaceMaterial)) {
             g = THREE.BufferGeometryUtils.fromGeometry(g);
         }
         */
@@ -2021,12 +2021,12 @@ THREE.Terrain.ScatterMeshes = function(geometry, options) {
  *
  * @param {Function} method
  *   A random terrain generation function (i.e. a valid value for the
- *   `options.heightmap` parameter of the `THREE.Terrain` function).
+ *   `fireOptions.heightmap` parameter of the `THREE.Terrain` function).
  * @param {Object} options
  *   A map of settings that control how the resulting noise should be generated
- *   (with the same parameters as the `options` parameter to the
- *   `THREE.Terrain` function). `options.minHeight` must equal `0` and
- *   `options.maxHeight` must equal `1` if they are specified.
+ *   (with the same parameters as the `fireOptions` parameter to the
+ *   `THREE.Terrain` function). `fireOptions.minHeight` must equal `0` and
+ *   `fireOptions.maxHeight` must equal `1` if they are specified.
  * @param {Number} skip
  *   The number of sequential faces to skip between faces that are candidates
  *   for placing a mesh. This avoid clumping meshes too closely together.
@@ -2038,7 +2038,7 @@ THREE.Terrain.ScatterMeshes = function(geometry, options) {
  *
  * @return {Function}
  *   Returns a function that can be passed as the value of the
- *   `options.randomness` parameter to the {@link THREE.Terrain.ScatterMeshes}
+ *   `fireOptions.randomness` parameter to the {@link THREE.Terrain.ScatterMeshes}
  *   function.
  */
 THREE.Terrain.ScatterHelper = function(method, options, skip, threshold) {
@@ -2112,7 +2112,7 @@ THREE.Terrain.Influences = {
  *   method sets the `z` property of each vertex.
  * @param {Object} options
  *   A map of settings that control how the terrain is constructed and
- *   displayed. Valid values are the same as those for the `options` parameter
+ *   displayed. Valid values are the same as those for the `fireOptions` parameter
  *   of {@link THREE.Terrain}().
  * @param {Function} f
  *   A function describing the feature. The function should accept one

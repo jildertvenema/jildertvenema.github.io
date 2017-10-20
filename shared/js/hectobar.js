@@ -58,5 +58,19 @@ class Hotbar{
                 current.setAttribute("value", "");
             }
         };
+
+        this.hectobarSticks = function(){
+            for( let i = 1; i <= 6; i++){
+                let id = "slot" + i.toString();
+                let current = document.getElementById( id );
+
+                if(current.getAttribute("value") === 'stick'){
+                    current.innerHTML = '';
+                    current.setAttribute("value", "");
+                    return true;
+
+                }
+            }
+        }
     }
 }

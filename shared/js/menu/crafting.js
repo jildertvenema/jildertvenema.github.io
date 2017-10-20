@@ -1,15 +1,15 @@
 class Crafting{
     constructor(){
-        var craftedItem = document.getElementById( "craftedItem" );
-        var itemName = document.getElementById( "craftAbleItemName" );
-        var craftAbleItems = document.getElementById( "craftAbleItems" );
-        var requiredItems = document.getElementById( "requiredItems" );
+        let craftedItem = document.getElementById( "craftedItem" );
+        let itemName = document.getElementById( "craftAbleItemName" );
+        let craftAbleItems = document.getElementById( "craftAbleItems" );
+        let requiredItems = document.getElementById( "requiredItems" );
 
-        var self = this;
+        let self = this;
 
         this.createList = function(){
             for(let i = 0; i < craftables.length; i++){
-                var item = Object.assign(craftables[i]);
+                let item = Object.assign(craftables[i]);
                 if(item.recipe.length > 0) {
                     let li = document.createElement('li');
                     let img = document.createElement('img');
@@ -30,7 +30,7 @@ class Crafting{
 
         this.itemClick = function(index){
             requiredItems.innerHTML = "";
-            var itemToCraft = Object.assign(craftables[index]);
+            let itemToCraft = Object.assign(craftables[index]);
 
             for(let i = 0; i < itemToCraft.recipe.length; i++){
                 let requiredItem = Object.assign(itemToCraft.recipe[i]);
@@ -78,18 +78,18 @@ class Crafting{
         };
 
         this.containsAll = function (needles, haystack){
-            var contains = false;
+            let contains = false;
 
             //array for indexes it shouldnt check again
-            var doNotCheck = [];
+            let doNotCheck = [];
 
             outerloop:
             for( let i = 0 ; i < needles.length; i++ ){
                 for ( let j = 0; j < haystack.length; j++ ){
                     //if Item is not null and exists in inventory: add it to doNotCheck and set contains value to true
                     if ( haystack[j]
-                        && haystack[j].name == needles[i].name
-                        && doNotCheck.indexOf(j) == -1 ){
+                        && haystack[j].name === needles[i].name
+                        && doNotCheck.indexOf(j) === -1 ){
                         console.log("found required Item");
                         doNotCheck.push(j);
 
@@ -99,7 +99,7 @@ class Crafting{
                     //otherrwise you dont have the Item and the loop is stopped
                     else{
                         contains = false;
-                        if(j == haystack.length - 1) break outerloop;
+                        if(j === haystack.length - 1) break outerloop;
                     }
                 }
             }

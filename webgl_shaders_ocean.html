@@ -14,6 +14,8 @@
 		<!-- hotbar -->
 
 		<div id="hotbar">
+			<div id="oxigen"><div id="oxigenbar"></div></div>
+			<div id="hp"><div id="hpbar"></div></div>
 			<table>
 				<tr>
 					<td id="slot1"></td>
@@ -90,17 +92,18 @@
 		<div id="blocker">
 
 			<div>
-				<h1 id="header">Welcome to ..</h1>
+				<h1 id="header">Welcome to <i>Abgewaschen</i></h1>
 				<br>
 				<button id="start">Start</button>
 				<br>
-				<button>Options</button>
+				<button onclick="options.toggle()">Options</button>
 				<br>
 				<button>Quit</button>
 				<br>
 			</div>
 
 		</div>
+
 
 		<!-- loadscreen -->
 
@@ -117,10 +120,36 @@
 		</div>
 
 
+		<!-- menu fireOptions -->
+
+		<div id="options">
+			<form>
+				<div class="label" ><p>Volume</p></div>
+				<input name="volume" type="range"  min="0" max="100" value="100" step="5" />
+
+				<div class="label" ><p>Render Distance</p></div>
+				<input name="renderDistance" type="range"  min="0" max="100" value="100" step="5" />
+
+				<div class="label" ><p>Quality</p></div>
+				<input name="quality" type="range"  min="0" max="100" value="100" step="5" />
+
+				<div class="label" ><p id="difficulty">Difficulty: peaceful</p></div>
+				<button name="difficulty" onclick="options.updateDifficulty()"></button>
+
+				<div class="label" ><p id="godmode">Godmode: off</p></div>
+				<button name="godmode" onclick="options.updateGodMode()"></button>
+
+				<div class="label" ><p>Save</p></div>
+				<button onclick="options.save()"></button>
+
+			</form>
+		</div>
+
+
         <!-- credits -->
 
         <div id="credits">
-            <div class="movie">life of john doe</div>
+            <div class="movie">life of david</div>
             <div class="job">directed by</div>
             <div class="name">david schweizer</div>
             <div class="job">produced by</div>
@@ -185,7 +214,12 @@
 		<script type="text/javascript" src="shared/js/person.js"></script>
 		<script type="text/javascript" src="shared/js/anchorStore.js"></script>
 
-
+		<!-- objects -->
+		<script type="text/javascript" src="shared/js/objects/Bucket.js"></script>
+		<script type="text/javascript" src="shared/js/objects/CampFire.js"></script>
+		<script type="text/javascript" src="shared/js/objects/Shark.js"></script>
+		<script type="text/javascript" src="shared/js/objects/Spear.js"></script>
+		<script type="text/javascript" src="shared/js/objects/Axe.js"></script>
 
 		<!-- end scenes -->
 
@@ -205,6 +239,7 @@
 		<script type="text/javascript" src="shared/js/menu/credits.js"></script>
 		<script type="text/javascript" src="shared/js/menu/settings.js"></script>
 		<script type="text/javascript" src="shared/js/hectobar.js"></script>
+		<script type="text/javascript" src="shared/js/menu/options.js"></script>
 
 
 		<!-- game -->
