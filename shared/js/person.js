@@ -3,7 +3,7 @@ class person{
 
         this.playerName = playerName;
         this.playerHealth = playerHealth;
-        var moveForward, moveLeft, moveBackward, moveRight, sprint,
+        var moveForward, moveLeft, moveBackward, moveRight, sprint, peer,
             playerSpeed, down = false,
             playerUp = false;
         //movement
@@ -75,7 +75,6 @@ class person{
                     axes.push(newAxe);
                     break;
                 case 84: //T
-                    _anchorStore.isBeingPlaced = true;
                     break;
                 case 77: //M
                     checkBereik();

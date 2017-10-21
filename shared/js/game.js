@@ -28,7 +28,7 @@ var camera, scene, renderer, firstRender = true, prevPos, underWater = false, mo
     raycaster, stats, water, clock, mobilebereikSound, phone,
 	lastPlacePos = new THREE.Vector3(0,0,0), terrain, savedPos, pirateShip,
     shark, sharkClass, death,win , playedTime = 0, playerVisable = false, deathOrWin = false, isBoat = false,
-    spear, fish, fishes = [], hotbar, dorst = 100, zuurstof = 100, hp = 100, options, timeRandomSpawn = 0;
+    spear, fish, fishes = [], hotbar, dorst = 100, zuurstof = 100, hp = 100, options, timeRandomSpawn = 0, conn;
 
 var _anchorStore = Object.assign(new anchorStore());
 savedPos = new THREE.Vector3(0,0,0);
@@ -36,6 +36,13 @@ death = Object.assign(new deaths());
 win = Object.assign(new wins());
 hotbar = Object.assign(new Hotbar());
 options = Object.assign(new Options());
+
+//co-op
+
+var geometry = new THREE.BoxGeometry( 20, 35, 20 );
+var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+var otherPlayer = new THREE.Mesh( geometry, material );
+
 
 //HELP
 var helpsticks = [],
@@ -185,7 +192,7 @@ function init() {
     scene.setGravity(new THREE.Vector3( 0, -400, 0 ));
     scene.fog = new THREE.Fog(0x000000, 0.1, 0);
     renderer.setClearColor(new THREE.Color(0x000000));
-
+    scene.add( otherPlayer );
     //
 
     camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 3000000 );
@@ -456,7 +463,6 @@ function render() {
     skydom.update(sunAngle);
     starField.update(sunAngle);
     if (fireOptions != undefined) updateParticles();
-
     document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
 }
 
@@ -695,3 +701,58 @@ function updateParticles() {
 
     particleSystem.update( tick );
 }
+
+function openHostPeer(){
+    var id = Math.round((Math.random() * 9999) + 1);
+    var peer = new Peer(id.toString(), {key: 'p2zyxcxaixiozuxr'});
+    console.log('peer host: ' + id);
+    peer.on('connection', function(conn) {
+        console.log('connected slave');
+
+        conn.on('data', function(data){
+            switch (data[0]){
+                case 'a':
+                    var pos = StringToVector(data);
+                    otherPlayer.position.set(pos.x, pos.y, pos.z);
+                    conn.send('a' + vectorToString(player.position));
+                break;
+                case 'b':
+                    otherPlayer.rotation.y = data.substring(1);
+                    conn.send('b' + controls.getY());
+            }
+        });
+    });
+}
+function connectToPeer(hostID){
+    var id = 'slave' +  Math.round((Math.random() * 9999) + 1);
+    var peer = new Peer(id, {key: 'p2zyxcxaixiozuxr'});
+    conn = peer.connect(hostID.toString());
+    console.log('peer slave: ' + id);
+
+    conn.on('open', function(){
+        conn.send('a' + vectorToString(player.position));
+        conn.send('b' + controls.getY());
+    });
+    conn.on('data', function(data){
+        switch (data[0]){
+            case 'a':
+                var pos = StringToVector(data);
+                otherPlayer.position.set(pos.x, pos.y, pos.z);
+                conn.send('a' + vectorToString(player.position));
+            break;
+            case 'b':
+                otherPlayer.rotation.y = data.substring(1);
+                conn.send('b' + controls.getY());
+            break;
+        }
+    });
+}
+
+
+function vectorToString(v){
+    return 'x'  + v.x + 'y'  + v.y + 'z'  + v.z;
+}
+function StringToVector(s){
+    return new THREE.Vector3(s.substring(s.indexOf('x') +1, s.indexOf('y')),s.substring(s.indexOf('y') +1, s.indexOf('z')), s.substring(s.indexOf('z') +1)  );
+}
+
