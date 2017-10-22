@@ -705,6 +705,7 @@ function updateParticles() {
 function openHostPeer(){
     var id = Math.round((Math.random() * 9999) + 1);
     var peer = new Peer(id.toString(), {key: 'p2zyxcxaixiozuxr'});
+    peer.secure = true;
     console.log('peer host: ' + id);
     peer.on('connection', function(conn) {
         console.log('connected slave');
@@ -726,8 +727,10 @@ function openHostPeer(){
 function connectToPeer(hostID){
     var id = 'slave' +  Math.round((Math.random() * 9999) + 1);
     var peer = new Peer(id, {key: 'p2zyxcxaixiozuxr'});
+    peer.secure = true;
     conn = peer.connect(hostID.toString());
     console.log('peer slave: ' + id);
+    console.log(peer);
 
     conn.on('open', function(){
         conn.send('a' + vectorToString(player.position));
