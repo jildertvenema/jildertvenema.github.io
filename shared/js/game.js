@@ -172,6 +172,8 @@ animate();
 function init() {
 
     //
+	
+	openHostPeer();
 
     clock = new THREE.Clock();
     mouse = new THREE.Vector2();
