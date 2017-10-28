@@ -1,4 +1,4 @@
-class deaths{
+class Deaths{
     sharkDeath(reason){
 
         playedTime += clock.getElapsedTime();

@@ -1,8 +1,7 @@
 class CampFire{
     constructor(object) {
         object.mass = campfire.mass;
-        _anchorStore.placeObject = object;
-        _anchorStore.isBeingPlaced = true;
+        campfires.push(this);
         this.object = object;
         this.isOnFire = false;
         var pointLight;
@@ -28,6 +27,7 @@ class CampFire{
             }
             if (fire.mesh.position.distanceTo(player.position) < 18){
                 hp -= 20 * delta;
+                warn('Au');
                 if (hp <= 0){
                     hp = 0;
                     playerDeath('went in flames');
@@ -50,14 +50,19 @@ class CampFire{
             scene.add(this.pointLight );
 
             fire.mesh.visible = true;
+            console.log(fire);
+            success('noice');
 
         };
 
 
         this.fireStop = function() {
             if (fire)fire.mesh.visible = false;
-            if (pointLight)pointLight.intensity = 0;
-        }
+            if (pointLight != undefined ) {
+                pointLight.intensity = 0;
+                pointLight.needsUpdate = true;
+            }
+        };
 
 
         this.object._type = 'campfire';

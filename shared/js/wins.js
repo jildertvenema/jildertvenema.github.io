@@ -1,4 +1,4 @@
-class wins{
+class Wins{
     winned(reason){
         playedTime += clock.getElapsedTime();
         clock.stop();

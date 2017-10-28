@@ -1403,7 +1403,7 @@ THREE.Terrain.HillIsland = (function() {
      * The shape of the outcome is highly dependent on fireOptions.frequency
      * because that affects how many particles will be dropped. Values around
      * 0.25 generally result in archipelagos whereas the default of 2.5
-     * generally results in one large mountainous island.
+     * generally results in one large mountainous Island.
      *
      * Parameters are the same as those for {@link THREE.Terrain.DiamondSquare}.
      */
