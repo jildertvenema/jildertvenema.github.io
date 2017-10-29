@@ -1,41 +1,4 @@
 /*
-* === Paused ===
-*/
-
-#blocker{
-    color: white;
-    position: absolute;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
-    height: 100%;
-}
-
-#blocker div {
-    text-align: center;
-    position: absolute;
-    top: 15%;
-    left: 25%;
-    width: 50%;
-}
-
-#blocker button{
-    border: #4d8fff;
-    background-color: #4d8fff;
-    border-radius: 2px;
-    height: 80px;
-    width: 200px;
-    color: white;
-    font-size: 40px;
-    margin-top: 20px;
-    transition: all .1s ease-in-out;
-}
-
-#blocker button:hover {
-    background-color: #4372d0;
-    -webkit-box-shadow: 5px 5px 5px black;
-}
-
-/*
 * === Options ===
 */
 
@@ -50,10 +13,6 @@
     background: rgba(0,0,0,0.5);
     position: absolute;
     font-size: 20px;
-    color: white;
-}
-
-#options button, #options input {
     color: white;
 }
 
@@ -83,7 +42,8 @@
     pointer-events: none;
 }
 
-#options input, #options button {
+input, button {
+    color: white;
     text-align: center;
     height: 50px;
     width: 100%;
@@ -134,3 +94,41 @@ input[type=range]::-webkit-slider-thumb {
     left: 25%;
     display: none;
 }
+
+/*
+* === Paused ===
+*/
+
+#blocker{
+    color: white;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+}
+
+#blocker div {
+    text-align: center;
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 50%;
+}
+
+#blocker button{
+    border: #4d8fff;
+    background: 0 #4d8fff;
+    border-radius: 2px;
+    height: 80px;
+    width: 200px;
+    color: white;
+    font-size: 40px;
+    margin-top: 20px;
+    transition: all .1s ease-in-out;
+}
+
+#blocker button:hover {
+    background-color: #4372d0;
+    -webkit-box-shadow: 5px 5px 5px black;
+}
+

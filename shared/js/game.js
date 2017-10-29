@@ -41,7 +41,7 @@ var _anchorStore;
 // als het goed is kan je het verwerken in de klasse, this.var = public als je klasse.var aanroept
 // var normaal is private.. vaak hoef je de variabele ook alleen maar in de klasse te gebruiken
 var shark, sharkClass, death,win , playedTime = 0, playerVisable = false, deathOrWin = false,
-    spear, fish, fishes = [], hotbar, dorst = 100, zuurstof = 100, hp = 100, timeRandomSpawn = 0;
+    spear, fish, fishes = [], hotbar, zuurstof = 100, hp = 100, timeRandomSpawn = 0;
 // @@@@@@@@@@@@@@@@@@@                                                       @@@@@@@@@@@@@@@@@@@@@@@@@
 
 //sky
@@ -55,10 +55,10 @@ var particleSystem, fireOptions, spawnerOptions, tick = 0;
 
 var geometry = new THREE.BoxGeometry( 20, 35, 20 );
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-var otherModel, mixer, conn, otherVelocity = 0, objectID = '';
+var otherModel, mixer, conn, otherVelocity = 0, objectID = '', otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined;
 
 //menu
-var menu, inv, tutorial;
+var menu, inv, tutorial, tutorialIsPlaying = false;
 
 //object loaders
 
@@ -74,7 +74,7 @@ var importantSounds = new Audio('shared/sounds/sounds.mp3');
 importantSounds.loop = true;
 importantSounds.volume = 0.4;
 
-var backgroundSong = new Audio('shared/sounds/song_trap.m4a');
+var backgroundSong = new Audio('shared/sounds/mistybog.mp3');
 backgroundSong.play();
 backgroundSong.loop = true;
 
@@ -160,6 +160,7 @@ function init() {
     inv.pushItem(new Item('flintandsteel'));
     inv.pushItem(new Item('fish'));
     inv.pushItem(new Item('flaregun'));
+    inv.pushItem(new Item('axe'));
 
     //player
 
@@ -227,13 +228,13 @@ function animate() {
 function render() {
 
     //if (checkControls()) return;
-
     var delta = clock.getDelta();
     var elapsed = clock.getElapsedTime();
     timeRandomSpawn += delta;
 
     if (deathOrWin) document.getElementById('credits').style.top = (100-elapsed * 3) + '%';
     help.checkHelpSticks();
+    telefoon.batterypercentage(Math.round(elapsed));
     shipPlaneHandler.update(delta);
     checkRandomSpawner();
     if (sharkClass)sharkClass.update(delta);
@@ -255,7 +256,6 @@ function render() {
     skydom.update(sunAngle);
     starField.update(sunAngle);
     if (fireOptions != undefined) updateParticles();
-
     document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
 }
 
@@ -289,15 +289,22 @@ function checkRandomSpawner() {
 }
 
 function checkTrees(delta) {
-    for (var i = 0 ; i < trees.length; i++){
-        if (trees[i].fall > 2){
-            trees[i].fall -= delta * 5;
-            trees[i].rotation.x = (1 - trees[i].fall) + -Math.PI /2;
+    for (var i = 0 ; i < trees.length; i++) {
+        if (trees[i].fall > 2) {
+            trees[i].fall -= delta / 5;
+            trees[i].rotation.x = (1 - trees[i].fall) + -Math.PI / 2;
+            trees[i].__dirtyRotation = true;
         }
-        else if (trees[i].fall > 1)
+        else if (trees[i].fall > 1) {
             trees[i].materials[0].opacity = 1 - trees[i].fall;
-            trees[i].fall -= delta * 5;
+            trees[i].fall -= delta / 5;
         }
+        else if (trees[i].fall <= 1 && trees[i].fall > 0) {
+            trees[i].fall = -1;
+            trees[i].rotation.x = -Math.PI / 2;
+            trees[i].__dirtyRotation = true;
+        }
+    }
 }
 
 function checkControls(){
@@ -535,6 +542,7 @@ function openHostPeer(){
                     var _uuid = data.substring(data.indexOf('uuid') + 4, data.indexOf('positie'));
                     var posObj = StringToVector(data.substring(data.indexOf('positie') + 7));
                     var objectToPlace = undefined;
+                    var objectToPlaceClass = undefined;
                     for (var i = 0 ; i < scene.children.length; i ++) {
                         if (scene.children[i].objID === _uuid) {
                             objectToPlace = scene.children[i];
@@ -542,18 +550,28 @@ function openHostPeer(){
                         }
                     }
                     if (objectToPlace === undefined){
-                        objectToPlace = returnObjectWithType(type);
-                        objectToPlace.object.objID = _uuid;
+                        objectToPlaceClass = returnObjectWithType(type);
+                        objectToPlaceClass.object.objID = _uuid;
+                        objectToPlace = objectToPlaceClass.object;
                     }
-                    if (objectToPlace.object != undefined) {
-                        objectToPlace.object.objID = _uuid;
-                        _anchorStore.anchorOtherObject(objectToPlace.object);
-                        objectToPlace.object.position.set(posObj.x,posObj.y,posObj.z);
-                        objectToPlace.object.__dirtyPosition = true;
+                    if (objectToPlace != undefined) {
+                        otherObj = objectToPlace;
+                        objectToPlace.objID = _uuid;
+                        _anchorStore.anchorOtherObject(objectToPlace);
+                        objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
+                        if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
+                        else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
+                        objectToPlace.__dirtyPosition = true;
                     }
                     break;
                 case 'f':
-                    _anchorStore.deAnchorOtherObject();
+                    console.log(otherObj + ' deanchor');
+                    if (otherObj != undefined) {
+                        otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
+                        otherObj.__dirtyPosition = true;
+                        otherObj.__dirtyRotation = true;
+                        _anchorStore.deAnchorOtherObject();
+                    }
                     break;
             }
             if (_anchorStore.isBeingPlaced){
@@ -611,6 +629,7 @@ function connectToPeer(){
                 var _uuid = data.substring(data.indexOf('uuid') + 4, data.indexOf('positie'));
                 var posObj = StringToVector(data.substring(data.indexOf('positie') + 7));
                 var objectToPlace = undefined;
+                var objectToPlaceClass = undefined;
                 for (var i = 0 ; i < scene.children.length; i ++) {
                     if (scene.children[i].objID === _uuid) {
                         objectToPlace = scene.children[i];
@@ -618,18 +637,28 @@ function connectToPeer(){
                     }
                 }
                 if (objectToPlace === undefined){
-                    objectToPlace = returnObjectWithType(type);
-                    objectToPlace.object.objID = _uuid;
+                    objectToPlaceClass = returnObjectWithType(type);
+                    objectToPlaceClass.object.objID = _uuid;
+                    objectToPlace = objectToPlaceClass.object;
                 }
-                if (objectToPlace.object != undefined) {
-                    objectToPlace.object.objID = _uuid;
-                    _anchorStore.anchorOtherObject(objectToPlace.object);
-                    objectToPlace.object.position.set(posObj.x,posObj.y,posObj.z);
-                    objectToPlace.object.__dirtyPosition = true;
+                if (objectToPlace != undefined) {
+                    otherObj = objectToPlace;
+                    objectToPlace.objID = _uuid;
+                    _anchorStore.anchorOtherObject(objectToPlace);
+                    objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
+                    if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
+                        else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
+                    objectToPlace.__dirtyPosition = true;
                 }
                 break;
             case 'f':
-                _anchorStore.deAnchorOtherObject();
+                console.log(otherObj + ' deanchor');
+                if (otherObj != undefined) {
+                    otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
+                    otherObj.__dirtyPosition = true;
+                    otherObj.__dirtyRotation = true;
+                    _anchorStore.deAnchorOtherObject();
+                }
                 break;
         }
         if (_anchorStore.isBeingPlaced){
@@ -647,7 +676,11 @@ function vectorToString(v){
     return 'x'  + v.x + 'y'  + v.y + 'z'  + v.z;
 }
 function StringToVector(s){
-    return new THREE.Vector3(s.substring(s.indexOf('x') +1, s.indexOf('y')),s.substring(s.indexOf('y') +1, s.indexOf('z')), s.substring(s.indexOf('z') +1)  );
+    return new THREE.Vector3(
+        s.substring(s.indexOf('x') + 1,
+        s.indexOf('y')), s.substring(s.indexOf('y') + 1,
+        s.indexOf('z')), s.substring(s.indexOf('z') + 1)
+    );
 }
 
 function openInputForm() {

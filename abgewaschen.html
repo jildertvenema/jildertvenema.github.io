@@ -14,11 +14,15 @@
 	<body>
 
 
+	<div id="cold" style="display: none"></div>
+
+
         <!-- hotbar -->
 
         <div id="hotbar">
             <div id="oxigen"><div id="oxigenbar"></div></div>
             <div id="hp"><div id="hpbar"></div></div>
+			<div id="hunger"><div id="hungerbar"></div></div>
             <table>
                 <tr>
                     <td id="slot1"></td>
@@ -30,6 +34,10 @@
                 </tr>
             </table>
         </div>
+
+        <!-- tutorial island mode -->
+
+        <button id="tutorialNext" onclick="tutorial.next()">Next..</button>
 
         <!-- item holder -->
 
@@ -43,6 +51,11 @@
 
 		<h1 id="warning" class="alert alert-danger">sdfsdf</h1>
 		<h1 id="success" class="alert alert-success">sdfsdf</h1>
+		<div id="infoPopup" class="alert alert-info">
+            <p id="infoText">
+                asdasd
+            </p>
+        </div>
 
 		<!-- crosshair -->
 
@@ -235,15 +248,14 @@
 
 		<!-- three.js -->
 
-		<script type="text/javascript" src="shared/js/three/three.js"></script>
-		<script type="text/javascript" src="shared/js/three/OrbitControls.js"></script>
-		<script type="text/javascript" src="shared/js/three/PointerLockControls.js"></script>
-		<script type="text/javascript" src="shared/js/three/THREE.Terrain.min.js"></script>
-		<script type="text/javascript" src="shared/js/three/Detector.js"></script>
-		<script type="text/javascript" src="shared/js/three/stats.min.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/three.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/OrbitControls.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/PointerLockControls.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/THREE.Terrain.min.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/Detector.js"></script>
+		<script type="text/javascript" src="shared/js/frameworks/three/stats.min.js"></script>
 
 		<!-- frameworks -->
-
 
 		<script type="text/javascript" src="shared/js/frameworks/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="shared/js/frameworks/physi.js"></script>
@@ -265,42 +277,42 @@
 		<!-- classes -->
 
 		<script type="text/javascript" src="shared/js/island.js"></script>
-		<script type="text/javascript" src="shared/js/person.js"></script>
-		<script type="text/javascript" src="shared/js/anchorStore.js"></script>
-		<script type="text/javascript" src="shared/js/ShipPlaneHandler.js"></script>
+		<script type="text/javascript" src="shared/js/objects/person.js"></script>
+		<script type="text/javascript" src="shared/js/objects/anchorStore.js"></script>
+		<script type="text/javascript" src="shared/js/objects/ShipPlaneHandler.js"></script>
 
 		<!-- objects -->
 
-		<script type="text/javascript" src="shared/js/objects/Bucket.js"></script>
-		<script type="text/javascript" src="shared/js/objects/CampFire.js"></script>
-		<script type="text/javascript" src="shared/js/objects/Shark.js"></script>
-		<script type="text/javascript" src="shared/js/objects/Spear.js"></script>
-		<script type="text/javascript" src="shared/js/objects/Axe.js"></script>
-		<script type="text/javascript" src="shared/js/objects/FlareGun.js"></script>
-        <script type="text/javascript" src="shared/js/objects/Help.js"></script>
-		<script type="text/javascript" src="shared/js/objects/Phone.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/Bucket.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/CampFire.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/Shark.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/Spear.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/Axe.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/FlareGun.js"></script>
+        <script type="text/javascript" src="shared/js/objects/items/Help.js"></script>
+		<script type="text/javascript" src="shared/js/objects/items/Phone.js"></script>
 
 		<!-- end scenes -->
 
-		<script type="text/javascript" src="shared/js/deaths.js"></script>
-		<script type="text/javascript" src="shared/js/wins.js"></script>
+		<script type="text/javascript" src="shared/js/scenes/deaths.js"></script>
+		<script type="text/javascript" src="shared/js/scenes/wins.js"></script>
 
 		<!-- items -->
 
-		<script type="text/javascript" src="shared/js/items/item.js"></script>
-		<script type="text/javascript" src="shared/js/items/craftingRecipes.js"></script>
+		<script type="text/javascript" src="shared/js/objects/item.js"></script>
+		<script type="text/javascript" src="shared/js/objects/craftingRecipes.js"></script>
 
 		<!-- interface -->
 
 		<script type="text/javascript" src="shared/js/interface/menu/menu.js"></script>
-		<script type="text/javascript" src="shared/js/interface/menu/inventory.js"></script>
-		<script type="text/javascript" src="shared/js/interface/menu/crafting.js"></script>
+		<script type="text/javascript" src="shared/js/interface/userinterface/inventory.js"></script>
+		<script type="text/javascript" src="shared/js/interface/userinterface/crafting.js"></script>
 		<script type="text/javascript" src="shared/js/interface/menu/credits.js"></script>
 		<script type="text/javascript" src="shared/js/interface/menu/settings.js"></script>
-		<script type="text/javascript" src="shared/js/interface/hectobar.js"></script>
+		<script type="text/javascript" src="shared/js/interface/userinterface/hectobar.js"></script>
 		<script type="text/javascript" src="shared/js/interface/menu/options.js"></script>
-		<script type="text/javascript" src="shared/js/interface/pointerLock.js"></script>
-		<script type="text/javascript" src="shared/js/tutorial.js"></script>
+		<script type="text/javascript" src="shared/js/interface/menu/pointerLock.js"></script>
+		<script type="text/javascript" src="shared/js/scenes/tutorial.js"></script>
 
 
 		<!-- game -->

@@ -13,7 +13,7 @@ class Island{
             ['shark', -100, 140, -100, 'shared/models/', 'mtl/shark.mtl', 'obj/shark.obj', 5, 0, 0, 0, 0, 0 , 0 , 0 , false],
             ['stick', -200, 50, -1200, 'shared/models/help/', 'stick.mtl', 'stick.obj', 0.4, 0, 0, 0, 0, 0 , 0 , -130 , true],
             ['spear', 200, 150, -1000, 'shared/models/', 'mtl/spear.mtl', 'obj/spear.obj', 2, 3, 2, 2, 2, 0 , -45 , 0 , true],
-            ['axe', 200, 150, -900, 'shared/models/', 'mtl/Axe_OBJ.mtl', 'obj/Axe_OBJ.obj', 0.3, 2, 0, 1.5, 0, 0 , 0 , -30 , true],
+            ['axe', 200, 150, -900, 'shared/models/', 'mtl/Axe_OBJ.mtl', 'obj/Axe_OBJ.obj', 0.3, 2, 0, 1.5, 0, 0 , 0 , -30 , false],
             ['fish' , -80, 200, 20, 'shared/models/', 'mtl/fishOBJ.mtl', 'obj/fishOBJ.obj', 0.5, 0, 0, 0, 0, 0, 0, -0, true],
             ['bucketring' , 100, 200, 20, 'shared/models/', 'mtl/bucketring.mtl', 'obj/bucketring.obj', 0.5, 1, 0, 0, 0, 0, 0, -0, true],
             ['flaregungrip' , 120, 200, 20, 'shared/models/', 'mtl/gungrip.mtl', 'obj/gungrip.obj', 0.1, 2, 0, 0, 0, 0, 0, -0, true],
@@ -251,7 +251,7 @@ class Island{
                             scene.remove(spear);
                         }
                         if (_type == 'axe'){
-                            axe = pObject;
+                            axe = object;
                             scene.remove(axe);
                         }
                         if (_type == 'bucketring'){

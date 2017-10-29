@@ -149,6 +149,7 @@ ul::-webkit-scrollbar-thumb
 */
 
 #hotbar {
+    display: none;
     bottom: 50px;
     position: absolute;
     height: 70px;
@@ -182,4 +183,37 @@ ul::-webkit-scrollbar-thumb
 }
 #itemholder img{
     width: 200%;
+}
+
+/*
+* === Tutorial ===
+*/
+
+#tutorialNext{
+
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+
+    border: #4d8fff;
+    background: 0 #4d8fff;
+    border-radius: 2px;
+    height: 80px;
+    width: 200px;
+    color: white;
+    font-size: 40px;
+    margin-top: 20px;
+    transition: all .1s ease-in-out;
+
+}
+
+#infoText {
+    white-space: nowrap;
+    overflow: hidden;
+    animation: type infinite 4s steps(60, end);
+}
+
+@keyframes type{
+    from { width: 0; }
 }
