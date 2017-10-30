@@ -108,7 +108,7 @@ THREEx.DayNight.SunSphere	= function(){
 //////////////////////////////////////////////////////////////////////////////////
 
 THREEx.DayNight.Skydom		= function(){
-	var geometry	= new THREE.SphereGeometry( 5000, 32, 15 );
+	var geometry	= new THREE.SphereGeometry( 30000, 32, 15 );
 	var shader	= THREEx.DayNight.Skydom.Shader
 	var uniforms	= THREE.UniformsUtils.clone(shader.uniforms)
 	var material	= new THREE.ShaderMaterial({

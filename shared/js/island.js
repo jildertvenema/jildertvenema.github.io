@@ -1,7 +1,7 @@
 class Island{
 
     createIsland(){
-        var texturesPath, heightmapImage, waterNormals;
+        var texturesPath, heightmapImage, waterNormals, objID = 0;
 
         var objectsToLoad = [
             ['tree1', 150, 120, 0, 'shared/models/trees/tree1/', 'Tree N161113.obj.mtl', 'Tree N161113.obj', 50, 0, -2, 0, -1.5, 0, 0 , 0, true],
@@ -19,20 +19,14 @@ class Island{
             ['flaregungrip' , 120, 200, 20, 'shared/models/', 'mtl/gungrip.mtl', 'obj/gungrip.obj', 0.1, 2, 0, 0, 0, 0, 0, -0, true],
             ['flaregunbarrel' , 130, 200, 20, 'shared/models/', 'mtl/barrel.mtl', 'obj/barrel.obj', 0.8, 2, 7, 7, 7, 0, 0, -0, true],
             ['tape' , 150, 200, 20, 'shared/models/', 'mtl/Duct_Tape.mtl', 'obj/Duct_Tape.obj', 0.1, 2, 50, 50, 50, 0, 0, -0, true],
-            ['flaregun' , 200, 200, 20, 'shared/models/', 'mtl/FLAREGUN.mtl', 'obj/FLAREGUN.obj', 0.03, 2, 50, 50, 50, 0, 0, -0, false]
+            ['flaregun' , 200, 200, 20, 'shared/models/', 'mtl/FLAREGUN.mtl', 'obj/FLAREGUN.obj', 0.03, 2, 50, 50, 50, 0, 0, -0, false],
+            ['boat' , 200, 200, 20, 'shared/models/', 'mtl/boat.mtl', 'obj/boat.obj', 1, 0, 0, 0, 0, 0, 0, 0, false],
+            ['woodenbarrel' , 990, 5, 370, 'shared/models/', 'mtl/woodenbarrel.mtl', 'obj/woodenbarrel.obj', 0.5, 0, 0, 0, 0, 0, 0, 0, true],
+            ['bush1' , 350, 138, -60, 'shared/models/trees/bushes/', 'LS13_01.mtl', 'LS13_01.obj', 50, 0, 0, 0, 0, 0, 0, 0, false],
+            ['pumpkin' , 200, 150, 0, 'shared/models/', 'mtl/pumpkin.mtl', 'obj/pumpkin.obj', 0.1, 3, 0, 0, 0, 0, 0, 0, true]
         ];
 
         texturesPath = "shared/models/textures/";
-
-        var parameters = {
-            width: 2000,
-            height: 2000,
-            widthSegments: 250,
-            heightSegments: 250,
-            depth: 1500,
-            param: 4,
-            filterparam: 1
-        };
 
         var tmaterial = THREE.Terrain.generateBlendedMaterial([
             // The first texture is the base; other textures are blended in on top.
@@ -92,14 +86,13 @@ class Island{
 
             physObject.rotateX(-Math.PI /2);
 
-            terrain = physObject;
             scene.add(physObject);
 
-            var mobilebereik = new THREE.CylinderGeometry( 200, 200, 1000, 32 );
-            var mobile_mat = new THREE.MeshBasicMaterial( { color: 0xffff00, opacity: 0.1 } );
-            var mobilemesh = new THREE.Mesh(mobilebereik, mobile_mat);
-            mobilemesh.position.set(61,0,2251)
-            scene.add(mobilemesh)
+            // var mobilebereik = new THREE.CylinderGeometry( 200, 200, 1000, 32 );
+            // var mobile_mat = new THREE.MeshBasicMaterial( { color: 0xffff00, opacity: 0.1 } );
+            // var mobilemesh = new THREE.Mesh(mobilebereik, mobile_mat);
+            // mobilemesh.position.set(61,0,2251)
+            // scene.add(mobilemesh)
         }
 
         //DAY NIGHT
@@ -120,37 +113,31 @@ class Island{
         starField	= new THREEx.DayNight.StarField();
         scene.add( starField.object3d );
 
+        // Water
 
-        //water
-
-        waterNormals = new THREE.TextureLoader().load( texturesPath + 'waternormals.jpg' );
+        // Load textures
+        waterNormals = new THREE.ImageUtils.loadTexture(texturesPath + 'waternormals.jpg');
         waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
-
-        water = new THREE.Water( renderer, camera, scene, {
+        // Create the water effect
+        ms_Water = new THREE.Water(renderer, camera, scene, {
             textureWidth: 512,
             textureHeight: 512,
+            side: THREE.DoubleSide,
             waterNormals: waterNormals,
-            alpha: 	0.5,
+            alpha: 	1.0,
             sunDirection: sunLight.object3d.position.clone().normalize(),
             sunColor: 0xffffff,
             waterColor: 0x001e0f,
-            distortionScale: 5.0,
-            fog: scene.fog != undefined
-        } );
-
-        var mirrorMesh = new THREE.Mesh(
-            new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
-            water.material
+            distortionScale: 50.0
+        });
+        var aMeshMirror = new THREE.Mesh(
+            new THREE.PlaneBufferGeometry(2000 * 500, 2000 * 500, 10, 10),
+            ms_Water.material
         );
-
-        water.material.transparent = false;
-        water.material.alphaTest = 1;
-        water.material.side = THREE.DoubleSide;
-        mirrorMesh.add( water );
-        mirrorMesh.rotation.x = - Math.PI * 0.5;
-        scene.add( mirrorMesh );
-
+        aMeshMirror.add(ms_Water);
+        aMeshMirror.rotation.x = - Math.PI * 0.5;
+        scene.add(aMeshMirror);
         //model
 
         var objectloader = function(_type, x, y, z, path, mtlpath, objpath, scale, mass, x_offset = 0 ,y_offset = 0, z_offset = 0, x_object = 0, y_object=0, z_object=0, collider = true,){
@@ -209,6 +196,11 @@ class Island{
                             shipPlaneHandler.airPlane = object;
                         }
 
+
+                        if (_type == 'flaregungrip' || _type == 'flaregunbarrel' || _type == 'tape'){
+                            scene.remove(pObject);
+                        }
+
                         if (_type == 'bucket'){
                             bucket = pObject;
                             //water toevoegen
@@ -240,10 +232,36 @@ class Island{
 
                         if (_type == 'phone'){
                             telefoon.phone = pObject;
+                            telefoon.phone.objID = objID;
+                            objID++;
                         }
                         if (_type == 'flaregun'){
                             flaregun = object;
                             scene.remove(flaregun);
+                        }
+                        if (_type == 'boat'){
+                            boat = object;
+                            scene.remove(boat);
+                        }
+                        if (_type == 'pumpkin'){
+                            pumpkin = pObject;
+                            pObject._type = 'pumpkin';
+                            pObject.objID = objID;
+                            objID++;
+                            var pumpClone = pObject.clone();
+                            pumpClone._type = 'pumpkin';
+                            pumpClone.mass = 2;
+                            pumpClone.position.set(390,130,351);
+                            pumpClone.objID = objID;
+                            objID++;
+                            scene.add(pumpClone);
+                            pumpClone = pObject.clone();
+                            pumpClone.mass = 2;
+                            pumpClone.objID = objID;
+                            objID++;
+                            pumpClone._type = 'pumpkin';
+                            pumpClone.position.set(-32,118,-254);
+                            scene.add(pumpClone);
                         }
 
                         if (_type == 'spear'){
@@ -253,6 +271,14 @@ class Island{
                         if (_type == 'axe'){
                             axe = object;
                             scene.remove(axe);
+                        }
+                        if (_type == 'woodenbarrel'){
+                            pObject.rotateX(-Math.PI / 2);
+                            pObject.__dirtyRotation = true;
+                            woodenbarrel = pObject;
+                            woodenbarrel.items = [];
+                            woodenbarrel.floating = false;
+                            scene.remove(woodenbarrel);
                         }
                         if (_type == 'bucketring'){
                             bucketRing = pObject;
@@ -314,7 +340,7 @@ class Island{
                             var tree = pObject.clone();
                             tree.hout = 5;
                             tree.fall = 0;
-                            for(var i = 0; i < 10; i++){
+                            for(var i = 0; i < 14; i++){
                                 var newtree = tree.clone();
                                 newtree.rotateY(Math.random() * Math.PI);
                                 newtree.mass = 0;
@@ -332,6 +358,31 @@ class Island{
                             trees[7].position.set(239, 77, 396); scene.add(trees[7]);
                             trees[8].position.set(-70, 70, -300); scene.add(trees[8]);
                             trees[9].position.set(-350, 106, -70); scene.add(trees[9]);
+                            trees[10].position.set(-1277, 137, -50); scene.add(trees[10]);
+                            trees[11].position.set(-1043, 105, -260); scene.add(trees[11]);
+                            trees[12].position.set(-670, 104, 125); scene.add(trees[12]);
+                            trees[13].position.set(-1660, 121, 270); scene.add(trees[13]);
+
+                            for (var ind = 0 ; ind < trees.length; ind++) {
+                                trees[ind].objID = objID;
+                                objID++;
+                            }
+                        }
+
+                        if(_type === 'bush1'){
+                            var bush1 = object.clone();
+                            for(var i = 0; i < 6; i++){
+                                var newbush1 = bush1.clone();
+                                newbush1.rotateY(Math.random() * Math.PI);
+                                newbush1.mass = 0;
+                                newbush1._type = 'bush1';
+                                bushes1.push(newbush1);
+                            }
+                            bushes1[1].position.set(71, 75, 634); scene.add(bushes1[1]);
+                            bushes1[2].position.set(148, 106, 1045); scene.add(bushes1[2]);
+                            bushes1[3].position.set(-423, 90, -168); scene.add(bushes1[3]);
+                            bushes1[4].position.set(-1015, 112, -74); scene.add(bushes1[4]);
+                            bushes1[5].position.set(-1505, 118, 7); scene.add(bushes1[5]);
                         }
                     },
                     function ( xhr ) {

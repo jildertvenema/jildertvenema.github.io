@@ -19,11 +19,15 @@ class ShipPlaneHandler{
                     this.airPlane.visible = false;
                 }
             }
+
+            if (scene.children.indexOf(boat) != -1){
+                boat.position.z += delta * 100;
+            }
         };
         this.spawnBoat = function(){
             if (this.pirateBoat == undefined) return;
 
-            this.pirateBoat.position.set(-45000, 170, -30000);
+            this.pirateBoat.position.set(-25000, 170, -20000);
             this.isBoat = true;
             this.pirateBoat.visible = true;
         };

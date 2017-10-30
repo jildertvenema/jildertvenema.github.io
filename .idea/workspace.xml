@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4012fdf-8c7f-4a92-b064-125d3c40d661" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/abgewaschen.html" afterPath="$PROJECT_DIR$/abgewaschen.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/css/game.css" afterPath="$PROJECT_DIR$/shared/css/game.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/js/game.js" afterPath="$PROJECT_DIR$/shared/js/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/js/objects/items/Bucket.js" afterPath="$PROJECT_DIR$/shared/js/objects/items/Bucket.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/js/objects/items/CampFire.js" afterPath="$PROJECT_DIR$/shared/js/objects/items/CampFire.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/js/objects/person.js" afterPath="$PROJECT_DIR$/shared/js/objects/person.js" />
     </list>
@@ -31,18 +31,18 @@
       <file leaf-file-name="island.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/js/island.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="263" column="25" selection-start-line="263" selection-start-column="25" selection-end-line="263" selection-end-column="25" />
+            <state relative-caret-position="959">
+              <caret line="201" column="25" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Axe.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Axe.js">
+      <file leaf-file-name="hectobar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -51,8 +51,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/js/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="267" column="1" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="1" />
+            <state relative-caret-position="543">
+              <caret line="698" column="9" selection-start-line="698" selection-start-column="9" selection-end-line="698" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -61,38 +61,48 @@
       <file leaf-file-name="anchorStore.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/js/objects/anchorStore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+            <state relative-caret-position="595">
+              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="person.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="person.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/js/objects/person.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="158" column="24" selection-start-line="158" selection-start-column="24" selection-end-line="158" selection-end-column="24" />
+            <state relative-caret-position="449">
+              <caret line="376" column="108" selection-start-line="376" selection-start-column="40" selection-end-line="376" selection-end-column="108" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CampFire.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CampFire.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shared/js/objects/items/CampFire.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="55" column="16" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="threex.daynight.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/frameworks/threex.daynight.js">
+      <file leaf-file-name="Bucket.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Bucket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="51" column="59" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
+            <state relative-caret-position="391">
+              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pointerLock.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -101,20 +111,8 @@
       <file leaf-file-name="abgewaschen.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/abgewaschen.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/css/menu.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+            <state relative-caret-position="382">
+              <caret line="272" column="80" selection-start-line="272" selection-start-column="80" selection-end-line="272" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -123,8 +121,8 @@
       <file leaf-file-name="game.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shared/css/game.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="213" column="29" selection-start-line="213" selection-start-column="29" selection-end-line="213" selection-end-column="29" />
+            <state relative-caret-position="1130">
+              <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -171,16 +169,19 @@
         <option value="$PROJECT_DIR$/shared/js/interface/hectobar.js" />
         <option value="$PROJECT_DIR$/shared/js/anchorStore.js" />
         <option value="$PROJECT_DIR$/shared/css/userinterface.css" />
-        <option value="$PROJECT_DIR$/shared/js/objects/items/Bucket.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/anchorStore.js" />
         <option value="$PROJECT_DIR$/shared/css/menu.css" />
-        <option value="$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js" />
-        <option value="$PROJECT_DIR$/shared/js/island.js" />
-        <option value="$PROJECT_DIR$/shared/js/game.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/items/CampFire.js" />
-        <option value="$PROJECT_DIR$/abgewaschen.html" />
         <option value="$PROJECT_DIR$/shared/css/game.css" />
+        <option value="$PROJECT_DIR$/shared/js/objects/items/Shark.js" />
+        <option value="$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js" />
+        <option value="$PROJECT_DIR$/shared/js/musicHandler.js" />
+        <option value="$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js" />
+        <option value="$PROJECT_DIR$/abgewaschen.html" />
+        <option value="$PROJECT_DIR$/shared/js/objects/anchorStore.js" />
+        <option value="$PROJECT_DIR$/shared/js/island.js" />
         <option value="$PROJECT_DIR$/shared/js/objects/person.js" />
+        <option value="$PROJECT_DIR$/shared/js/objects/items/Bucket.js" />
+        <option value="$PROJECT_DIR$/shared/js/objects/items/CampFire.js" />
+        <option value="$PROJECT_DIR$/shared/js/game.js" />
       </list>
     </option>
   </component>
@@ -221,8 +222,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,6 +253,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="shared" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sounds" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -404,14 +409,6 @@
               <option name="myItemId" value="shared" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frameworks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -539,15 +536,18 @@
       <workItem from="1509101490337" duration="20283000" />
       <workItem from="1509182871369" duration="11061000" />
       <workItem from="1509274960520" duration="350000" />
-      <workItem from="1509276653378" duration="6283000" />
+      <workItem from="1509276653378" duration="6454000" />
+      <workItem from="1509289535210" duration="8747000" />
+      <workItem from="1509304598746" duration="1421000" />
+      <workItem from="1509388856242" duration="6021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153163000" />
+    <option name="totallyTimeSpent" value="169523000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17734376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -577,7 +577,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14427084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17734376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -602,17 +602,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shared/js/island.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/player.js" />
-    <entry file="file://$PROJECT_DIR$/webgl_shaders_ocean_island.html" />
-    <entry file="file://$PROJECT_DIR$/shared/js/PointerLockControls.js" />
     <entry file="file://$PROJECT_DIR$/shared/js/MeshToPhy.js" />
     <entry file="file://$PROJECT_DIR$/shared/js/frameworks/SeaWork.js" />
     <entry file="file://$PROJECT_DIR$/shared/js/player.js" />
@@ -673,38 +662,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="63" column="47" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/frameworks/threex.daynight.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js">
+    <entry file="file://$PROJECT_DIR$/shared/css/menu.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-199">
-          <caret line="60" column="54" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
+        <state relative-caret-position="1343">
+          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Bucket.js">
+    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Shark.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+        <state relative-caret-position="51">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/anchorStore.js">
+    <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/inventory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/island.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="263" column="25" selection-start-line="263" selection-start-column="25" selection-end-line="263" selection-end-column="25" />
+        <state relative-caret-position="1020">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -712,65 +700,95 @@
     <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Axe.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/game.js">
+    <entry file="file://$PROJECT_DIR$/shared/js/musicHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="267" column="1" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/frameworks/threex.daynight.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="51" column="59" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/css/menu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/css/game.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="213" column="29" selection-start-line="213" selection-start-column="29" selection-end-line="213" selection-end-column="29" />
+        <state relative-caret-position="221">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/abgewaschen.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="382">
+          <caret line="272" column="80" selection-start-line="272" selection-start-column="80" selection-end-line="272" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/CampFire.js">
+    <entry file="file://$PROJECT_DIR$/shared/css/game.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1130">
+          <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/objects/anchorStore.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/island.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="959">
+          <caret line="201" column="25" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shared/js/objects/person.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="158" column="24" selection-start-line="158" selection-start-column="24" selection-end-line="158" selection-end-column="24" />
+        <state relative-caret-position="449">
+          <caret line="376" column="108" selection-start-line="376" selection-start-column="40" selection-end-line="376" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Bucket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="698" column="9" selection-start-line="698" selection-start-column="9" selection-end-line="698" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/CampFire.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -15,10 +15,13 @@ class Menu{
 
         this.toggleCrafting = function(){
             if(craftingIsOpen) {
+                if(tutorialIsPlaying) return;
 
                 inventoryIsOpen = false;
                 craftingIsOpen = false;
-                element.requestPointerLock();
+
+                interfacePause = false;
+                resumeGame();
 
                 menu.style.display = "none";
             }
@@ -32,16 +35,20 @@ class Menu{
                 inventoryIsOpen = false;
 
                 interfacePause = true;
-                pauseGame();
+                document.exitPointerLock();
+
             }
         };
 
         this.toggleInventory = function(){
             if(inventoryIsOpen){
+                if(tutorialIsPlaying) return;
 
                 inventoryIsOpen = false;
                 craftingIsOpen = false;
-                element.requestPointerLock();
+
+                interfacePause = false;
+                resumeGame();
 
                 menu.style.display = "none";
             }
@@ -55,7 +62,8 @@ class Menu{
                 craftingIsOpen = false;
 
                 interfacePause = true;
-                pauseGame();
+                document.exitPointerLock();
+
             }
         };
     }

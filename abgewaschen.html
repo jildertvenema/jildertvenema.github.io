@@ -14,7 +14,7 @@
 	<body>
 
 
-	<div id="cold" style="display: none"></div>
+		<div id="cold" style="display: none"></div>
 
 
         <!-- hotbar -->
@@ -37,6 +37,7 @@
 
         <!-- tutorial island mode -->
 
+        <div id="blackOut"></div>
         <button id="tutorialNext" onclick="tutorial.next()">Next..</button>
 
         <!-- item holder -->
@@ -52,9 +53,7 @@
 		<h1 id="warning" class="alert alert-danger">sdfsdf</h1>
 		<h1 id="success" class="alert alert-success">sdfsdf</h1>
 		<div id="infoPopup" class="alert alert-info">
-            <p id="infoText">
-                asdasd
-            </p>
+            <p id="infoText"></p>
         </div>
 
 		<!-- crosshair -->
@@ -67,43 +66,31 @@
 		<div id="menu">
 			<nav>
 				<ul>
-
-					<li onclick="menu.toggleInventory()">Inventory</li>
-					<li onclick="menu.toggleCrafting()">Crafting</li>
-
+					<li id="inventoryTab" onclick="menu.toggleInventory()">Inventory</li>
+					<li id="craftingTab" onclick="menu.toggleCrafting()">Crafting</li>
 				</ul>
 			</nav>
-
-			<div id="inventory">
-
-			</div>
-
+			<div id="inventory"></div>
 			<div id="crafting">
 				<table>
 					<tr><th id="craftAbleItemName"></th></tr>
 					<tr>
 						<td >
-
 							<ul id="requiredItems">
 								<!-- required craftables -->
-
 							</ul>
 
 						</td>
 						<td id="craftedItem">
 							<!-- craft result -->
-
 						</td>
 					</tr>
 				</table>
 				<ul id="craftAbleItems">
 					<!-- craftables -->
-
 				</ul>
 				<span id="craftingProgress"></span>
-
 			</div>
-
 		</div>
 
 
@@ -170,7 +157,7 @@
                 <div class="label" >
                     <p>Render Distance</p>
                 </div>
-                <input name="renderDistance" type="range" min="500" max="30000" step="1500" />
+                <input name="renderDistance" type="range" min="30000" max="100000" step="1500" />
             </div>
 
 
@@ -210,6 +197,8 @@
 
 		</div>
 
+
+		<div id="reason"><h1 id="reasontext"></h1></div>
 
 		<!-- credits -->
 
@@ -277,9 +266,11 @@
 		<!-- classes -->
 
 		<script type="text/javascript" src="shared/js/island.js"></script>
+		<script type="text/javascript" src="shared/js/water-material.js"></script>
 		<script type="text/javascript" src="shared/js/objects/person.js"></script>
 		<script type="text/javascript" src="shared/js/objects/anchorStore.js"></script>
 		<script type="text/javascript" src="shared/js/objects/ShipPlaneHandler.js"></script>
+		<script type="text/javascript" src="shared/js/musicHandler.js"></script>
 
 		<!-- objects -->
 

@@ -1,8 +1,9 @@
 class Inventory {
     constructor(){ //aka de variabelen?
-        let inventory = document.getElementById('inventory');
-        let table = document.createElement('table');
-        let self = this;
+        var inventory = document.getElementById('inventory');
+        var table = document.createElement('table');
+        var pickUpSound = new Audio('shared/sounds/pickup.mp3');
+        var self = this;
 
         //create inventory
 
@@ -31,9 +32,11 @@ class Inventory {
 
         this.pushItem = function(item, returned = false) {
             if(self.getLength(items) === 16){
-                warn("inventory is full");
+                warn("Your inventory is full!");
             }
             else {
+                pickUpSound.play();
+
                 for (let i = 0; i < 2; i++) {
                     for (let j = 0; j < 8; j++) {
 
@@ -72,7 +75,7 @@ class Inventory {
 
             }
             else{
-                console.warn("cannot push empty to hotbar");
+                console.warn("You cannot push empty to hotbar");
             }
 
 

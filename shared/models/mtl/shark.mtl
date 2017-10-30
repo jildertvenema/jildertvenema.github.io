@@ -12,10 +12,10 @@ newmtl _Sharkgreatwhiteshark
 	Kd 0.5787 0.5753 0.5888
 	Ks 0.1000 0.1000 0.1000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\greatwhiteshark.tga
-	map_Kd textures\greatwhiteshark.tga
-	map_bump textures\greatwhiteshark_n.tga
-	bump textures\greatwhiteshark_n.tga
+	map_Ka textures/greatwhiteshark.png
+	map_Kd textures/greatwhiteshark.png
+	map_bump textures/greatwhiteshark_n.png
+	bump textures/greatwhiteshark_n.png
 
 newmtl _Sharkgreatwhiteshark_teet
 	Ns 96.0784
@@ -28,10 +28,10 @@ newmtl _Sharkgreatwhiteshark_teet
 	Kd 0.5070 0.7134 0.4462
 	Ks 0.1000 0.1000 0.1000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\greatwhiteshark_teeth.tga
-	map_Kd textures\greatwhiteshark_teeth.tga
-	map_bump textures\greatwhiteshark_teeth_n.tga
-	bump textures\greatwhiteshark_teeth_n.tga
+	map_Ka textures/greatwhiteshark_teeth.png
+	map_Kd textures/greatwhiteshark_teeth.png
+	map_bump textures/greatwhiteshark_teeth_n.png
+	bump textures/greatwhiteshark_teeth_n.png
 
 newmtl _Sharkgreatwhiteshark_eye
 	Ns 96.0784
@@ -44,7 +44,7 @@ newmtl _Sharkgreatwhiteshark_eye
 	Kd 0.3614 0.3764 0.6524
 	Ks 0.1000 0.1000 0.1000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka textures\greatwhiteshark_Eye.tga
-	map_Kd textures\greatwhiteshark_Eye.tga
-	map_bump textures\greatwhiteshark_Eye_n.tga
-	bump textures\greatwhiteshark_Eye_n.tga
+	map_Ka textures/greatwhiteshark_Eye.png
+	map_Kd textures/greatwhiteshark_Eye.png
+	map_bump textures/greatwhiteshark_Eye_n.png
+	bump textures/greatwhiteshark_Eye_n.png

@@ -5,11 +5,30 @@ class Person{
         this.playerHealth = playerHealth;
         var moveForward, moveLeft, moveBackward, moveRight, sprint,
             playerSpeed, down = false,
-            playerUp = false, totalVel = 0, timeElap = 0, hunger = 80, warmte = 100, warmteDalend = false;
-        this.getWarmte = function() {return warmte};
-        this.dichtbijVuur = false;
+            playerUp = false, totalVel = 0, timeElap = 0,
+            hunger = 80, warmte = 100, warmteDalend = false,
+            zuurstof = 100;
+
+        this.hp = 100;
+
+        this.pickedUp = false;
+        this.woodCut = false;
+        this.pickedID = undefined;
+        this.pickedType = undefined;
+        this.treeID = undefined;
         var self = this;
-        //movement
+
+        
+        this.respawn = function () {
+            pauseGame();
+            player.mass = 20;
+            player.position.set(0, 300, 0);
+            camera.rotation.x = 0;
+            camera.rotation.y = 0;
+            camera.rotation.z = 0;
+            zuurstof = 100;
+            self.hp = 100;
+        };
 
         var onKeyDown = function ( event ) {
             switch ( event.keyCode ) {
@@ -63,24 +82,24 @@ class Person{
                     pauseGame();
                     break;
                 case 79: //O
-                    var newBucket = Object.assign(new Bucket(bucket.clone()));
+                    Object.assign(new Bucket(bucket.clone()));
                     break;
                 case 66: //B
-                    var newCampFire = Object.assign(new CampFire(campfire.clone()));
+                    Object.assign(new CampFire(campfire.clone()));
                     break;
                 case 80: //P
-                    var newSpear = Object.assign(new Spear(spear.clone()));
-                    var newAxe = Object.assign(new Axe(axe.clone()));
+                    Object.assign(new Spear(spear.clone()));
+                    Object.assign(new Axe(axe.clone()));
                     break;
                 case 84: //T
                     break;
                 case 77: //M
-                    if(currentHotbar === "phone"){
-                        telefoon.checkBereik();
+                    if(telefoon.phoneconnected){
+                        playerWin("You have found a mobile connection and made a emergency call before the phone was empty!");
                     }
                     break;
                 case 75: //K
-                    playerWin(' raping the shark in his arse');
+                    playerDeath("You have been raped by the shark. That sucks.");
                     break;
                 case 49: //1 (hotbar)
                 case 50: //2 (hotbar)
@@ -137,16 +156,16 @@ class Person{
 
         this.update = function (delta) {
 
-            if (THREEx.DayNight.currentPhase(sunAngle) == 'night' && !self.dichtbijVuur){
+            if (THREEx.DayNight.currentPhase(sunAngle) === 'night' && !dichtBijVuur){
                 warmte -= delta ;
                 if (!warmteDalend){
-                    warn('Je krijgt het koud, zoek snel warmte');
+                    warn("You have getting cold. Find something to heat yourself.");
                     warmteDalend = true;
                 }
             }
             else{
                 warmteDalend = false;
-                warmte += delta;
+                warmte += delta * 8;
             }
 
             if (warmte < 80){
@@ -158,8 +177,8 @@ class Person{
             if (warmte > 100) warmte = 100;
             if (warmte < 0) warmte = 0;
             if (warmte <= 0){
-                hp -= delta / 5;
-                if (hp < 0) playerDeath('onderkoeling')
+                self.hp -= delta / 5;
+                if (self.hp < 0) playerDeath("You have died by Hypothermia.")
             }
 
             hunger -= delta / 10;
@@ -168,11 +187,11 @@ class Person{
             }
             if (hunger <= 0){
                 hunger = 0;
-                hp -= delta / 10;
-                if (hp < 0) playerDeath('verhongering')
+                self.hp -= delta / 10;
+                if (self.hp < 0) playerDeath("You have have died by starvation.")
             }
             document.getElementById('hungerbar').style.width = hunger + '%';
-            document.getElementById('hpbar').style.width = hp + '%';
+            document.getElementById('hpbar').style.width = self.hp + '%';
 
             if ( !controls.enabled) {
                 down = false; playerUp = false; sprint = false; moveRight = false; moveLeft = false; moveForward = false; moveBackward = false;
@@ -215,8 +234,9 @@ class Person{
 
             if (player.position.y < -10){
                 if (!underWater) {
-                    scene.fog.near = 0.003;
-                    scene.fog.far = 1000;
+                    scene.fog.near = 0.1;
+                    scene.fog.color = new THREE.Color( 0x000000 );
+                    scene.fog.far = 700;
                     sunLight.object3d.intensity = 0.1;
                     underWater = true;
                 }
@@ -224,10 +244,10 @@ class Person{
                 if (zuurstof <= 0)
                 {
                     zuurstof = 0;
-                    hp -= delta * 10;
-                    if (hp <= 0){
-                        hp = 0;
-                        playerDeath('drowning');
+                    self.hp -= delta * 10;
+                    if (self.hp <= 0){
+                        self.hp = 0;
+                        playerDeath("You have drowned.");
                     }
                 }
                 document.getElementById('oxigenbar').style.width = zuurstof + '%';
@@ -256,7 +276,8 @@ class Person{
 
             if (player.position.y < -200){
                 player.position.y = 200;
-                playerDeath('drowned');
+                //playerDeath("You have drowned.");
+                player.__dirtyPosition = true;
             }
 
             player.rotation.y = controls.getY();
@@ -293,8 +314,10 @@ class Person{
                 return;
             }
 
-            mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-            mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+
+
+            mouse.x = ( ( renderer.domElement.clientWidth/2) / renderer.domElement.clientWidth ) * 2 - 1;
+            mouse.y = - ( (renderer.domElement.clientHeight/2)/ renderer.domElement.clientHeight ) * 2 + 1;
 
             raycaster.setFromCamera( mouse, camera );
 
@@ -303,26 +326,50 @@ class Person{
             for (let i = 0 ; i < intersects.length; i ++){
                 if (intersects[i].distance < 200){
                     //object click
-                    if (intersects[i].object.type === 'Mesh'){
+                    if (intersects[i].object.type != undefined){
                         let type = intersects[i].object._type;
+
+                        if (type === 'woodenbarrel' && currentHotbar === 'axe'){
+                            for (var p =woodenbarrel.items.length-1; p >= 0; p --){
+                                if (!inv.pushItem(woodenbarrel.items[p])) break;
+                                woodenbarrel.items.pop();
+                            }
+                            if (woodenbarrel.items.length === 0){
+                                woodenbarrel.floating = false;
+                                scene.remove(woodenbarrel);
+                            }
+                        }
+
                         if (type === 'spear' || type === 'axe') {
                             _anchorStore.anchorObject(intersects[i].object);
                             break;
                         }
-                        if (type === 'hout' || type === 'bucketring' || type === 'tape' || type === 'flaregunbarrel' || type === 'flaregungrip') {
+                        if (type === 'hout' || type === 'bucketring' || type === 'tape' || type === 'flaregunbarrel' || type === 'flaregungrip' || type === 'pumpkin') {
                             inv.pushItem(new Item(type));
                             scene.remove(intersects[i].object);
+                            if (intersects[i].object.objID == undefined) {
+                                intersects[i].object.objID = Date.now();
+                                console.log(type + " NOG EEN objID geven");
+                            }
+                            self.pickedUp = true;
+                            self.pickedID = intersects[i].object.objID;
+                            self.pickedType = type;
                         }
                         if(type === 'phone'){
+                            telefoon.phonepicked = true;
                             if(telefoon.phonebattery === 10) inv.pushItem(new Item("phone-noservice-10"));
                             if(telefoon.phonebattery === 5) inv.pushItem(new Item("phone-noservice-5"));
                             if(telefoon.phonebattery === 0) inv.pushItem(new Item("phone-0"));
                             scene.remove(intersects[i].object);
+                            if(telefoon.phonebattery != 0) success("A phone! Maybe you can use it while it's battery lasts. (Use 'm' when you hold it)");
+                            else warn("A phone! Sadly you've found it to late since the battery died.");
                         }
                         if (type === 'campfire') {
                             if (currentHotbar === 'flintandsteel'){
                                 for (var t = 0; t < campfires.length; t++) {
-                                    if (campfires[t].object === intersects[i].object)campfires[t].fireStart();
+                                    if (campfires[t].object === intersects[i].object){
+                                        campfires[t].fireStart();
+                                    }
                                 }
                             }
                             else {
@@ -341,6 +388,9 @@ class Person{
                             if (intersects[i].object.hout < 1){
                                 intersects[i].object.fall = 3;
                             }
+                            self.woodCut = true;
+                            self.treeID = intersects[i].object.objID;
+
                             break;
                         }
 
@@ -410,7 +460,6 @@ class Person{
         physObject.__dirtyPosition = true;
         player = physObject;
         player._type = 'player';
-        savedPos.set(player.position.x, player.position.y, player.position.z);
 
         player.addEventListener("ready", function(){
             player.setAngularFactor(new THREE.Vector3(0, 0, 0));

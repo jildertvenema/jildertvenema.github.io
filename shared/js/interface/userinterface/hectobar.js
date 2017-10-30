@@ -1,6 +1,44 @@
 class Hotbar{
+
+
     constructor(){
         var self = this;
+        var currentScrol = 0;
+        var hotbar = document.getElementById("hotbar");
+
+        renderer.domElement.addEventListener( 'mousewheel', mousewheel, false );
+        renderer.domElement.addEventListener( 'DOMMouseScroll', mousewheel, false ); // firefox
+
+        this.hide = function(){
+
+            hotbar.style.display = "none";
+
+        };
+
+        this.show = function(){
+
+            hotbar.style.display = "block";
+
+        };
+
+        function mousewheel( event ) {
+
+            //if ( controls.enabled === false ) return;
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if( event.wheelDelta  < 0) {
+                if (currentScrol === 1) currentScrol = 6;
+                else currentScrol--;
+            }else {
+                if (currentScrol === 6) currentScrol = 1;
+                else currentScrol++;
+            }
+
+            self.toggle(currentScrol + 48);
+        }
+
 
         this.toggle = function(keyCode){
             if(!controlsEnabled) return;
@@ -16,6 +54,7 @@ class Hotbar{
                 }
                 //if it isnt active add active
                 if(i == key) {
+                    currentScrol = i;
                     $(id).addClass("hotbarActive");
                     currentHotbar = value;
                     currentHotbarID = id;
@@ -29,9 +68,10 @@ class Hotbar{
                             break;
                     }
                     if (newObject != undefined) {
+                        console.log(newObject.object);
                         _anchorStore.anchorObject(newObject.object);
-                        $(id).html('');
-                        $(id).attr("value", "");
+                        _anchorStore.hotBarItem = true;
+                        _anchorStore.hotBarID = currentHotbarID;
                         // geen image
                         document.getElementById('itemholder').innerHTML = '';
                     }
@@ -52,7 +92,7 @@ class Hotbar{
                         document.getElementById('itemholder').innerHTML = '';
                         _anchorStore.setWeapon(weapon);
                     }
-                    else if ($(id).attr("value") != undefined) { //Hier nog alle objecten die een image moeten
+                    else if ($(id).attr("value") != "" && $(id).attr("value") != undefined) { //Hier nog alle objecten die een image moeten
                         document.getElementById('itemholder').innerHTML = '<img src=' + 'shared/images/items/' + $(id).attr("value") + '.png>';
                         _anchorStore.deAnchorObject();
                     }
@@ -99,6 +139,8 @@ class Hotbar{
             if(current.innerHTML != '' && inv.pushItem(item, true)){
                 current.innerHTML = '';
                 current.setAttribute("value", "");
+                document.getElementById('itemholder').innerHTML = '';
+                _anchorStore.deAnchorObject();
             }
         };
 
@@ -110,8 +152,9 @@ class Hotbar{
                 if(current.getAttribute("value") === 'stick'){
                     current.innerHTML = '';
                     current.setAttribute("value", "");
+                    document.getElementById('itemholder').innerHTML = '';
+                    _anchorStore.deAnchorObject();
                     return true;
-
                 }
             }
         }

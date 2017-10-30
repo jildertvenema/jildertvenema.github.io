@@ -19,30 +19,26 @@ if ( ! Detector.webgl ) {
 
 //objecten
 var allObjects = [];
-var bucket, campfire, axe, bucketRing, flaregun;
-var buckets = [], campfires = [], spears = [], axes = [], trees = [];
+var bucket, campfire, axe, bucketRing, flaregun, spear, fish, shark, sharkClass, boat, woodenbarrel, pumpkin;
+var buckets = [], campfires = [], spears = [], axes = [], trees = [], fishes = [], bushes1 = [];
 var help = new Help();
 var telefoon = new Phone();
 
 // scene
-var camera, scene, renderer, firstRender = true,  mouse, raycaster, stats, water, clock, shipPlaneHandler;
+var camera, scene, renderer, firstRender = true,  mouse, raycaster, stats, ms_Water, clock, shipPlaneHandler, timeRandomSpawn = 0;
 
 // player
 var prevPos, underWater = false, canJump, controls, controlsEnabled,
-    player, velocity, playerClass, savedPos = new THREE.Vector3(0,0,0);
+    player, velocity, playerClass, playedClock = new THREE.Clock(), creditsClock = new THREE.Clock();
 
 //options
-var gameOptions, godMode = false, currentHotbar = '', currentHotbarID = '';
+var gameOptions, godMode = false, currentHotbar = '', currentHotbarID = '', hotbar;
 
 //object handlers
 var _anchorStore;
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ sorteer deze gekke shit hier weg @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// als het goed is kan je het verwerken in de klasse, this.var = public als je klasse.var aanroept
-// var normaal is private.. vaak hoef je de variabele ook alleen maar in de klasse te gebruiken
-var shark, sharkClass, death,win , playedTime = 0, playerVisable = false, deathOrWin = false,
-    spear, fish, fishes = [], hotbar, zuurstof = 100, hp = 100, timeRandomSpawn = 0;
-// @@@@@@@@@@@@@@@@@@@                                                       @@@@@@@@@@@@@@@@@@@@@@@@@
+//death en win
+var death,win , deathOrWin = false;
 
 //sky
 var skydom, starField, dayDuration, sunLight, sunSphere,
@@ -55,7 +51,8 @@ var particleSystem, fireOptions, spawnerOptions, tick = 0;
 
 var geometry = new THREE.BoxGeometry( 20, 35, 20 );
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-var otherModel, mixer, conn, otherVelocity = 0, objectID = '', otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined;
+var otherModel, mixer, conn, otherVelocity = 0, objectID = '', otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined, dichtBijVuur = false;
+var isHost = false, firstTime = true;
 
 //menu
 var menu, inv, tutorial, tutorialIsPlaying = false;
@@ -70,14 +67,9 @@ texturesPath = "shared/models/textures/";
 //background sound
 
 var importantSounds = new Audio('shared/sounds/sounds.mp3');
-//importantSounds.play();
+importantSounds.play();
 importantSounds.loop = true;
 importantSounds.volume = 0.4;
-
-var backgroundSong = new Audio('shared/sounds/mistybog.mp3');
-backgroundSong.play();
-backgroundSong.loop = true;
-
 
 // html elements
 
@@ -111,12 +103,13 @@ function init() {
 
     scene = new Physijs.Scene();
     scene.setGravity(new THREE.Vector3( 0, -400, 0 ));
-    scene.fog = new THREE.Fog(0xffffff, 2000, 15500);
+    scene.fog = new THREE.Fog(0xffffff, 2000, 80000);
+    scene.fog.color = new THREE.Color(0x000000);
     renderer.setClearColor(new THREE.Color(0x000000));
 
     //
 
-    camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 15500 );
+    camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 60000 );
     scene.add( new THREE.AmbientLight( 0x444444 ) );
 
     // box idk
@@ -139,7 +132,7 @@ function init() {
     // objecten.exe
 
     new Island().createIsland();
-    var hout1 = new object("hout").loadObject();
+    new object("hout").loadObject();
     inv = Object.assign(new Inventory());
     _anchorStore = Object.assign(new AnchorStore());
     death = Object.assign(new Deaths());
@@ -150,8 +143,8 @@ function init() {
     shipPlaneHandler = Object.assign(new ShipPlaneHandler());
     new loadOtherPlayer().loadJsonModel();
 
-
     menu = Object.assign(new Menu());
+    inv.pushItem(new Item('hout'));
     inv.pushItem(new Item('hout'));
     inv.pushItem(new Item('hout'));
     inv.pushItem(new Item('steen'));
@@ -167,6 +160,7 @@ function init() {
     playerClass = Object.assign(new Person("bob", 2000));
 
     player = playerClass.createPlayerObject();
+
 
     //sounds
 
@@ -186,26 +180,27 @@ function init() {
 
     window.addEventListener( 'resize', onWindowResize, false );
     window.addEventListener( 'resize', onWindowResize, false );
-
+    //tutorial.start();
 }
 
 //item popup
 
-function warn (text){
+function warn (text, stay = false){
     let warning = $('#warning');
 
     warning.text(text);
     warning.stop(true, true).fadeIn();
-    warning.delay(4000).fadeOut();
+    if (!stay)warning.delay(4000).fadeOut();
 }
 
-function success (text){
+function success (text, stay = false){
     let success = $('#success');
 
     success.text(text);
     success.stop(true, true).fadeIn();
-    success.delay(4000).fadeOut();
+    if (!stay)success.delay(4000).fadeOut();
 }
+
 
 function onWindowResize() {
 
@@ -227,27 +222,41 @@ function animate() {
 
 function render() {
 
+
+
     //if (checkControls()) return;
     var delta = clock.getDelta();
     var elapsed = clock.getElapsedTime();
     timeRandomSpawn += delta;
 
-    if (deathOrWin) document.getElementById('credits').style.top = (100-elapsed * 3) + '%';
+    if (deathOrWin) {
+        document.getElementById('credits').style.top = (100 - creditsClock.getElapsedTime() * 3) + '%';
+        player.position.set(0,300,300);
+        player.rotation.y = 0;
+    }
     help.checkHelpSticks();
     telefoon.batterypercentage(Math.round(elapsed));
+    telefoon.checkConnection();
     shipPlaneHandler.update(delta);
-    checkRandomSpawner();
+    if (isHost)checkRandomSpawner();
     if (sharkClass)sharkClass.update(delta);
     for (let i = 0; i < buckets.length; i ++) buckets[i].update(delta);
     for (let i = 0; i < fishes.length; i ++) updateFish(fishes[i]);
     for (let i = 0; i < campfires.length; i ++) campfires[i].update(elapsed, delta);
     for (let i = 0; i < axes.length; i ++) axes[i].update(delta);
     if (mixer != undefined)mixer.update( otherVelocity * delta);
-    checkTrees();
+    if (woodenbarrel != undefined && woodenbarrel.floating){
+        if (woodenbarrel.position.z > 370){
+            woodenbarrel.position.z -= delta * 20;
+            woodenbarrel.position.y =  Math.sin(clock.getElapsedTime()) * 5;
+            woodenbarrel.__dirtyPosition = true;
+        }
+    }
+    checkTrees(delta);
     playerClass.update(delta);
     _anchorStore.update(delta);
-    water.material.uniforms.time.value += 1.0 / 60.0;
-    water.render();
+    ms_Water.material.uniforms.time.value += 1.0 / 60.0;
+    ms_Water.render();
     scene.simulate(); // run physics
     renderer.render( scene, camera );
     sunAngle	+= delta/dayDuration * Math.PI*2;
@@ -257,6 +266,25 @@ function render() {
     starField.update(sunAngle);
     if (fireOptions != undefined) updateParticles();
     document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
+}
+
+
+function floatBarrel(){
+    if (woodenbarrel.floating) return;
+    woodenbarrel.items = [new Item('steen'), new Item('steen'),new Item('steen')];
+    for (var i = 0 ; i < 4 ; i ++){
+        var number = Math.floor(Math.random() * 10) + 1;
+        if (number === 1) woodenbarrel.items.push(new Item('flaregunbarrel'));
+        else if (number === 2) woodenbarrel.items.push(new Item('flaregungrip'));
+        else if (number === 3) woodenbarrel.items.push(new Item('tape'));
+        else if ( number <= 6) woodenbarrel.items.push(new Item('flint'));
+        else if ( number <= 8) woodenbarrel.items.push(new Item('ironnugget'));
+        else if ( number <= 10) woodenbarrel.items.push(new Item('bucketring'));
+    }
+    woodenbarrel.floating = true;
+    woodenbarrel.position.z = 3000;
+    woodenbarrel.__dirtyPosition = true;
+    scene.add(woodenbarrel);
 }
 
 
@@ -282,7 +310,9 @@ function checkRandomSpawner() {
                 spawnFish();
                 break;
             case 4:
-                spawnBucketRing();
+                break;
+            case 5:
+                floatBarrel();
                 break;
         }
     }
@@ -290,19 +320,15 @@ function checkRandomSpawner() {
 
 function checkTrees(delta) {
     for (var i = 0 ; i < trees.length; i++) {
-        if (trees[i].fall > 2) {
-            trees[i].fall -= delta / 5;
-            trees[i].rotation.x = (1 - trees[i].fall) + -Math.PI / 2;
+        if (trees[i].fall > 0) {
+            trees[i].fall += delta ;
+            trees[i].rotation.x = trees[i].fall;
             trees[i].__dirtyRotation = true;
         }
-        else if (trees[i].fall > 1) {
-            trees[i].materials[0].opacity = 1 - trees[i].fall;
-            trees[i].fall -= delta / 5;
-        }
-        else if (trees[i].fall <= 1 && trees[i].fall > 0) {
-            trees[i].fall = -1;
-            trees[i].rotation.x = -Math.PI / 2;
-            trees[i].__dirtyRotation = true;
+        if (trees[i].fall > 5){
+          trees[i].visible = false;
+          trees[i].fall = 0;
+          scene.remove(trees[i]);
         }
     }
 }
@@ -311,7 +337,6 @@ function checkControls(){
     if (!controls.enabled && !firstRender){
 
         if (clock.running && !deathOrWin) {
-            playedTime += clock.getElapsedTime();
             clock.stop();
         }
         return true;
@@ -340,14 +365,6 @@ function spawnFish() {
     setRandomFishPosition(newFish);
     fishes.push(newFish);
     scene.add(newFish);
-    newFish.addEventListener( 'collision', function( other_object, relative_velocity, relative_rotation, contact_normal ) {
-       if(other_object._type === 'spear'){
-           scene.remove(newFish);
-           fishes.splice(fishes.indexOf(newFish));
-           inv.pushItem(new Item('fish'));
-           success('Je hebt een vis gevangen');
-       }
-    });
 }
 
 function updateFish(fish) {
@@ -362,6 +379,17 @@ function updateFish(fish) {
     fish.rotation.z = 0;
     fish.__dirtyRotation = true;
     fish.__dirtyPosition = true;
+
+    for (var i =0 ; i < spears.length; i++)
+    {
+        if (fish.position.distanceTo(player.position) < 150 && currentHotbar === 'spear'){
+            scene.remove(fish);
+            fishes.splice(fishes.indexOf(fish));
+            inv.pushItem(new Item('fish'));
+            success("You have caught a fish!");
+        }
+    }
+
 }
 
 function playerDeath(reason) {
@@ -369,8 +397,7 @@ function playerDeath(reason) {
     document.getElementById('crosshair').style.display = 'none';
     document.getElementById('hotbar').style.display = 'none';
     deathOrWin = true;
-    for( var i = scene.children.length - 1; i >= 0; i--) { scene.remove(scene.children[i]);}
-    scene = death.sharkDeath(reason);
+    death.Death(reason);
 }
 
 function playerWin(reason) {
@@ -378,8 +405,7 @@ function playerWin(reason) {
     document.getElementById('crosshair').style.display = 'none';
     document.getElementById('hotbar').style.display = 'none';
     deathOrWin = true;
-    for( var i = scene.children.length - 1; i >= 0; i--) { scene.remove(scene.children[i]);}
-    scene = win.winned(reason);
+    win.winned(reason);
 }
 
 function  setRandomFishPosition(fish) {
@@ -485,8 +511,8 @@ function updateParticles() {
         fireOptions.position.z += Math.sin( tick * -spawnerOptions.speed.z ) * 10;
 
         if (fireOptions.position.y > 300 ){
-            if (shipPlaneHandler.isBoat)playerDeath('being raped by pirates');
-            else if (shipPlaneHandler.isPlane)playerWin('being saved by a plane');
+            if (shipPlaneHandler.isBoat)playerDeath("You have been killed by some nasty pirates who saw your flare.");
+            else if (shipPlaneHandler.isPlane)playerWin("You have been saved by a plane who saw your flare!");
         }
 
 
@@ -511,77 +537,13 @@ function openHostPeer(){
     var peer = new Peer(id.toString(), {key: 'p2zyxcxaixiozuxr'}, {secure: true} );
     console.log('peer host: ' + id);
     success('Peer-id = ' + id);
+    isHost = true;
     document.getElementById('peer_number').innerHTML = 'Peer-id = ' + id;
     peer.on('connection', function(conn) {
         console.log('connected slave');
         otherModel.visible = true;
-
         conn.on('data', function(data){
-            switch (data[0]){
-                case 'a':
-                    var pos = StringToVector(data);
-                    otherModel.position.set(pos.x, pos.y, pos.z);
-                    otherModel.__dirtyPosition = true;
-                    conn.send('a' + vectorToString(player.position));
-                    break;
-                case 'b':
-                    otherModel.children[0].rotation.y = parseInt(data.substring(1));
-                    otherModel.__dirtyRotation = true;
-                    conn.send('b' + ( controls.getY() + Math.PI / 2 ) );
-                    break;
-                case 'c':
-                    otherVelocity = parseInt(data.substring(1) / 50);
-                    conn.send('c' + (Math.abs(velocity.x) + Math.abs(velocity.z)) );
-                    break;
-                case 'd':
-                    console.log(data);
-                    sunAngle = parseInt(data.substring(1));
-                    break;
-                case 'e':
-                    var type = data.substring(1, data.indexOf('uuid'));
-                    var _uuid = data.substring(data.indexOf('uuid') + 4, data.indexOf('positie'));
-                    var posObj = StringToVector(data.substring(data.indexOf('positie') + 7));
-                    var objectToPlace = undefined;
-                    var objectToPlaceClass = undefined;
-                    for (var i = 0 ; i < scene.children.length; i ++) {
-                        if (scene.children[i].objID === _uuid) {
-                            objectToPlace = scene.children[i];
-                            break;
-                        }
-                    }
-                    if (objectToPlace === undefined){
-                        objectToPlaceClass = returnObjectWithType(type);
-                        objectToPlaceClass.object.objID = _uuid;
-                        objectToPlace = objectToPlaceClass.object;
-                    }
-                    if (objectToPlace != undefined) {
-                        otherObj = objectToPlace;
-                        objectToPlace.objID = _uuid;
-                        _anchorStore.anchorOtherObject(objectToPlace);
-                        objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
-                        if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
-                        else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
-                        objectToPlace.__dirtyPosition = true;
-                    }
-                    break;
-                case 'f':
-                    console.log(otherObj + ' deanchor');
-                    if (otherObj != undefined) {
-                        otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
-                        otherObj.__dirtyPosition = true;
-                        otherObj.__dirtyRotation = true;
-                        _anchorStore.deAnchorOtherObject();
-                    }
-                    break;
-            }
-            if (_anchorStore.isBeingPlaced){
-                if (_anchorStore.placeObject.objID == undefined)_anchorStore.placeObject.objID = Date.now();
-                conn.send('e' + _anchorStore.placeObject._type +'uuid' + _anchorStore.placeObject.objID + 'positie' + vectorToString(_anchorStore.placeObject.position));
-            }
-            else if (_anchorStore.objectGone){
-                _anchorStore.objectGone = false;
-                conn.send('f');
-            }
+            checkData(conn,data);
         });
     });
 }
@@ -593,95 +555,155 @@ function connectToPeer(){
     conn = peer.connect(hostID.toString());
     console.log('peer slave: ' + id);
     console.log(peer);
+    isHost = false;
 
     conn.on('open', function(){
         document.getElementById('joinform').style.display = 'none';
         success('Connected to ' + hostID);
-        conn.send('a' + vectorToString(player.position));
-        conn.send('b' + controls.getY());
-        conn.send('c' + Math.abs(velocity.x) + Math.abs(velocity.z));
-        //conn.send('d');
+        checkData(conn,{});
         otherModel.visible = true;
     });
-    conn.on('data', function(data){
-        switch (data[0]){
-            case 'a':
-                var pos = StringToVector(data);
-                otherModel.position.set(pos.x, pos.y, pos.z);
-                otherModel.__dirtyPosition = true;
-                conn.send('a' + vectorToString(player.position));
-                break;
-            case 'b':
-                otherModel.children[0].rotation.y = parseInt(data.substring(1));
-                otherModel.__dirtyRotation = true;
-                conn.send('b' + ( controls.getY() + Math.PI / 2 ) );
-                break;
-            case 'c':
-                otherVelocity = parseInt(data.substring(1) / 50);
-                conn.send('c' + (Math.abs(velocity.x) + Math.abs(velocity.z)) );
-                break;
-            case 'd':
-                console.log(data);
-                sunAngle = parseInt(data.substring(1));
-                break;
-            case 'e':
-                var type = data.substring(1, data.indexOf('uuid'));
-                var _uuid = data.substring(data.indexOf('uuid') + 4, data.indexOf('positie'));
-                var posObj = StringToVector(data.substring(data.indexOf('positie') + 7));
-                var objectToPlace = undefined;
-                var objectToPlaceClass = undefined;
-                for (var i = 0 ; i < scene.children.length; i ++) {
-                    if (scene.children[i].objID === _uuid) {
-                        objectToPlace = scene.children[i];
-                        break;
-                    }
-                }
-                if (objectToPlace === undefined){
-                    objectToPlaceClass = returnObjectWithType(type);
-                    objectToPlaceClass.object.objID = _uuid;
-                    objectToPlace = objectToPlaceClass.object;
-                }
-                if (objectToPlace != undefined) {
-                    otherObj = objectToPlace;
-                    objectToPlace.objID = _uuid;
-                    _anchorStore.anchorOtherObject(objectToPlace);
-                    objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
-                    if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
-                        else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
-                    objectToPlace.__dirtyPosition = true;
-                }
-                break;
-            case 'f':
-                console.log(otherObj + ' deanchor');
-                if (otherObj != undefined) {
-                    otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
-                    otherObj.__dirtyPosition = true;
-                    otherObj.__dirtyRotation = true;
-                    _anchorStore.deAnchorOtherObject();
-                }
-                break;
-        }
-        if (_anchorStore.isBeingPlaced){
-            if (_anchorStore.placeObject.objID == undefined)_anchorStore.placeObject.objID = Date.now();
-            conn.send('e' + _anchorStore.placeObject._type +'uuid' + _anchorStore.placeObject.objID + 'positie' + vectorToString(_anchorStore.placeObject.position));
-        }
-        else if (_anchorStore.objectGone){
-            _anchorStore.objectGone = false;
-            conn.send('f');
-        }
+    conn.on('data', function(data) {
+        checkData(conn, data);
     });
 }
 
-function vectorToString(v){
-    return 'x'  + v.x + 'y'  + v.y + 'z'  + v.z;
+
+
+
+function checkData(conn, data){
+    var jsonData = {
+        posx: player.position.x,
+        posy: player.position.y,
+        posz: player.position.z,
+        rotationY:  controls.getY() + Math.PI / 2,
+        velocity:  (Math.abs(velocity.x) + Math.abs(velocity.z)),
+        isBeingPlaced: false,
+        objectGone: false
+    };
+
+    if (firstTime && isHost){
+        firstTime = false;
+        jsonData.sunAngle = sunAngle;
+    }
+
+    if (_anchorStore.isBeingPlaced){
+        if (_anchorStore.placeObject.objID == undefined)_anchorStore.placeObject.objID = Date.now();
+        jsonData.isBeingPlaced = true;
+        jsonData.placeType = _anchorStore.placeObject._type;
+        jsonData.placeID = _anchorStore.placeObject.objID;
+        var p = _anchorStore.placeObject.position;
+        jsonData.pPosx = p.x; jsonData.pPosy = p.y; jsonData.pPosz = p.z;
+    }
+    else if (_anchorStore.objectGone){
+        _anchorStore.objectGone = false;
+        jsonData.objectGone = true; //'f'
+    }
+
+    if (playerClass.pickedUp){
+        playerClass.pickedUp = false;
+        jsonData.pickedUp = true;
+        jsonData.pickedID = playerClass.pickedID;
+        jsonData.pickedType = playerClass.pickedType;
+    }
+
+
+    if (data.posx != undefined && data.posy != undefined && data.posz != undefined){
+        otherModel.position.set(data.posx, data.posy, data.posz);
+        otherModel.__dirtyPosition = true;
+    }
+    if (data.rotationY != undefined){
+        otherModel.children[0].rotation.y = data.rotationY;
+        otherModel.__dirtyRotation = true;
+    }
+    if (data.velocity != undefined) otherVelocity = data.velocity / 50 ;
+
+    if (data.sunAngle != undefined) sunAngle = data.sunAngle;
+
+    if (data.isBeingPlaced == true){
+        for (let i = 0 ; i < campfires.length; i ++){if (campfires[i].object.objID === data.placeID)campfires[i].fireStop();}
+        var posObj = new THREE.Vector3(data.pPosx, data.pPosy, data.pPosz);
+        var objectToPlace = undefined;
+        var objectToPlaceClass = undefined;
+        for (let i = 0 ; i < scene.children.length; i ++) {
+            if (scene.children[i].objID == data.placeID) {
+                objectToPlace = scene.children[i];
+                break;
+            }
+        }
+        if (objectToPlace === undefined){
+            objectToPlaceClass = returnObjectWithType(data.placeType);
+            objectToPlaceClass.object.objID = data.placeID;
+            objectToPlace = objectToPlaceClass.object;
+        }
+        if (objectToPlace != undefined) {
+            otherObj = objectToPlace;
+            objectToPlace.objID = data.placeID;
+            _anchorStore.anchorOtherObject(objectToPlace);
+            //objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
+            if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
+            else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
+            //objectToPlace.__dirtyPosition = true;
+        }
+    }
+    if (data.objectGone) {
+        console.log(otherObj + ' deanchor');
+        if (otherObj != undefined) {
+            otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
+            otherObj.__dirtyPosition = true;
+            otherObj.__dirtyRotation = true;
+            _anchorStore.deAnchorOtherObject();
+        }
+    }
+
+    if (data.pickedUp == true){
+        for (let i = 0 ; i < scene.children.length; i ++) {
+            if (scene.children[i].objID == data.pickedID) {
+                scene.remove(scene.children[i]);
+                break;
+            }
+        }
+    }
+
+    if (playerClass.woodCut == true){
+        playerClass.woodCut = false;
+        jsonData.woodCut = true;
+        jsonData.treeID = playerClass.treeID;
+    }
+    if (data.woodCut == true){
+        for (let i = 0 ; i < scene.children.length; i ++) {
+            if (scene.children[i].objID == data.treeID) {
+                if (scene.children[i].hout < 1) break;
+                scene.children[i].hout--;
+                if (scene.children[i].hout < 1){
+                    scene.children[i].fall = 3;
+                }
+                break;
+            }
+        }
+    }
+
+    for (let i = 0 ; i < campfires.length; i ++){
+        if (campfires[i].campfired == true){
+            campfires[i].campfired = false;
+            jsonData.campfired = true;
+            jsonData.campfireID = campfires[i].campfireID;
+        }
+    }
+
+    if (data.campfired == true){
+        for (let i = 0 ; i < campfires.length; i ++){
+            if (campfires[i].object.objID == data.campfireID){
+                campfires[i].fireStart();
+            }
+        }
+    }
+
+    conn.send(jsonData);
 }
-function StringToVector(s){
-    return new THREE.Vector3(
-        s.substring(s.indexOf('x') + 1,
-        s.indexOf('y')), s.substring(s.indexOf('y') + 1,
-        s.indexOf('z')), s.substring(s.indexOf('z') + 1)
-    );
-}
+
+
+
 
 function openInputForm() {
     document.getElementById('joinform').style.display = 'block';

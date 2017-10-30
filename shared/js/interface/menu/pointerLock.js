@@ -2,14 +2,12 @@ var blocker = document.getElementById( 'blocker' ),
     start = document.getElementById( 'start' ),
     header = document.getElementById( 'header' ),
     tutorialButton = document.getElementById( 'tutorial' ),
-    hotbarElement = document.getElementById( 'hotbar' );
+    musichandler = false;
 
 var paused = true,
     interfacePause = false;
 
-var havePointerLock = 'pointerLockElement' in document
-    || 'mozPointerLockElement' in document
-    || 'webkitPointerLockElement' in document;
+var havePointerLock = 'pointerLockElement' in document;
 
 if ( havePointerLock ) {
 
@@ -17,31 +15,14 @@ if ( havePointerLock ) {
 
     var pointerlockchange = function ( event ) {
 
-        if ( document.pointerLockElement === element
-            || document.mozPointerLockElement === element
-            || document.webkitPointerLockElement === element ) {
-
-            controlsEnabled = true;
-            controls.enabled = true;
-
-            player.position.set(savedPos.x, savedPos.y, savedPos.z);
+        if ( document.pointerLockElement === element ) {
 
             resumeGame();
+
         }
         else {
 
-            if(interfacePause){
-                blocker.style.display = "none";
-                savedPos.set(player.position.x , player.position.y, player.position.z);
-            }
-            else {
-                savedPos.set(player.position.x , player.position.y, player.position.z);
-                blocker.style.display = "block";
-                controlsEnabled = false;
-            }
-
-            controls.enabled = false;
-            interfacePause = false;
+            pauseGame();
 
         }
 
@@ -49,26 +30,25 @@ if ( havePointerLock ) {
 
     // Hook pointer lock state change events
     document.addEventListener( 'pointerlockchange', pointerlockchange );
-    document.addEventListener( 'mozpointerlockchange', pointerlockchange );
-    document.addEventListener( 'webkitpointerlockchange', pointerlockchange );
-
-    document.addEventListener( 'pointerlockerror', pauseGame );
-    document.addEventListener( 'mozpointerlockerror', pauseGame );
-    document.addEventListener( 'webkitpointerlockerror', pauseGame );
 
     start.addEventListener( 'click', function ( event ) {
 
-        tutorialButton.style.display = "none";
-        blocker.style.display = "none";
+        //turn on music
+        if (!musichandler){
+            musichandler = Object.assign(new MusicHandler()).start();
+            musichandler = true;
+        }
 
+        if (!playedClock.running) playedClock.start();
+
+        //disable tutorial button
+        tutorialButton.style.display = "none";
+
+        //change button values
         start.innerHTML = "Resume";
         header.innerHTML = "Game Paused";
 
-        // Ask the browser to lock the pointer
-        element.requestPointerLock = element.requestPointerLock
-            || element.mozRequestPointerLock
-            || element.webkitRequestPointerLock;
-        element.requestPointerLock();
+        resumeGame();
 
     }, false );
 
@@ -81,15 +61,54 @@ if ( havePointerLock ) {
 //game states
 
 function pauseGame(){
-    document.exitPointerLock();
-    hotbarElement.style.display = "none";
 
-    if(!interfacePause) blocker.style.display = "block";
+    console.log("pausing game");
+    console.log(interfacePause);
+
+    //if inventory pauses game, dont show blocker
+    if(interfacePause){
+        blocker.style.display = "none";
+    }
+    else {
+        blocker.style.display = "block";
+        controlsEnabled = false;
+        hotbar.hide();
+    }
+
+    //hide crosshair
+    crosshair.style.visibility = "hidden";
+
+    //disable controls
+    controls.enabled = false;
+
+    //move credits left
+    document.getElementById('credits').style.left = '25%';
 }
 
 function resumeGame(){
 
-    hotbarElement.style.display = "block";
-    crosshair.style.visibility = "visible";
+    //enable controls
+    if (deathOrWin || tutorialIsPlaying) {
+        hotbar.hide();
+    }
+    else {
+        controlsEnabled = true;
+        controls.enabled = true;
+        crosshair.style.visibility = "visible";
+        hotbar.show();
+    }
+
+    //move credits to the center again
+    document.getElementById('credits').style.left = '50%';
+
+    //hide blocker
     blocker.style.display = "none";
+
+    //if the tutorial is not playing, lock the pointer again
+    if(!tutorialIsPlaying) {
+        element.requestPointerLock = element.requestPointerLock
+            || element.mozRequestPointerLock
+            || element.webkitRequestPointerLock;
+        element.requestPointerLock();
+    }
 }

@@ -11,10 +11,10 @@ class Help{
         this.checkHelpSticks = function() {
             if(this.helpsticks[0] !== undefined){
                 if(player.position.distanceTo(this.helpsticks[0].position) < 100 && this.helpsticks.succes === false){
-                    success('Misschien kan je wat met deze tak maken.');
+                    success('This stick looks useful, maybe you can make something with it.');
                     this.helpsticks.succes = true;
                 }
-                if(this.stickscount === 13 && shipPlaneHandler.isPlane) playerWin('Je help werd gezien door het vliegtuig! SICK!');
+                if(this.stickscount === 13 && shipPlaneHandler.isPlane) playerWin('A plane saw your help and saved you!');
             }
         }
     }

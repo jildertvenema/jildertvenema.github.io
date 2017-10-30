@@ -10,6 +10,6 @@ class FlareGun{
         };
         object._type = 'flaregun';
         scene.add(object);
-        success('Je hebt 1 kogel, gebruik hem op het juiste moment');
+        success('You only have one flare. Use it wisely.');
     }
 }

@@ -9,6 +9,6 @@ class Spear{
         object._type = 'spear';
         for (let i = 0 ; i < object.children.length; i++) object.children[i]._type = 'spear';
         scene.add(object);
-        success('Misschien kan je iets hiermee vangen');
+        success('Maybe you can use this spear to catch something!');
     }
 }

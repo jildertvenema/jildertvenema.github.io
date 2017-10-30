@@ -2,10 +2,11 @@ class Shark{
     constructor(object) {
         this.object = object;
         var sharkSpeed = 200;
+        var playerVisable = false;
         var previousSharkPosition = new THREE.Vector3(0, 0, 0);
         this.update = function (delta) {
             if (player.position.distanceTo(object.position) < 200 && !deathOrWin) {
-                playerDeath('shark');
+                playerDeath('You have been raped by the shark. That sucks!');
             }
 
             var sunPos = new THREE.Vector3(Math.sin(sunAngle) * 3000, -20, Math.cos(sunAngle) * 3000);

@@ -22,7 +22,7 @@ class Crafting{
                     li.onclick = function () {
                         self.itemClick(i);
                     };
-
+                    
                     craftAbleItems.appendChild(li);
                 }
             }
@@ -72,7 +72,7 @@ class Crafting{
                 setTimeout(inv.pushItem(item), 4000);
             }
             else{
-                warn("insufficient resources");
+                warn("Insufficient resources.");
             }
 
         };

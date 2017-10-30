@@ -9,6 +9,8 @@ class AnchorStore{
         this.otherIsBeingPlaced = false;
         this.objectGone = false;
         this.otherLastPlace = new THREE.Vector3(0,0,0);
+        this.hotBarItem = false;
+        this.hotBarID = '';
         var self = this;
 
         this.update = function (delta) {
@@ -26,6 +28,11 @@ class AnchorStore{
                 self.weapon.object.__dirtyPosition = true;
                 self.weapon.object.__dirtyRotation = true;
             }
+
+            if (self.otherIsBeingPlaced){
+                self.otherObject.position.set(otherLastPos.x, otherLastPos.y, otherLastPos.z);
+                //self.otherObject.__dirtyPosition = true;
+            }
         };
 
         this.checkPlacement = function(){
@@ -38,7 +45,7 @@ class AnchorStore{
                 var intersects = raycaster.intersectObjects(scene.children);
 
                 for (var i = 0; i < intersects.length; i++) {
-                    var intersecting = ['terrain', 'campfire', 'hout', 'steen', 'bucket'];
+                    var intersecting = ['terrain', 'campfire', 'hout', 'steen', 'bucket', 'tree1', 'pumpkin'];
                     if (intersecting.indexOf(intersects[i].object._type) === -1 || intersects[i].object ===  self.placeObject) continue;
 
                     var dis = player.position.distanceTo(intersects[i].point);
@@ -57,6 +64,7 @@ class AnchorStore{
         };
 
         this.anchorObject = function(object) {
+            self.lastPlacePos = new THREE.Vector3(0,0,0);
             self.isBeingPlaced = true;
             self.placeObject =  object;
         };
@@ -66,6 +74,13 @@ class AnchorStore{
             self.isBeingPlaced = false;
             letGoObject();
             self.objectGone = true;
+
+            var number = self.lastPlacePos.x + self.lastPlacePos.z ;
+            if (self.hotBarItem && number != 0){
+                $(self.hotBarID).html('');
+                $(self.hotBarID).attr("value", "");
+                self.hotBarItem = false;
+            }
         };
         this.anchorOtherObject = function(object) {
             self.otherIsBeingPlaced = true;
