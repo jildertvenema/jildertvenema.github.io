@@ -634,8 +634,8 @@ function checkData(conn, data){
         randomNummer = -1;
     }
 
-    if (jsonData.randomNumber != -1){
-        switch (jsonData.randomNumber) {
+    if (data.randomNumber != -1){
+        switch (data.randomNumber) {
             case 1:
                 if (!shipPlaneHandler.isPlane)shipPlaneHandler.flyPlane();
                 break;
