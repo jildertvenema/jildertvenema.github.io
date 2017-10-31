@@ -2,9 +2,9 @@ class Phone{
     constructor() {
         this.mobileNotification = new Audio('shared/sounds/Mobile Phone Notification.mp3');
         this.mobilebereikSound = new Audio('shared/sounds/Mobile Phone Message.mp3');
-        this.phone;
         this.phonepicked = false;
-        this.timetolook = 30; //seconds
+        this.phonewin = false;
+        this.timetolook = 180; //seconds
         this.phonebattery = 10;
         this.phoneininv = false;
         this.phoneconnected = false;
@@ -13,6 +13,10 @@ class Phone{
         this.checkBereik = function() {
             if(player.position.x > -70 && player.position.x < 120 && player.position.z > 2060 && player.position.z < 2360){
                 return true;
+            }
+            if(this.phonewin){
+                document.getElementById('itemholder').innerHTML = '';
+                _anchorStore.deAnchorObject();
             }
             else return false;
         };
@@ -39,6 +43,7 @@ class Phone{
                 self.phone.__dirtyPosition = true;
             }
             if(this.checkBereik() && this.phoneconnected == false){
+                if(this.phonepicked === true) this.mobilebereikSound.play();
                 for (var i = 0; i < 16; i++) {
                     if(inv.getItemInSlot(i) == undefined) continue;
                     if(inv.getItemInSlot(i).name === 'phone-noservice-10' && this.phoneconnected == false){
@@ -68,6 +73,7 @@ class Phone{
                 }
             }
             if(!this.checkBereik() && this.phoneconnected == true){
+                if(this.phonepicked === true) this.mobilebereikSound.play();
                 for (var i = 0; i < 16; i++) {
                     if (inv.getItemInSlot(i) == undefined) continue;
                     if (inv.getItemInSlot(i).name === 'phone-service-10' && this.phoneconnected == true) {

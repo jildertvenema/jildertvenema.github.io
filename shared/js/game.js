@@ -23,6 +23,7 @@ var bucket, campfire, axe, bucketRing, flaregun, spear, fish, shark, sharkClass,
 var buckets = [], campfires = [], spears = [], axes = [], trees = [], fishes = [], bushes1 = [];
 var help = new Help();
 var telefoon = new Phone();
+var itemSprites = [];
 
 // scene
 var camera, scene, renderer, firstRender = true,  mouse, raycaster, stats, ms_Water, clock, shipPlaneHandler, timeRandomSpawn = 0;
@@ -52,7 +53,7 @@ var particleSystem, fireOptions, spawnerOptions, tick = 0;
 var geometry = new THREE.BoxGeometry( 20, 35, 20 );
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 var otherModel, mixer, conn, otherVelocity = 0, objectID = '', otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined, dichtBijVuur = false;
-var isHost = false, firstTime = true;
+var isHost = false, firstTime = true, randomNummer = -1;
 
 //menu
 var menu, inv, tutorial, tutorialIsPlaying = false;
@@ -112,18 +113,6 @@ function init() {
     camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 60000 );
     scene.add( new THREE.AmbientLight( 0x444444 ) );
 
-    // box idk
-
-    var box = new THREE.Mesh(
-        new THREE.CylinderGeometry( 20, 40, 35 ),
-        new THREE.MeshPhongMaterial({ color: 0x888888 })
-    );
-
-    var physicsBox = MeshToPhy(box, 100);
-    physicsBox.position.y = 200;
-    physicsBox._type = 'hout';
-    scene.add( physicsBox );
-
     // stats
 
     stats = new Stats();
@@ -144,15 +133,15 @@ function init() {
     new loadOtherPlayer().loadJsonModel();
 
     menu = Object.assign(new Menu());
-    inv.pushItem(new Item('hout'));
-    inv.pushItem(new Item('hout'));
-    inv.pushItem(new Item('hout'));
-    inv.pushItem(new Item('steen'));
-    inv.pushItem(new Item('steen'));
-    inv.pushItem(new Item('campfire'));
-    inv.pushItem(new Item('flintandsteel'));
-    inv.pushItem(new Item('fish'));
-    inv.pushItem(new Item('flaregun'));
+    // inv.pushItem(new Item('hout'));
+    // inv.pushItem(new Item('hout'));
+    // inv.pushItem(new Item('hout'));
+    // inv.pushItem(new Item('steen'));
+    // inv.pushItem(new Item('steen'));
+    // inv.pushItem(new Item('campfire'));
+    // inv.pushItem(new Item('flintandsteel'));
+    // inv.pushItem(new Item('fish'));
+    // inv.pushItem(new Item('flaregun'));
     inv.pushItem(new Item('axe'));
 
     //player
@@ -252,6 +241,15 @@ function render() {
             woodenbarrel.__dirtyPosition = true;
         }
     }
+
+    for (let i  = 0; i < itemSprites.length; i ++){
+        if (itemSprites[i].position.distanceTo(player.position) < 30){
+            if (inv.pushItem(new Item(itemSprites[i]._type))){
+                itemSprites[i].position.y = -200;
+                scene.remove(itemSprites[i]);
+            }
+        }
+    }
     checkTrees(delta);
     playerClass.update(delta);
     _anchorStore.update(delta);
@@ -299,6 +297,8 @@ function checkRandomSpawner() {
         timeRandomSpawn =0;
         var randomNum = Math.floor(Math.random() * 10) + 1;
 
+        randomNummer = randomNum;
+
         switch (randomNum) {
             case 1:
                 if (!shipPlaneHandler.isPlane)shipPlaneHandler.flyPlane();
@@ -322,6 +322,7 @@ function checkTrees(delta) {
     for (var i = 0 ; i < trees.length; i++) {
         if (trees[i].fall > 0) {
             trees[i].fall += delta ;
+            if (trees[1].rotation.y < 0) trees[i].fall -= delta * -2;
             trees[i].rotation.x = trees[i].fall;
             trees[i].__dirtyRotation = true;
         }
@@ -389,7 +390,6 @@ function updateFish(fish) {
             success("You have caught a fish!");
         }
     }
-
 }
 
 function playerDeath(reason) {
@@ -398,6 +398,8 @@ function playerDeath(reason) {
     document.getElementById('hotbar').style.display = 'none';
     deathOrWin = true;
     death.Death(reason);
+    document.getElementById('itemholder').innerHTML = '';
+    _anchorStore.deAnchorObject();
 }
 
 function playerWin(reason) {
@@ -406,6 +408,8 @@ function playerWin(reason) {
     document.getElementById('hotbar').style.display = 'none';
     deathOrWin = true;
     win.winned(reason);
+    document.getElementById('itemholder').innerHTML = '';
+    _anchorStore.deAnchorObject();
 }
 
 function  setRandomFishPosition(fish) {
@@ -587,7 +591,7 @@ function checkData(conn, data){
         jsonData.sunAngle = sunAngle;
     }
 
-    if (_anchorStore.isBeingPlaced){
+    if (_anchorStore.isBeingPlaced && _anchorStore.lastPlacePos.x + _anchorStore.lastPlacePos.z > 0){
         if (_anchorStore.placeObject.objID == undefined)_anchorStore.placeObject.objID = Date.now();
         jsonData.isBeingPlaced = true;
         jsonData.placeType = _anchorStore.placeObject._type;
@@ -696,6 +700,30 @@ function checkData(conn, data){
             if (campfires[i].object.objID == data.campfireID){
                 campfires[i].fireStart();
             }
+        }
+    }
+
+    if (randomNummer != -1){
+        jsonData.randomNumber = randomNummer;
+        randomNummer = -1;
+    }
+
+    if (jsonData.randomNumber != -1){
+        switch (jsonData.randomNumber) {
+            case 1:
+                if (!shipPlaneHandler.isPlane)shipPlaneHandler.flyPlane();
+                break;
+            case 2:
+                if (!shipPlaneHandler.isBoat)shipPlaneHandler.spawnBoat();
+                break;
+            case 3:
+                spawnFish();
+                break;
+            case 4:
+                break;
+            case 5:
+                floatBarrel();
+                break;
         }
     }
 

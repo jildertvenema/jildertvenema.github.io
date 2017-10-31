@@ -75,31 +75,58 @@ class Person{
                 case 90: //z
                     down = true;
                     break;
-                case 70: //f
-                    if(controlsEnabled)shootFlare();
-                    break;
                 case 27: //esc
                     pauseGame();
                     break;
-                case 79: //O
-                    Object.assign(new Bucket(bucket.clone()));
-                    break;
-                case 66: //B
-                    Object.assign(new CampFire(campfire.clone()));
-                    break;
-                case 80: //P
-                    Object.assign(new Spear(spear.clone()));
-                    Object.assign(new Axe(axe.clone()));
-                    break;
-                case 84: //T
+                case 81: //Q
+                    var locatie =  $(currentHotbarID).attr("value");
+                    var spriteMap = new THREE.TextureLoader().load( "shared/images/items/" + locatie + ".png" );
+                    var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+                    var sprote = new THREE.Sprite( spriteMaterial );
+
+                    var physMaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({}));
+                    physMaterial.visible = false;
+                    var physObject;
+                    var wiregeo;
+
+                    var cube_height = 1;
+                    var cube_width = 1;
+                    var cube_depth = 1;
+                    var cubeGeo = new THREE.CubeGeometry(cube_width, cube_height, cube_depth);
+                    wiregeo = new THREE.EdgesGeometry(  cubeGeo); // or WireframeGeometry( geometry )
+                    physObject = new Physijs.BoxMesh(cubeGeo, physMaterial, 2);
+                    physObject.add( sprote);
+                    //wireframe
+                    var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
+                    var wireframe = new THREE.LineSegments( wiregeo, wiremat );
+                    physObject.add( wireframe);
+
+                    var sprite = physObject;
+                    sprite.scale.set(10,10,10);
+                    var posi = player.children[0].children[0].getWorldDirection().multiplyScalar(-50);
+                    posi.add(player.position);
+                    sprite.position.set(posi.x,player.position.y + 20,posi.z);
+                    sprite.__dirtyPosition = true;
+                    sprite._type = locatie;
+                    scene.add( sprite );
+                    itemSprites.push(sprite);
+                    document.getElementById('itemholder').innerHTML = '';
+                    _anchorStore.deAnchorObject();
+                    $(currentHotbarID).html('');
+                    $(currentHotbarID).attr("value", "");
+                    _anchorStore.removeWeapon();
                     break;
                 case 77: //M
-                    if(telefoon.phoneconnected){
-                        playerWin("You have found a mobile connection and made a emergency call before the phone was empty!");
+                    for( let i = 0; i <= 4; i++) {
+                        var phones = ['phone-noservice-5', 'phone-service-5', 'phone-noservice-10', 'phone-service-10', 'phone'];
+                        if (telefoon.phoneconnected && currentHotbar === phones[i]) {
+                            playerWin("You have found a mobile connection and made a emergency call before the phone was empty!");
+                            telefoon.phonewin = true;
+                        }
+                        if (telefoon.phoneconnected === false && currentHotbar === phones[i]) {
+                            warn("There is no connection nearby. Try somewhere else!");
+                        }
                     }
-                    break;
-                case 75: //K
-                    playerDeath("You have been raped by the shark. That sucks.");
                     break;
                 case 49: //1 (hotbar)
                 case 50: //2 (hotbar)
@@ -120,6 +147,22 @@ class Person{
 
                     }
                     break;
+                // case 75: //K
+                //     playerDeath("You have been raped by the shark. That sucks.");
+                //     break;
+                // case 70: //f
+                //     if(controlsEnabled)shootFlare();
+                //     break;
+                // case 79: //O
+                //     Object.assign(new Bucket(bucket.clone()));
+                //     break;
+                // case 66: //B
+                //     Object.assign(new CampFire(campfire.clone()));
+                //     break;
+                // case 80: //P
+                //     Object.assign(new Spear(spear.clone()));
+                //     Object.assign(new Axe(axe.clone()));
+                //     break;
             }
         };
 

@@ -1,5 +1,10 @@
 class Wins{
     winned(reason) {
+        document.getElementById('itemholder').innerHTML = '';
+        _anchorStore.deAnchorObject();
+        $(currentHotbarID).html('');
+        $(currentHotbarID).attr("value", "");
+        _anchorStore.removeWeapon();
         var playedTime = playedClock.getElapsedTime();
         clock.stop();
 

@@ -8,7 +8,7 @@ class Island{
             ['campfire', -100, 108, 0, 'shared/models/', 'mtl/Campfire_v2.mtl', 'obj/Campfire_v2.obj', 0.5, 0, 0, 0, 0, 0 , 0 , 0 , true],
             ['bucket' , -80, 120, 20, 'shared/models/', 'mtl/bucket.mtl', 'obj/bucket.obj', 0.1, 3, 0, -60, 0, 0, -75, -130, true],
             ['plane' , 80, 5000, -10000, 'shared/models/', 'mtl/cirrus.mtl', 'obj/cirrus.obj', 20, 0, 0, -60, 0, 0, -100, -130, false],
-            ['phone' , 0, 150, -200, 'shared/models/', 'mtl/phone.mtl', 'obj/phone.obj', 0.1, 2, 50, 50, 50, 0, 0, -30, true],
+            ['phone' , -1511, 138, 8, 'shared/models/', 'mtl/phone.mtl', 'obj/phone.obj', 0.1, 2, 50, 50, 50, 0, 0, -30, true],
             ['pirate ship' , -12000, 170, 12000, 'shared/models/', 'mtl/Pirate Ship.mtl', 'obj/Pirate Ship.obj', 20, 0, 0, 0, 0, 0, 0, 0, false],
             ['shark', -100, 140, -100, 'shared/models/', 'mtl/shark.mtl', 'obj/shark.obj', 5, 0, 0, 0, 0, 0 , 0 , 0 , false],
             ['stick', -200, 50, -1200, 'shared/models/help/', 'stick.mtl', 'stick.obj', 0.4, 0, 0, 0, 0, 0 , 0 , -130 , true],
@@ -98,7 +98,7 @@ class Island{
         //DAY NIGHT
 
         sunAngle = 0.8;
-        dayDuration	= 1500;
+        dayDuration	= 750;
 
         renderer.autoClear = false;
         sunSphere	= new THREEx.DayNight.SunSphere();
@@ -279,6 +279,7 @@ class Island{
                             woodenbarrel.items = [];
                             woodenbarrel.floating = false;
                             scene.remove(woodenbarrel);
+                            floatBarrel();
                         }
                         if (_type == 'bucketring'){
                             bucketRing = pObject;

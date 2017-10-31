@@ -30,6 +30,9 @@ class Tutorial {
             nextButton.style.display = "block";
             resumeGame();
 
+            inv.pushItem(new Item('hout'));
+            inv.pushItem(new Item('hout'));
+
             self.next();
 
         };

@@ -21,22 +21,25 @@ class Hotbar{
 
         };
 
+
+        var timeout;
         function mousewheel( event ) {
+            clearTimeout(timeout);
+            timeout = setTimeout(function() {
+                if ( controls.enabled === false ) return;
+                event.preventDefault();
+                event.stopPropagation();
 
-            //if ( controls.enabled === false ) return;
+                if( event.wheelDelta  < 0) {
+                    if (currentScrol === 1) currentScrol = 6;
+                    else currentScrol--;
+                }else {
+                    if (currentScrol === 6) currentScrol = 1;
+                    else currentScrol++;
+                }
 
-            event.preventDefault();
-            event.stopPropagation();
-
-            if( event.wheelDelta  < 0) {
-                if (currentScrol === 1) currentScrol = 6;
-                else currentScrol--;
-            }else {
-                if (currentScrol === 6) currentScrol = 1;
-                else currentScrol++;
-            }
-
-            self.toggle(currentScrol + 48);
+                self.toggle(currentScrol + 48);
+            }, 50);
         }
 
 
