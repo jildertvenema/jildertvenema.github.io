@@ -1,11 +1,8 @@
 class Person{
-    constructor(playerName, playerHealth) {
-
-        this.playerName = playerName;
-        this.playerHealth = playerHealth;
+    constructor() {
         var moveForward, moveLeft, moveBackward, moveRight, sprint,
             playerSpeed, down = false,
-            playerUp = false, totalVel = 0, timeElap = 0,
+            playerUp = false, totalVel = 0,
             hunger = 80, warmte = 100, warmteDalend = false,
             zuurstof = 100;
 
@@ -16,6 +13,8 @@ class Person{
         this.pickedID = undefined;
         this.pickedType = undefined;
         this.treeID = undefined;
+        this.itemDropped = false;
+        this.dropType = '';
         var self = this;
 
         
@@ -78,44 +77,10 @@ class Person{
                 case 27: //esc
                     pauseGame();
                     break;
-                case 81: //Q
-                    var locatie =  $(currentHotbarID).attr("value");
-                    if (locatie === undefined || locatie === '') return;
-                    var spriteMap = new THREE.TextureLoader().load( "shared/images/items/" + locatie + ".png" );
-                    var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
-                    var sprote = new THREE.Sprite( spriteMaterial );
-
-                    var physMaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({}));
-                    physMaterial.visible = false;
-                    var physObject;
-                    var wiregeo;
-
-                    var cube_height = 1;
-                    var cube_width = 1;
-                    var cube_depth = 1;
-                    var cubeGeo = new THREE.CubeGeometry(cube_width, cube_height, cube_depth);
-                    wiregeo = new THREE.EdgesGeometry(  cubeGeo); // or WireframeGeometry( geometry )
-                    physObject = new Physijs.BoxMesh(cubeGeo, physMaterial, 2);
-                    physObject.add( sprote);
-                    //wireframe
-                    var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
-                    var wireframe = new THREE.LineSegments( wiregeo, wiremat );
-                    //physObject.add( wireframe);
-
-                    var sprite = physObject;
-                    sprite.scale.set(10,10,10);
-                    var posi = player.children[0].children[0].getWorldDirection().multiplyScalar(-50);
-                    posi.add(player.position);
-                    sprite.position.set(posi.x,player.position.y + 20,posi.z);
-                    sprite.__dirtyPosition = true;
-                    sprite._type = locatie;
-                    scene.add( sprite );
-                    itemSprites.push(sprite);
-                    document.getElementById('itemholder').innerHTML = '';
-                    _anchorStore.deAnchorObject();
-                    $(currentHotbarID).html('');
-                    $(currentHotbarID).attr("value", "");
-                    _anchorStore.removeWeapon();
+                case 81: //Q Items droppen
+                    self.itemDropped = true;
+                    self.dropType = $(currentHotbarID).attr("value");
+                    self.dropItem(player, self.dropType, player.position);
                     break;
                 case 77: //M
                     for( let i = 0; i <= 4; i++) {
@@ -135,35 +100,8 @@ class Person{
                 case 52: //4 (hotbar)
                 case 53: //5 (hotbar)
                 case 54: //6 (hotbar)
-                    if(hotbar.toggle(event.keyCode) == "campfire"){
-                        console.log("placing campfire");
-                        //fireStop();
-                        // _anchorStore.placeObject = campfire; dit kan niet meer jonge
-                        // _anchorStore.isBeingPlaced = true;
-                    }
-
-                    else{
-                        // _anchorStore.isBeingPlaced = false;
-                        //wil je dit niet weer doen?
-
-                    }
+                    hotbar.toggle(event.keyCode);
                     break;
-                // case 75: //K
-                //     playerDeath("You have been raped by the shark. That sucks.");
-                //     break;
-                // case 70: //f
-                //     if(controlsEnabled)shootFlare();
-                //     break;
-                // case 79: //O
-                //     Object.assign(new Bucket(bucket.clone()));
-                //     break;
-                // case 66: //B
-                //     Object.assign(new CampFire(campfire.clone()));
-                //     break;
-                // case 80: //P
-                //     Object.assign(new Spear(spear.clone()));
-                //     Object.assign(new Axe(axe.clone()));
-                //     break;
             }
         };
 
@@ -197,7 +135,40 @@ class Person{
             }
         };
 
+        this.dropItem = function (player, locatie, position, other = false) {
+            if (locatie === undefined || locatie === '') return;
+            var spriteMap = new THREE.TextureLoader().load( "shared/images/items/" + locatie + ".png" );
+            var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+            var sprote = new THREE.Sprite( spriteMaterial );
 
+            var physMaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({}));
+            physMaterial.visible = false;
+            var physObject;
+
+            var cube_height = 1;
+            var cube_width = 1;
+            var cube_depth = 1;
+            var cubeGeo = new THREE.CubeGeometry(cube_width, cube_height, cube_depth);
+            physObject = new Physijs.BoxMesh(cubeGeo, physMaterial, 2);
+            physObject.add( sprote);
+
+            var sprite = physObject;
+            sprite.scale.set(10,10,10);
+            var posi;
+            if (!other) posi = player.children[0].children[0].getWorldDirection().multiplyScalar(-50);
+            else posi = player.getWorldDirection().multiplyScalar(-50);
+            posi.add(position);
+            sprite.position.set(posi.x,player.position.y + 20,posi.z);
+            sprite.__dirtyPosition = true;
+            sprite._type = locatie;
+            scene.add( sprite );
+            itemSprites.push(sprite);
+            document.getElementById('itemholder').innerHTML = '';
+            _anchorStore.deAnchorObject();
+            $(currentHotbarID).html('');
+            $(currentHotbarID).attr("value", "");
+            _anchorStore.removeWeapon();
+        };
         this.update = function (delta) {
 
             if (THREEx.DayNight.currentPhase(sunAngle) === 'night' && !dichtBijVuur){
@@ -225,7 +196,7 @@ class Person{
                 if (self.hp < 0) playerDeath("You have died by Hypothermia.")
             }
 
-            hunger -= delta / 5;
+            hunger -= delta / 10;
             if (hunger > 80){
                 hunger = 80;
             }
@@ -393,7 +364,6 @@ class Person{
                             scene.remove(intersects[i].object);
                             if (intersects[i].object.objID == undefined) {
                                 intersects[i].object.objID = Date.now();
-                                console.log(type + " NOG EEN objID geven");
                             }
                             self.pickedUp = true;
                             self.pickedID = intersects[i].object.objID;
@@ -425,12 +395,11 @@ class Person{
                             }
                         }
                         if (type === 'tree1' && currentHotbar === 'axe'){
-                            console.log(intersects[i].object);
                             if (intersects[i].object.hout < 1) break;
                             if (!inv.pushItem(new Item('hout'))) break;
                             intersects[i].object.hout--;
                             if (intersects[i].object.hout < 1){
-                                intersects[i].object.fall = 3;
+                                scene.remove(intersects[i].object);
                             }
                             self.woodCut = true;
                             self.treeID = intersects[i].object.objID;
@@ -470,7 +439,6 @@ class Person{
                                 help.addStick();
                             }
                         }
-                        console.log(intersects[i].object._type );
                     }
                 }
             }
@@ -495,7 +463,6 @@ class Person{
         physMaterial.visible = false;
 
         var physObject = new Physijs.CylinderMesh(physGeom, physMaterial, 20);
-        //physObject.position.set(controls.getObject().position);
 
         physObject.add( controls.getObject());
 

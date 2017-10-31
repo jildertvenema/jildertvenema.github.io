@@ -26,7 +26,7 @@ var telefoon = new Phone();
 var itemSprites = [];
 
 // scene
-var camera, scene, renderer, firstRender = true,  mouse, raycaster, stats, ms_Water, clock, shipPlaneHandler, timeRandomSpawn = 0;
+var camera, scene, renderer, mouse, raycaster, stats, ms_Water, clock, shipPlaneHandler, timeRandomSpawn = 0;
 
 // player
 var prevPos, underWater = false, canJump, controls, controlsEnabled,
@@ -52,8 +52,8 @@ var particleSystem, fireOptions, spawnerOptions, tick = 0;
 
 var geometry = new THREE.BoxGeometry( 20, 35, 20 );
 var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-var otherModel, mixer, conn, otherVelocity = 0, objectID = '', otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined, dichtBijVuur = false;
-var isHost = false, firstTime = true, randomNummer = -1;
+var otherModel, mixer, conn, otherVelocity = 0, otherLastPos = new THREE.Vector3(0,0,0), otherObj = undefined, dichtBijVuur = false;
+var isHost = false, firstTime = true, randomNummer = -1, pickedUp;
 
 //menu
 var menu, inv, tutorial, tutorialIsPlaying = false;
@@ -133,15 +133,6 @@ function init() {
     new loadOtherPlayer().loadJsonModel();
 
     menu = Object.assign(new Menu());
-    // inv.pushItem(new Item('hout'));
-    // inv.pushItem(new Item('hout'));
-    // inv.pushItem(new Item('hout'));
-    // inv.pushItem(new Item('steen'));
-    // inv.pushItem(new Item('steen'));
-    // inv.pushItem(new Item('campfire'));
-    // inv.pushItem(new Item('flintandsteel'));
-    // inv.pushItem(new Item('fish'));
-    // inv.pushItem(new Item('flaregun'));
     inv.pushItem(new Item('axe'));
 
     //player
@@ -169,7 +160,6 @@ function init() {
 
     window.addEventListener( 'resize', onWindowResize, false );
     window.addEventListener( 'resize', onWindowResize, false );
-    //tutorial.start();
 }
 
 //item popup
@@ -210,8 +200,6 @@ function animate() {
 }
 
 function render() {
-
-    //if (checkControls()) return;
     var delta = clock.getDelta();
     var elapsed = clock.getElapsedTime();
     timeRandomSpawn += delta;
@@ -245,10 +233,10 @@ function render() {
             if (inv.pushItem(new Item(itemSprites[i]._type))){
                 itemSprites[i].position.y = -200;
                 scene.remove(itemSprites[i]);
+                pickedUp = i;
             }
         }
     }
-    checkTrees(delta);
     playerClass.update(delta);
     _anchorStore.update(delta);
     ms_Water.material.uniforms.time.value += 1.0 / 60.0;
@@ -261,7 +249,6 @@ function render() {
     skydom.update(sunAngle);
     starField.update(sunAngle);
     if (fireOptions != undefined) updateParticles();
-    //document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
 }
 
 
@@ -294,9 +281,7 @@ function checkRandomSpawner() {
     if (timeRandomSpawn > 10){
         timeRandomSpawn =0;
         var randomNum = Math.floor(Math.random() * 10) + 1;
-
         randomNummer = randomNum;
-
         switch (randomNum) {
             case 1:
                 if (!shipPlaneHandler.isPlane)shipPlaneHandler.flyPlane();
@@ -307,46 +292,12 @@ function checkRandomSpawner() {
             case 3:
                 spawnFish();
                 break;
-            case 4:
-                break;
             case 5:
                 floatBarrel();
                 break;
         }
     }
 }
-
-function checkTrees(delta) {
-    for (var i = 0 ; i < trees.length; i++) {
-        if (trees[i].fall > 0) {
-            trees[i].fall += delta * 100;
-            if (trees[1].rotation.y < 0) trees[i].fall -= delta * -2;
-            //trees[i].rotation.x = trees[i].fall;
-            trees[i].__dirtyRotation = true;
-        }
-        if (trees[i].fall > 5){
-          trees[i].visible = false;
-          trees[i].fall = 0;
-          scene.remove(trees[i]);
-        }
-    }
-}
-
-function checkControls(){
-    if (!controls.enabled && !firstRender){
-
-        if (clock.running && !deathOrWin) {
-            clock.stop();
-        }
-        return true;
-    }
-    else{
-        if (!clock.running) clock.start();
-    }
-    firstRender = false;
-    return (!controls);
-}
-
 
 function spawnBucketRing() {
     var ring = bucketRing.clone();
@@ -426,7 +377,6 @@ function  setRandomFishPosition(fish) {
             fish.position.set(-3242, -50, 1039);
             break;
     }
-    console.log(fish);
     fish.pivot = fish.position.clone();
 }
 
@@ -438,12 +388,8 @@ function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0, box = 
     var physMaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({}));
     physMaterial.visible = false;
     var physObject;
-    var wiregeo;
 
-    if (!box) {
-        physObject = new Physijs.ConvexMesh(physGeom, physMaterial, mass);
-        wiregeo = new THREE.EdgesGeometry( physObject.geometry ); // or WireframeGeometry( geometry )
-    }
+    if (!box) physObject = new Physijs.ConvexMesh(physGeom, physMaterial, mass);
     else {
         var cube_bbox = new THREE.Box3();
         cube_bbox.setFromObject( object );
@@ -453,7 +399,6 @@ function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0, box = 
 
         var cubeGeo = new THREE.CubeGeometry(cube_width, cube_height, cube_depth);
 
-        wiregeo = new THREE.EdgesGeometry(  cubeGeo); // or WireframeGeometry( geometry )
         physObject = new Physijs.BoxMesh(cubeGeo, physMaterial, mass);
     }
 
@@ -462,12 +407,6 @@ function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0, box = 
     object.position.z += zo;
 
     physObject.add( object);
-
-    //wireframe
-
-    // var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
-    // var wireframe = new THREE.LineSegments( wiregeo, wiremat );
-    // physObject.add( wireframe);
 
     return physObject;
 }
@@ -520,10 +459,6 @@ function updateParticles() {
 
         if (tick < 1.4) {
             for (let x = 0; x < spawnerOptions.spawnRate * delta; x++) {
-
-                // Yep, that's really it.	Spawning particles is super cheap, and once you spawn them, the rest of
-                // their lifecycle is handled entirely on the GPU, driven by a time uniform updated below
-                //oke cool
                 particleSystem.spawnParticle(fireOptions);
 
             }
@@ -537,12 +472,10 @@ function updateParticles() {
 function openHostPeer(){
     var id = Math.round((Math.random() * 9999) + 1);
     var peer = new Peer(id.toString(), {key: 'p2zyxcxaixiozuxr'}, {secure: true} );
-    console.log('peer host: ' + id);
     success('Peer-id = ' + id);
     isHost = true;
     document.getElementById('peer_number').innerHTML = 'Peer-id = ' + id;
     peer.on('connection', function(conn) {
-        console.log('connected slave');
         otherModel.visible = true;
         conn.on('data', function(data){
             checkData(conn,data);
@@ -555,8 +488,6 @@ function connectToPeer(){
     var id = 'slave' +  Math.round((Math.random() * 9999) + 1);
     var peer = new Peer(id, {key: 'p2zyxcxaixiozuxr'}, {secure: true} );
     conn = peer.connect(hostID.toString());
-    console.log('peer slave: ' + id);
-    console.log(peer);
     isHost = false;
 
     conn.on('open', function(){
@@ -642,14 +573,11 @@ function checkData(conn, data){
             otherObj = objectToPlace;
             objectToPlace.objID = data.placeID;
             _anchorStore.anchorOtherObject(objectToPlace);
-            //objectToPlace.position.set(posObj.x,posObj.y + 5,posObj.z);
             if (objectToPlace._type === 'campfire')otherLastPos.set(posObj.x,posObj.y -5 ,posObj.z);
             else otherLastPos.set(posObj.x,posObj.y ,posObj.z);
-            //objectToPlace.__dirtyPosition = true;
         }
     }
     if (data.objectGone) {
-        console.log(otherObj + ' deanchor');
         if (otherObj != undefined) {
             otherObj.position.set(otherLastPos.x, otherLastPos.y + 5, otherLastPos.z);
             otherObj.__dirtyPosition = true;
@@ -717,11 +645,31 @@ function checkData(conn, data){
             case 3:
                 spawnFish();
                 break;
-            case 4:
-                break;
             case 5:
                 floatBarrel();
                 break;
+        }
+    }
+
+    if (playerClass.itemDropped == true){
+        playerClass.itemDropped = false;
+        jsonData.itype = playerClass.dropType;
+        jsonData.itemDropped = true;
+    }
+
+    if (data.itemDropped == true){
+        playerClass.dropItem(otherModel, data.itype, otherModel.position, true);
+    }
+
+
+    if (pickedUp != undefined && pickedUp != -1){
+        jsonData.pickedUp = pickedUp;
+        pickedUp = -1;
+    }
+    id (data.pickedUp != undefined && data.pickedUp != -1){
+        if (itemSprites.length > data.pickedUp) {
+            itemSprites[data.pickedUp].position.y = -200;
+            scene.remove(itemSprites[data.pickedUp]);
         }
     }
 

@@ -31,7 +31,6 @@ class AnchorStore{
 
             if (self.otherIsBeingPlaced){
                 self.otherObject.position.set(otherLastPos.x, otherLastPos.y, otherLastPos.z);
-                //self.otherObject.__dirtyPosition = true;
             }
         };
 
@@ -90,7 +89,6 @@ class AnchorStore{
         this.deAnchorOtherObject = function() {
             if (!self.otherIsBeingPlaced) return;
             self.otherIsBeingPlaced = false;
-            //self.letGoOtherObject(self.otherObject);
         };
 
         this.setWeapon = function(weapon){

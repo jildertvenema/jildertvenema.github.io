@@ -22,9 +22,9 @@ class Bucket{
 
         this.checkBucket = function(){
             var rot =  bucket.rotation;
-            var o = 0.5;
-            if (rot.z < Math.PI + o && rot.z > Math.PI - o)this.emptyBucket();
-            if (rot.x < Math.PI + o && rot.x > Math.PI - o)this.emptyBucket();
+            var offset = 0.5;
+            if (rot.z < Math.PI + offset && rot.z > Math.PI - offset)this.emptyBucket();
+            if (rot.x < Math.PI + offset && rot.x > Math.PI - offset)this.emptyBucket();
         };
         this.addFish = function () {
             this.hasFish = true;
