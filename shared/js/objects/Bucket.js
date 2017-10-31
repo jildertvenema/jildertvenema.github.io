@@ -2,20 +2,22 @@ class Bucket{
     constructor(object) {
         object.mass = bucket.mass;
         this.object = object;
+        if (this.object.objID == undefined)this.object.objID = Date.now();
         this.kokendWater = false;
         this.gekooktTijd = 0;
         this.hasFish = false;
         buckets.push(this);
 
         this.fillBucket = function(){
-            this.object.children[3].visible = true;
-            success('Je hebt succesvol water opgepakt');
+            if (this.object.children[2].visible) return;
+            this.object.children[2].visible = true;
+            success('You succesfully filled the bucket with water!');
         };
         this.emptyBucket = function(){
             this.gekooktTijd = 0;
             this.kokendWater = false;
             this.object.children[3].visible = false;
-            warn('Je emmer is leeg');
+            warn('Your bucket is empty.');
         };
 
         this.checkBucket = function(){
@@ -26,13 +28,13 @@ class Bucket{
         };
         this.addFish = function () {
             this.hasFish = true;
-            this.object.children[4].visible = true;
-            success('Je hebt een vis in je emmer gestopt');
+            this.object.children[3].visible = true;
+            success('You have put a fish in your bucket.');
         };
         this.removeFish = function () {
             this.hasFish = false;
-            this.object.children[4].visible = false;
-            success('Je hebt een vis uit je emmer gehaald');
+            this.object.children[3].visible = false;
+            success('You took the fish from your bucket.');
         };
         this.update	= function(delta) {
             this.checkBucket();
@@ -41,6 +43,6 @@ class Bucket{
         };
         object._type = 'bucket';
         scene.add(object);
-        success('Een bucket is handig om water te koken of voedsel mee te verwarmen');
+        success('A bucket is useful for cooking water or making food!');
     }
 }

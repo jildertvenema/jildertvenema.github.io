@@ -9,8 +9,8 @@ class Bucket{
         buckets.push(this);
 
         this.fillBucket = function(){
-            if (this.object.children[3].visible) return;
-            this.object.children[3].visible = true;
+            if (this.object.children[2].visible) return;
+            this.object.children[2].visible = true;
             success('You succesfully filled the bucket with water!');
         };
         this.emptyBucket = function(){
@@ -28,12 +28,12 @@ class Bucket{
         };
         this.addFish = function () {
             this.hasFish = true;
-            this.object.children[4].visible = true;
+            this.object.children[3].visible = true;
             success('You have put a fish in your bucket.');
         };
         this.removeFish = function () {
             this.hasFish = false;
-            this.object.children[4].visible = false;
+            this.object.children[3].visible = false;
             success('You took the fish from your bucket.');
         };
         this.update	= function(delta) {
