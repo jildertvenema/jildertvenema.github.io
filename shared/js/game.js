@@ -666,7 +666,7 @@ function checkData(conn, data){
         jsonData.pickedUp = pickedUp;
         pickedUp = -1;
     }
-    id (data.pickedUp != undefined && data.pickedUp != -1){
+    if (data.pickedUp != undefined && data.pickedUp != -1){
         if (itemSprites.length > data.pickedUp) {
             itemSprites[data.pickedUp].position.y = -200;
             scene.remove(itemSprites[data.pickedUp]);
