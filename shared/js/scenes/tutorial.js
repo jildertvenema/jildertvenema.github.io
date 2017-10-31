@@ -123,6 +123,7 @@ class Tutorial {
                     setTimeout(function(){
                         popup("You are on your own now, goodluck with Abgewaschen");
                     }, 6000);
+                    playedClock.start();
                     break;
                 default: // end
 

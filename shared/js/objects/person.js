@@ -80,6 +80,7 @@ class Person{
                     break;
                 case 81: //Q
                     var locatie =  $(currentHotbarID).attr("value");
+                    if (locatie === undefined || locatie === '') return;
                     var spriteMap = new THREE.TextureLoader().load( "shared/images/items/" + locatie + ".png" );
                     var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
                     var sprote = new THREE.Sprite( spriteMaterial );
@@ -99,7 +100,7 @@ class Person{
                     //wireframe
                     var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
                     var wireframe = new THREE.LineSegments( wiregeo, wiremat );
-                    physObject.add( wireframe);
+                    //physObject.add( wireframe);
 
                     var sprite = physObject;
                     sprite.scale.set(10,10,10);
@@ -200,7 +201,7 @@ class Person{
         this.update = function (delta) {
 
             if (THREEx.DayNight.currentPhase(sunAngle) === 'night' && !dichtBijVuur){
-                warmte -= delta ;
+                warmte -= delta * 2;
                 if (!warmteDalend){
                     warn("You have getting cold. Find something to heat yourself.");
                     warmteDalend = true;
@@ -208,7 +209,7 @@ class Person{
             }
             else{
                 warmteDalend = false;
-                warmte += delta * 8;
+                warmte += delta * 4;
             }
 
             if (warmte < 80){
@@ -220,17 +221,17 @@ class Person{
             if (warmte > 100) warmte = 100;
             if (warmte < 0) warmte = 0;
             if (warmte <= 0){
-                self.hp -= delta / 5;
+                self.hp -= delta * 2;
                 if (self.hp < 0) playerDeath("You have died by Hypothermia.")
             }
 
-            hunger -= delta / 10;
+            hunger -= delta / 5;
             if (hunger > 80){
                 hunger = 80;
             }
             if (hunger <= 0){
                 hunger = 0;
-                self.hp -= delta / 10;
+                self.hp -= delta;
                 if (self.hp < 0) playerDeath("You have have died by starvation.")
             }
             document.getElementById('hungerbar').style.width = hunger + '%';

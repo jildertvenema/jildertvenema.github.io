@@ -65,6 +65,7 @@ class Inventory {
         //inventory Item click
 
         this.itemClick = function(itemId) {
+            if(tutorialIsPlaying) return;
 
             let current = document.getElementById(itemId);
 

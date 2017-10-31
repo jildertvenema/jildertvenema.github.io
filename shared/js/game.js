@@ -211,8 +211,6 @@ function animate() {
 
 function render() {
 
-
-
     //if (checkControls()) return;
     var delta = clock.getDelta();
     var elapsed = clock.getElapsedTime();
@@ -263,7 +261,7 @@ function render() {
     skydom.update(sunAngle);
     starField.update(sunAngle);
     if (fireOptions != undefined) updateParticles();
-    document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
+    //document.getElementById("position").innerText = "x: " + Math.floor(player.position.x) + " y: " + Math.floor(player.position.y) + " z: " + Math.floor(player.position.z);
 }
 
 
@@ -321,9 +319,9 @@ function checkRandomSpawner() {
 function checkTrees(delta) {
     for (var i = 0 ; i < trees.length; i++) {
         if (trees[i].fall > 0) {
-            trees[i].fall += delta ;
+            trees[i].fall += delta * 100;
             if (trees[1].rotation.y < 0) trees[i].fall -= delta * -2;
-            trees[i].rotation.x = trees[i].fall;
+            //trees[i].rotation.x = trees[i].fall;
             trees[i].__dirtyRotation = true;
         }
         if (trees[i].fall > 5){
@@ -396,20 +394,20 @@ function playerDeath(reason) {
     if (deathOrWin) return;
     document.getElementById('crosshair').style.display = 'none';
     document.getElementById('hotbar').style.display = 'none';
-    deathOrWin = true;
-    death.Death(reason);
     document.getElementById('itemholder').innerHTML = '';
     _anchorStore.deAnchorObject();
+    deathOrWin = true;
+    death.Death(reason);
 }
 
 function playerWin(reason) {
     if (deathOrWin) return;
     document.getElementById('crosshair').style.display = 'none';
     document.getElementById('hotbar').style.display = 'none';
-    deathOrWin = true;
-    win.winned(reason);
     document.getElementById('itemholder').innerHTML = '';
     _anchorStore.deAnchorObject();
+    deathOrWin = true;
+    win.winned(reason);
 }
 
 function  setRandomFishPosition(fish) {
@@ -467,9 +465,9 @@ function  MeshToPhy(object, mass, w = 0, h = 0 , d = 0, xo=0, yo=0, zo=0, box = 
 
     //wireframe
 
-    var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
-    var wireframe = new THREE.LineSegments( wiregeo, wiremat );
-    physObject.add( wireframe);
+    // var wiremat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 5 } );
+    // var wireframe = new THREE.LineSegments( wiregeo, wiremat );
+    // physObject.add( wireframe);
 
     return physObject;
 }

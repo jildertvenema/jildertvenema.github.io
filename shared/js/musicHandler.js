@@ -14,7 +14,7 @@ class MusicHandler{
         }
         console.log(numbers);
         var audio = new Audio('shared/sounds/' + songs[numbers[0]-1]);
-        audio.volume = 0.2;
+        audio.volume = 0;
         audio.load();
         audio.play();
         audio.addEventListener('ended',function(){

@@ -284,6 +284,7 @@ class Island{
                         if (_type == 'bucketring'){
                             bucketRing = pObject;
                             scene.remove(pObject);
+                            spawnBucketRing();
                         }
                         if (_type == 'pirate ship'){
                             object.visible = false;
@@ -298,6 +299,9 @@ class Island{
                         if (_type == 'fish'){
                             fish = pObject;
                             scene.remove(fish);
+                            spawnFish();
+                            spawnFish();
+                            spawnFish();
                         }
 
                         if(_type === 'stick'){
@@ -339,8 +343,7 @@ class Island{
 
                         if(_type === 'tree1'){
                             var tree = pObject.clone();
-                            tree.hout = 5;
-                            tree.fall = 0;
+                            scene.remove(pObject);
                             for(var i = 0; i < 14; i++){
                                 var newtree = tree.clone();
                                 newtree.rotateY(Math.random() * Math.PI);

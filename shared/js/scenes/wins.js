@@ -34,6 +34,6 @@ class Wins{
             hours = '0' + hours;
         }
 
-        success("Do hast wûn! " + reason + ' Time before saved: ' + hours + ':'+ minutes + ':' + seconds, true);
+        success("You have won! " + reason + ' Time before saved: ' + hours + ':'+ minutes + ':' + seconds, true);
     }
 }
