@@ -74,6 +74,7 @@ class CampFire{
                 pointLight.intensity = 0;
                 pointLight.needsUpdate = true;
             }
+            campfire.isOnFire = false;
         };
 
 

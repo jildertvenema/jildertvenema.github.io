@@ -16,7 +16,7 @@ class Bucket{
         this.emptyBucket = function(){
             this.gekooktTijd = 0;
             this.kokendWater = false;
-            this.object.children[3].visible = false;
+            this.object.children[2].visible = false;
             warn('Your bucket is empty.');
         };
 

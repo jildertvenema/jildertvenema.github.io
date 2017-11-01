@@ -411,7 +411,7 @@ class Person{
 
                             for (var t = 0; t < buckets.length; t++) {
                                 if (buckets[t].object === intersects[i].object){
-                                    if (buckets[t].kokendWater && buckets[t].object.children[4].visible){
+                                    if (buckets[t].kokendWater && buckets[t].object.children[3].visible){
                                         if (inv.pushItem(new Item('cookedFish'))){
                                             buckets[t].removeFish();
                                             break;
@@ -422,7 +422,7 @@ class Person{
 
                             if (currentHotbar === 'fish') {
                                 for (var t = 0; t < buckets.length; t++) {
-                                    if (buckets[t].object === intersects[i].object && buckets[t].object.children[3].visible) {
+                                    if (buckets[t].object === intersects[i].object && !buckets[t].object.children[3].visible) {
                                         buckets[t].addFish();
                                         deleteSelectedItem();
                                         break;
