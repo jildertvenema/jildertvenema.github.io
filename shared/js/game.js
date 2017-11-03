@@ -134,6 +134,8 @@ function init() {
 
     menu = Object.assign(new Menu());
     inv.pushItem(new Item('axe'));
+     inv.pushItem(new Item('bucketring'));
+
 
     //player
 
