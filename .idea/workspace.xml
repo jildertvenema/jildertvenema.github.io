@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4012fdf-8c7f-4a92-b064-125d3c40d661" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shared/js/game.js" afterPath="$PROJECT_DIR$/shared/js/game.js" />
-    </list>
-    <ignored path="Graphics Project.iws" />
-    <ignored path=".idea/workspace.xml" />
+    <list default="true" id="0f047d1c-19d8-4fd6-98d1-cda7ac2309a2" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,114 +12,76 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FavoritesManager">
-    <favorites_list name="Graphics Project" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="island.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/island.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3417">
-              <caret line="201" column="25" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
+            <state relative-caret-position="609">
+              <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
               <folding>
-                <marker date="1509457615661" expanded="true" signature="17850:19710" ph="{...}" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hectobar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js">
+      <file leaf-file-name="Sticky.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/Sticky.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-              <folding>
-                <marker date="1509457615657" expanded="true" signature="1145:1157" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="683" column="1" selection-start-line="683" selection-start-column="1" selection-end-line="683" selection-end-column="1" />
+              <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="anchorStore.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/objects/anchorStore.js">
+      <file leaf-file-name="sticky.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/sticky.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="person.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/objects/person.js">
+      <file leaf-file-name="PanelList.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/PanelList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state relative-caret-position="391">
+              <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CampFire.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/objects/items/CampFire.js">
+      <file leaf-file-name="footer.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/footer.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+            <state relative-caret-position="102">
+              <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bucket.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Bucket.js">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="706">
+              <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pointerLock.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js">
+      <file leaf-file-name="TypeWriter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="abgewaschen.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/abgewaschen.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="254" column="87" selection-start-line="254" selection-start-column="87" selection-end-line="254" selection-end-column="87" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shared/css/game.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
+            <state relative-caret-position="68">
+              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -134,55 +92,30 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>col-md-12</find>
+      <find>fix</find>
+      <find>stick</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/shared/js/PointerLockControls.js" />
-        <option value="$PROJECT_DIR$/shared/js/MeshToPhy.js" />
-        <option value="$PROJECT_DIR$/shared/js/frameworks/SeaWork.js" />
-        <option value="$PROJECT_DIR$/shared/js/player.js" />
-        <option value="$PROJECT_DIR$/shared/js/frameworks/GPUParticleSystem.js" />
-        <option value="$PROJECT_DIR$/menu.html" />
-        <option value="$PROJECT_DIR$/shared/js/frameworks/threex.daynight.js" />
-        <option value="$PROJECT_DIR$/shared/js/deaths.js" />
-        <option value="$PROJECT_DIR$/shared/js/wins.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/Shark.js" />
-        <option value="$PROJECT_DIR$/webgl_shaders_ocean.html" />
-        <option value="$PROJECT_DIR$/shared/js/OtherPlayer.js" />
-        <option value="$PROJECT_DIR$/shared/js/loadOtherPlayer.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/FlareGun.js" />
-        <option value="$PROJECT_DIR$/shared/js/interface/menu/crafting.js" />
-        <option value="$PROJECT_DIR$/shared/js/ShipPlaneHandler.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/Bucket.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/CampFire.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/Spear.js" />
-        <option value="$USER_HOME$/AppData/Local/Temp/13lGMtlAA1S4Yy8Ft8kv6d.url" />
-        <option value="$PROJECT_DIR$/shared/js/objects/Axe.js" />
-        <option value="$PROJECT_DIR$/shared/js/Tree.js" />
-        <option value="$PROJECT_DIR$/shared/js/person.js" />
-        <option value="$PROJECT_DIR$/shared/js/interface/hectobar.js" />
-        <option value="$PROJECT_DIR$/shared/js/anchorStore.js" />
-        <option value="$PROJECT_DIR$/shared/css/userinterface.css" />
-        <option value="$PROJECT_DIR$/shared/css/menu.css" />
-        <option value="$PROJECT_DIR$/shared/css/game.css" />
-        <option value="$PROJECT_DIR$/shared/js/objects/items/Shark.js" />
-        <option value="$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js" />
-        <option value="$PROJECT_DIR$/shared/js/musicHandler.js" />
-        <option value="$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js" />
-        <option value="$PROJECT_DIR$/shared/js/island.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/items/CampFire.js" />
-        <option value="$PROJECT_DIR$/abgewaschen.html" />
-        <option value="$PROJECT_DIR$/shared/js/objects/items/Bucket.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/anchorStore.js" />
-        <option value="$PROJECT_DIR$/shared/js/objects/person.js" />
-        <option value="$PROJECT_DIR$/shared/js/game.js" />
+        <option value="$PROJECT_DIR$/js/TypeWriter.js" />
+        <option value="$PROJECT_DIR$/css/socialmedia.css" />
+        <option value="$PROJECT_DIR$/js/PanelList.js" />
+        <option value="$PROJECT_DIR$/css/sticky.css" />
+        <option value="$PROJECT_DIR$/css/footer.css" />
+        <option value="$PROJECT_DIR$/js/Sticky.js" />
+        <option value="$PROJECT_DIR$/css/main.css" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -192,21 +125,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="200" />
     <option name="y" value="-8" />
-    <option name="width" value="2576" />
-    <option name="height" value="1056" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="1" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -223,180 +146,107 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Graphics Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Graphics Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Graphics Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Graphics Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Graphics Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Portfolio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Portfolio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
-    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" value="" />
-      <option name="executablePath" />
-      <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vene1602\WebstormProjects\Portfolio\img" />
+      <recent name="C:\Users\vene1602\WebstormProjects\Portfolio" />
+      <recent name="C:\Users\vene1602\WebstormProjects\Portfolio\bootstrap-3.3.7-dist\js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vene1602\WebstormProjects\Portfolio" />
+      <recent name="C:\Users\vene1602\WebstormProjects\Portfolio\img" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a4012fdf-8c7f-4a92-b064-125d3c40d661" name="Default" comment="" />
-      <created>1507796803416</created>
+      <changelist id="0f047d1c-19d8-4fd6-98d1-cda7ac2309a2" name="Default" comment="" />
+      <created>1521141096822</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1507796803416</updated>
-      <workItem from="1507796807145" duration="12341000" />
-      <workItem from="1507874296414" duration="21450000" />
-      <workItem from="1507968719021" duration="3523000" />
-      <workItem from="1507972948972" duration="1190000" />
-      <workItem from="1507977846116" duration="93000" />
-      <workItem from="1507997285680" duration="300000" />
-      <workItem from="1508063811545" duration="12325000" />
-      <workItem from="1508080443657" duration="374000" />
-      <workItem from="1508091210401" duration="2037000" />
-      <workItem from="1508166721592" duration="4208000" />
-      <workItem from="1508172691361" duration="6630000" />
-      <workItem from="1508240238525" duration="4855000" />
-      <workItem from="1508245605293" duration="1472000" />
-      <workItem from="1508247092929" duration="7549000" />
-      <workItem from="1508267515479" duration="2220000" />
-      <workItem from="1508396203307" duration="8286000" />
-      <workItem from="1508407604683" duration="3007000" />
-      <workItem from="1508411489808" duration="5812000" />
-      <workItem from="1508427809074" duration="1953000" />
-      <workItem from="1508430944986" duration="1490000" />
-      <workItem from="1508510652336" duration="7005000" />
-      <workItem from="1508524937601" duration="541000" />
-      <workItem from="1508592888930" duration="618000" />
-      <workItem from="1508928336638" duration="5291000" />
-      <workItem from="1508939731936" duration="609000" />
-      <workItem from="1508961785831" duration="7000" />
-      <workItem from="1509101490337" duration="20283000" />
-      <workItem from="1509182871369" duration="11061000" />
-      <workItem from="1509274960520" duration="350000" />
-      <workItem from="1509276653378" duration="6454000" />
-      <workItem from="1509289535210" duration="8747000" />
-      <workItem from="1509304598746" duration="1421000" />
-      <workItem from="1509388856242" duration="7042000" />
-      <workItem from="1509472038949" duration="2428000" />
-      <workItem from="1509474650933" duration="129000" />
+      <updated>1521141096822</updated>
+      <workItem from="1521141099075" duration="6157000" />
+      <workItem from="1521196387113" duration="173000" />
+      <workItem from="1521636329378" duration="1320000" />
+      <workItem from="1521928687902" duration="675000" />
+      <workItem from="1521983208978" duration="599000" />
+      <workItem from="1522499618177" duration="10849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173101000" />
+    <option name="totallyTimeSpent" value="19773000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17734376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07304688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09225875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -405,10 +255,10 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17734376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07304688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -417,222 +267,348 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/shared/js/game.js</url>
-          <line>683</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shared/js/MeshToPhy.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/frameworks/SeaWork.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/player.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/loaders/OBJLoader.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5372">
-          <caret line="316" column="20" selection-start-line="316" selection-start-column="16" selection-end-line="316" selection-end-column="20" />
+        <state relative-caret-position="1054">
+          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webgl_shaders_ocean_island.html" />
-    <entry file="file://$PROJECT_DIR$/shared/js/three/three.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/inventory.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/frameworks/GPUParticleSystem.js">
+    <entry file="file://$PROJECT_DIR$/js/PanelList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="37" />
+        <state relative-caret-position="391">
+          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/item.js" />
-    <entry file="file://$PROJECT_DIR$/shared/models/textures/Pirate Ship.png">
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/PanelList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/PanelList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="19" lean-forward="false" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="10" lean-forward="false" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="17" lean-forward="false" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="19" lean-forward="true" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-3.3.7-dist/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-3.3.7-dist/js/npm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/ik.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/deaths.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/wins.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/three/PointerLockControls.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/OtherPlayer.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/items/item.js" />
-    <entry file="file://$PROJECT_DIR$/menu.html">
+    <entry file="file://$PROJECT_DIR$/js/TypeWriter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/menu.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/inventory.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/crafting.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/ShipPlaneHandler.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/FlareGun.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/Help.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/Shark.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/Spear.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/CampFire.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/13lGMtlAA1S4Yy8Ft8kv6d.url" />
-    <entry file="file://$PROJECT_DIR$/shared/js/Tree.js" />
-    <entry file="file://$PROJECT_DIR$/webgl_shaders_ocean.html" />
-    <entry file="file://$PROJECT_DIR$/shared/js/loadOtherPlayer.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/Axe.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/person.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/hectobar.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/Bucket.js" />
-    <entry file="file://$PROJECT_DIR$/shared/js/anchorStore.js" />
-    <entry file="file://$PROJECT_DIR$/shared/css/userinterface.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="63" column="47" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/frameworks/threex.daynight.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/css/menu.css">
+    <entry file="file://$PROJECT_DIR$/js/PanelList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Shark.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        <state relative-caret-position="391">
+          <caret line="23" column="3" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/inventory.js">
+    <entry file="file://$PROJECT_DIR$/css/socialmedia.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+        <state relative-caret-position="43">
+          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Axe.js">
+    <entry file="file://$PROJECT_DIR$/css/sticky.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/musicHandler.js">
+    <entry file="file://$PROJECT_DIR$/css/footer.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        <state relative-caret-position="102">
+          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/userinterface/hectobar.js">
+    <entry file="file://$PROJECT_DIR$/js/Sticky.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="706">
+          <caret line="91" column="0" lean-forward="true" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="87" column="38" lean-forward="true" selection-start-line="87" selection-start-column="38" selection-end-line="87" selection-end-column="38" />
           <folding>
-            <marker date="1509457615657" expanded="true" signature="1145:1157" ph="{...}" />
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#div#2;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/island.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3417">
-          <caret line="201" column="25" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
-          <folding>
-            <marker date="1509457615661" expanded="true" signature="17850:19710" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/interface/menu/pointerLock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/CampFire.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/items/Bucket.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/anchorStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/objects/person.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/js/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="683" column="1" selection-start-line="683" selection-start-column="1" selection-end-line="683" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shared/css/game.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abgewaschen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="254" column="87" selection-start-line="254" selection-start-column="87" selection-end-line="254" selection-end-column="87" />
-          <folding />
         </state>
       </provider>
     </entry>

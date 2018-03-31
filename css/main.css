@@ -1,0 +1,91 @@
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#background_box_1{
+    background-image: url("../img/bg1.jpeg");
+}
+
+#background_box_2 {
+    background-image: url("../img/bg2.jpeg");
+}
+
+#background_box_3 {
+    background-image: url("../img/bg3.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background_box{
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    align-content: center;
+}
+
+.header_standard{
+    font-size: 50px;
+    margin: 0;
+    margin-bottom: 50px;
+    text-align: center;
+    padding-top:1.5em;
+}
+
+.me_photo{
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+}
+
+.card_div{
+    color: rgba(0, 0, 0, .80);;
+    font-size: 15px;
+    border: 2px darkgrey solid;
+    background:rgba(255,255,255,0.8);
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+    border-radius: 2%;
+}
+.card_div p {
+    margin:12px;
+}
+.name_header{
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.social_div{
+    background-color: lightgrey;
+}
+
+.vaardigheden{
+    background:rgba(255,255,255,0.8);
+}
+.vaardigheden *{
+    color: rgba(0, 0, 0, .80);
+}
+
+
+.contact-form{
+    background:rgba(255,255,255,0.8);
+    color: rgba(0, 0, 0, .80);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -150px;
+}
+
+.contact_items div{
+    margin: 15px;
+}
