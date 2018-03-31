@@ -89,3 +89,17 @@ body{
 .contact_items div{
     margin: 15px;
 }
+
+@media (max-width: 760px) {
+    #vaardigheden .row *{
+        text-align: center;
+    }
+    .sticky_nav_bar{
+        display: none;
+    }
+    .typewrite{
+        font-size: 25px;
+        margin:5px;
+        margin-bottom:15px;
+    }
+}
