@@ -8,8 +8,17 @@ body{
     color: white;
 }
 
+
+canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+}
+
 #background_box_1{
     background-image: url("../img/bg1.jpeg");
+    text-align: center;
 }
 
 #background_box_2 {
@@ -47,13 +56,17 @@ body{
 }
 
 .card_div{
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+
     color: rgba(0, 0, 0, .80);;
     font-size: 15px;
     border: 2px darkgrey solid;
     background:rgba(255,255,255,0.8);
     width: 300px;
-    margin: 0 auto;
-    margin-bottom: 60px;
     border-radius: 2%;
 }
 .card_div p {
