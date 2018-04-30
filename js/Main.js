@@ -1,4 +1,14 @@
 
+
+GitHubActivity.feed({
+    username: "jildertvenema",
+    selector: "#feed",
+    limit: 20 // optional
+});
+
+$('.gha-header').appendChild("");
+
+
 // ----------------------------------------
 // Particle
 // ----------------------------------------

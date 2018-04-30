@@ -19,12 +19,16 @@
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/sticky.css">
+    <link rel="stylesheet" href="css/octicons.min.css">
+    <link rel="stylesheet" href="css/github-activity.css">
 
     <!-- Custom JS -->
     <script src="js/TypeWriter.js"></script>
     <script src="js/PanelList.js"></script>
     <script src="js/Sticky.js"></script>
     <script src="js/sketch.js"></script>
+    <script type="text/javascript" src="js/mustache.min.js"></script>
+    <script type="text/javascript" src="js/github-activity.js"></script>
 
     <!--Pulling Awesome Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,8 +63,8 @@
 
     <div class="sticky_nav_bar">
 
-        <a href="#"><div id="get_in_touch"><p>GET IN TOUCH</p></div></a>
-        <a href="#"><div id="pagedown"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> <span class="glyphicon-class"></span> </div></a>
+        <a class="highz-index" href="#"><div id="get_in_touch"><p>GET IN TOUCH</p></div></a>
+        <a class="highz-index" href="#"><div id="pagedown"> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> <span class="glyphicon-class"></span> </div></a>
 
         <div class="footer_social">
             <ul class="social-network social-circle">
@@ -102,6 +106,12 @@
             </div>
         </div>
 
+    <br/>
+
+    <div class="container" id="feed"></div>
+
+    <br/>
+    <br/>
 
 </div>
 

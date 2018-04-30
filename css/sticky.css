@@ -1,13 +1,14 @@
 .sticky_nav_bar {
     bottom: 0;
-    z-index: 10;
     position: absolute;
     width: 100%;
+    z-index: 10;
 }
 
 .sticky_nav_bar div{
     margin: 30px;
 }
+
 
 #sticky_nav_bar a {
     float: left;
@@ -33,6 +34,7 @@
     position: fixed;
     top:0;
     width: 100%;
+    height: 10%;
 }
 
 h2.acc_trigger {

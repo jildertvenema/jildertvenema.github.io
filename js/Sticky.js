@@ -5,6 +5,7 @@ $(window).scroll(function(){
         social = $('.footer_social'),
         arrow = $('#pagedown'),
         contact = $('#get_in_touch');
+        navbar = $('.sticky_nav_bar');
 
     if (scroll >= $(document).height()/3 - 130) {
         sticky.addClass('sticky');
