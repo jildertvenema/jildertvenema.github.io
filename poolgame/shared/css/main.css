@@ -1,0 +1,138 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding:0;
+    overflow:hidden;
+}
+body {
+    background-color: #ffffff;
+    margin: 0;
+    overflow: hidden;
+    font-family: arial;
+    padding:0;
+}
+#clickToPlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+#instructions {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    position:absolute;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    box-align: center;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+#sound {
+    position: absolute;
+    top:5px;
+    right: 5px;
+
+}
+
+#player {
+	position: absolute;
+	top: 1px;
+	left: 5px;
+	color: green;
+	font-size: 50px;
+}
+
+#playerText{
+    margin:0;
+}
+
+#powerMeter{
+    top: 60px;
+    left: 5px;
+    position: absolute;
+    background-color: green;
+    width: 0;
+    height: 25px;
+}
+
+#clickField{
+    position: absolute;
+    top:60px;
+    width: 100%;
+    height: 100%;
+}
+
+
+#hasFull{
+    position: absolute;
+    top: 1px;
+    left: 300px;
+}
+
+
+#hasFullText{
+    margin: 0;
+    font-size: 50px;
+    color: green;
+}
+#clickToPlay{
+    position: absolute;
+    top: 1px;
+    width: 100%;
+
+    text-align: center;
+}
+
+#clickToPlay p {
+    margin: 0;
+    font-size: 50px;
+    color: green;
+}
+
+.holder{
+    width:100%;
+    position:absolute;
+    left:0;
+    top:0px;
+    display:block;
+}
+.popup{
+    width:800px;
+    margin:0 auto;
+    border-radius: 7px;
+    background:#6b6a63;
+    margin:30px auto 0;
+    padding:6px;
+    display: none;
+}
+
+.content{
+    background:#fff;
+    padding: 28px 26px 33px 25px;
+}
+
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
