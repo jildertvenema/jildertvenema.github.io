@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/boggle/static/js/runtime~main.72847329.js"
   },
   {
-    "revision": "e89c5965ce1cdc87a71b",
-    "url": "/boggle/static/js/main.50c17811.chunk.js"
+    "revision": "66aa3dad305bd9c0aade",
+    "url": "/boggle/static/js/main.04a338d4.chunk.js"
   },
   {
     "revision": "ec903f53a0b2d2043621",
     "url": "/boggle/static/js/2.1fce7094.chunk.js"
   },
   {
-    "revision": "e89c5965ce1cdc87a71b",
+    "revision": "66aa3dad305bd9c0aade",
     "url": "/boggle/static/css/main.e56f1569.chunk.css"
   },
   {
-    "revision": "d9afc4cd04c61cecadb4b7a91ba5a07e",
+    "revision": "6f987997ad2071c1a5bde8fd1b677e00",
     "url": "/boggle/index.html"
   }
 ];
