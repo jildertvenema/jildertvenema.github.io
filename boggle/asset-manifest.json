@@ -1,13 +1,13 @@
 {
   "main.css": "/boggle/static/css/main.e56f1569.chunk.css",
-  "main.js": "/boggle/static/js/main.797ea868.chunk.js",
-  "main.js.map": "/boggle/static/js/main.797ea868.chunk.js.map",
+  "main.js": "/boggle/static/js/main.4f562cfa.chunk.js",
+  "main.js.map": "/boggle/static/js/main.4f562cfa.chunk.js.map",
   "runtime~main.js": "/boggle/static/js/runtime~main.72847329.js",
   "runtime~main.js.map": "/boggle/static/js/runtime~main.72847329.js.map",
-  "static/js/2.c9201a2e.chunk.js": "/boggle/static/js/2.c9201a2e.chunk.js",
-  "static/js/2.c9201a2e.chunk.js.map": "/boggle/static/js/2.c9201a2e.chunk.js.map",
+  "static/js/2.7dd384c7.chunk.js": "/boggle/static/js/2.7dd384c7.chunk.js",
+  "static/js/2.7dd384c7.chunk.js.map": "/boggle/static/js/2.7dd384c7.chunk.js.map",
   "index.html": "/boggle/index.html",
-  "precache-manifest.24893c6023589c9a1b037fd33c0a5d29.js": "/boggle/precache-manifest.24893c6023589c9a1b037fd33c0a5d29.js",
+  "precache-manifest.42fd2b66d80af17502eb9c343a17ee4d.js": "/boggle/precache-manifest.42fd2b66d80af17502eb9c343a17ee4d.js",
   "service-worker.js": "/boggle/service-worker.js",
   "static/css/main.e56f1569.chunk.css.map": "/boggle/static/css/main.e56f1569.chunk.css.map"
 }
