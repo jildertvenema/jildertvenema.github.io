@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#e73c7e">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#e73c7e">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#e73c7e">
+
+    <meta name="theme-color" content="#000000" />
+
+    <script src="dist/bundle.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Boggle</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container pt-4">
+      <div class="card">
+        <h5 class="card-title boggle-title">Boggle Jquery</h5>
+        <h5 class="card-title boggle-title" id="boggle-points">0 points</h5>
+        <h5 class="card-title boggle-title hidden" id="boggle-timer"></h5>
+        <div id="boggle-grid-container" class="grid-container">
+        </div> 
+        
+        <h5 class="card-title boggle-title" id="boggle-word"></h5>
+        <button type="button" class="btn btn-primary mb-4 ml-4 mr-4 hidden" id='boggle-start-button'>Start</button>
+        <button type="button" class="btn btn-primary mb-4 ml-4 mr-4 hidden" id='boggle-check-button'>Check word</button>
+      </div>
+    </div>
+  </body>
+</html>

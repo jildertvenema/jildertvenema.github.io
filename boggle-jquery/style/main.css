@@ -1,0 +1,66 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    color: #fff;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: Gradient 40s ease infinite;
+    
+    overscroll-behavior-y: contain;
+}
+
+@keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, calc(20% - 12px));
+    grid-template-rows: repeat(5, calc(14% - 12px));
+    /* background-color: white; */
+    grid-gap: 12px;
+    padding: 10px;
+}
+
+.grid-item {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 34%;
+}
+
+.hidden {
+  display: none;
+}
+
+.boggle-title {
+  color: black;
+  margin: 0 auto;
+  margin-top: 12px;
+}
+
+#boggle-word {
+  margin-top: -106px;
+  margin-bottom: 20px;
+}
