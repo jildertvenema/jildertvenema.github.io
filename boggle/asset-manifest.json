@@ -1,14 +1,14 @@
 {
-  "main.css": "/boggle/static/css/main.2fb4d0e2.chunk.css",
-  "main.js": "/boggle/static/js/main.7852ca4c.chunk.js",
-  "main.js.map": "/boggle/static/js/main.7852ca4c.chunk.js.map",
+  "main.css": "/boggle/static/css/main.b8fd29d3.chunk.css",
+  "main.js": "/boggle/static/js/main.7e73f091.chunk.js",
+  "main.js.map": "/boggle/static/js/main.7e73f091.chunk.js.map",
   "runtime~main.js": "/boggle/static/js/runtime~main.72847329.js",
   "runtime~main.js.map": "/boggle/static/js/runtime~main.72847329.js.map",
   "static/js/2.861fecdf.chunk.js": "/boggle/static/js/2.861fecdf.chunk.js",
   "static/js/2.861fecdf.chunk.js.map": "/boggle/static/js/2.861fecdf.chunk.js.map",
   "index.html": "/boggle/index.html",
-  "precache-manifest.89a9fac0aa3b5a83921b5f102441970e.js": "/boggle/precache-manifest.89a9fac0aa3b5a83921b5f102441970e.js",
+  "precache-manifest.df321dd1af0f0eef55bac815fd536273.js": "/boggle/precache-manifest.df321dd1af0f0eef55bac815fd536273.js",
   "service-worker.js": "/boggle/service-worker.js",
-  "static/css/main.2fb4d0e2.chunk.css.map": "/boggle/static/css/main.2fb4d0e2.chunk.css.map",
+  "static/css/main.b8fd29d3.chunk.css.map": "/boggle/static/css/main.b8fd29d3.chunk.css.map",
   "static/media/kahoot.mp3": "/boggle/static/media/kahoot.cf5776ef.mp3"
 }
