@@ -23,7 +23,7 @@ class ShipPlaneHandler{
         this.spawnBoat = function(){
             if (this.pirateBoat == undefined) return;
 
-            this.pirateBoat.position.set(-45000, 170, -30000);
+            this.pirateBoat.position.set(-25000, 170, -15000);
             this.isBoat = true;
             this.pirateBoat.visible = true;
         };
