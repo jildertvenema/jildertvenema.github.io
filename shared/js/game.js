@@ -473,7 +473,7 @@ function updateParticles() {
 
 function openHostPeer(){
     var id = Math.round((Math.random() * 9999) + 1);
-    var peer = new Peer(id.toString(), {host: 'https://peer-app.herokuapp.com', path: '/', port: 20258}, {secure: true} );
+    var peer = new Peer(id.toString(), {host: 'peer-app.herokuapp.com', path: '/', port: 20258}, {secure: true} );
     success('Peer-id = ' + id);
     isHost = true;
     document.getElementById('peer_number').innerHTML = 'Peer-id = ' + id;
@@ -488,7 +488,7 @@ function openHostPeer(){
 function connectToPeer(){
     var hostID = document.getElementById("joinform").elements[0].value;
     var id = 'slave' +  Math.round((Math.random() * 9999) + 1);
-    var peer = new Peer(id, {host: 'https://peer-app.herokuapp.com', port: 20258, path: '/'}, {secure: true} );
+    var peer = new Peer(id, {host: 'peer-app.herokuapp.com', port: 20258, path: '/'}, {secure: true} );
     conn = peer.connect(hostID.toString());
     isHost = false;
 
