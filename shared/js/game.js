@@ -473,7 +473,7 @@ function updateParticles() {
 
 function openHostPeer(){
     var id = Math.round((Math.random() * 9999) + 1);
-    var peer = new Peer(id.toString(), {key: 'p2zyxcxaixiozuxr'}, {secure: true} );
+    var peer = new Peer(id.toString(), {}, {secure: true} );
     success('Peer-id = ' + id);
     isHost = true;
     document.getElementById('peer_number').innerHTML = 'Peer-id = ' + id;
@@ -488,7 +488,7 @@ function openHostPeer(){
 function connectToPeer(){
     var hostID = document.getElementById("joinform").elements[0].value;
     var id = 'slave' +  Math.round((Math.random() * 9999) + 1);
-    var peer = new Peer(id, {key: 'p2zyxcxaixiozuxr'}, {secure: true} );
+    var peer = new Peer(id, {}, {secure: true} );
     conn = peer.connect(hostID.toString());
     isHost = false;
 
